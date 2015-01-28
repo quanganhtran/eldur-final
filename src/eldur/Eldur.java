@@ -5,6 +5,8 @@
  */
 package eldur;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author trand
@@ -15,7 +17,19 @@ public class Eldur {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Statistics
+
+
+        
     }
     
+    //public int cash;
+    public int iron;
+    public int copper;
+    public ArrayList<Sword> inventory = new ArrayList<Sword>();
+    public void craft(Recipe someRp) {
+        iron -= someRp.getCostIron();
+        copper -= someRp.getCostCopper();
+        inventory.add(new Sword(someRp));
+    }
 }
