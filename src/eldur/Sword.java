@@ -19,4 +19,13 @@ public class Sword {
         this.atk = rp.getAtk();
         this.spd = rp.getSpd();
     }
+    public String getName() {
+        return name;
+    }
+    public int getAtk() {
+        return atk;
+    }
+    public int getSpd() {
+        return spd;
+    }
 }
