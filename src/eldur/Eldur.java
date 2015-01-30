@@ -17,7 +17,7 @@ public class Eldur {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public void game() {
         Scanner reader = new Scanner(System.in);
         // Statistics
         iron = 10;
@@ -49,13 +49,13 @@ public class Eldur {
     }
     
     //public int cash;
-    public static int iron;
-    public static int copper;
-    public static String command;
+    public int iron;
+    public int copper;
+    public String command;
     
-    public static ArrayList<Sword> inventory = new ArrayList<Sword>();
-    public static ArrayList<String> inventoryViewer = new ArrayList<String>();
-    public static void craft(Recipe someRp) {
+    public ArrayList<Sword> inventory = new ArrayList<Sword>();
+    public ArrayList<String> inventoryViewer = new ArrayList<String>();
+    public void craft(Recipe someRp) {
         iron -= someRp.getCostIron();
         copper -= someRp.getCostCopper();
         Sword newSword = new Sword(someRp);
