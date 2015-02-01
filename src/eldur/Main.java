@@ -5,13 +5,16 @@
  */
 package eldur;
 
+import java.util.*;
+
 /**
  *
  * @author Anh
  */
 public class Main {
     public static void main(String[] args) {
-        Eldur eldur = new Eldur();
+        Game eldur = new Game();
         eldur.game();
+        
     }
 }
