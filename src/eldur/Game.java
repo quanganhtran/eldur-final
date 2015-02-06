@@ -53,12 +53,7 @@ public class Game extends Screen {
                 break;
             case "craft":
                 if (inputParts.length >= 2) {
-                    if (inputParts[1].equals("iron")) {
-                        //controller.craft(recipes.get("iron"));
-                        gameData.craft(gameData.recipes.get("iron"));
-                    } else if (inputParts[1].equals("copper")) {
-                        gameData.craft(gameData.recipes.get("copper"));
-                    }
+                    gameData.craft(gameData.recipes.get(inputParts[1]));
                 }
             break;
         }

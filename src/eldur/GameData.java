@@ -24,7 +24,8 @@ public class GameData {
         copper = 10;
         // Game Data
         recipes.put("iron", new Recipe("Iron Sword", "Iron Sword", 10, 1, 20, 5));
-        recipes.put("copper", new Recipe("Copper Sword", "Copper Sword", 1, 10, 15, 10));
+        recipes.put("copper", new Recipe("Copper Sword", "Copper Sword", 1, 10, 15, 10));        
+        recipes.put("training", new Recipe("Training Sword", "Training Sword", 5, 5, 17, 7));
     }
     
     public ArrayList<Sword> inventory = new ArrayList<>();
