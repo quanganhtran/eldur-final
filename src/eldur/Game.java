@@ -15,10 +15,12 @@ import java.util.Scanner;
 public class Game extends Screen {
     private Scanner reader;
     private String screenName;
+    private GameData gameData;
     private HashMap<String,Screen> connections = new HashMap<>();
     
-    public Game(String sN) {
+    public Game(String sN, GameData gD) {
         super(sN);
+        gameData = gD;
     }
     
     @Override
@@ -45,12 +47,20 @@ public class Game extends Screen {
             case "quit":
                 System.out.println("Thanks for playing!");
                 System.exit(0);
+            case "stat":
+                System.out.println("Iron "+gameData.iron+" Copper "+gameData.copper);
+                System.out.println(gameData.inventoryViewer);
+                break;
             case "craft":
                 if (inputParts.length >= 2) {
                     if (inputParts[1].equals("iron")) {
-                        //Controller.craft(recipes.get("iron"));
+                        //controller.craft(recipes.get("iron"));
+                        gameData.craft(gameData.recipes.get("iron"));
+                    } else if (inputParts[1].equals("copper")) {
+                        gameData.craft(gameData.recipes.get("copper"));
                     }
                 }
+            break;
         }
         return input;
         
