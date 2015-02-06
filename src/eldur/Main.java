@@ -13,8 +13,7 @@ import java.util.*;
  */
 public class Main {
     public static void main(String[] args) {
-        Game eldur = new Game();
-        eldur.game();
-        
+        Controller controller = new Controller();
+        controller.execute();
     }
 }

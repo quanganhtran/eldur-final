@@ -5,62 +5,66 @@
  */
 package eldur;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 /**
  *
- * @author trand
+ * @author Anh
  */
-public class Game {
-
-    /**
-     * @param args the command line arguments
-     */
-    public void game() {
-        Scanner reader = new Scanner(System.in);
-        // Statistics
-        iron = 10;
-        copper = 10;
-        
-        // Initialization
-        Recipe ironSwordRecipe = new Recipe("Iron Sword", "Iron Sword", 10, 1, 20, 5);
-        Recipe copperSwordRecipe = new Recipe("Copper Sword", "Copper Sword", 1, 10, 15, 10);
-        
-        // Game
-        System.out.println("Type a command");
-        command = reader.nextLine();
-        while (!command.equals("quit")) {
-            String[] input = command.split("\\s");
-            if (input[0].equals("stat")) {
-                System.out.println("Iron "+iron+" Copper "+copper);
-                System.out.println(inventoryViewer);
-            } else if (input[0].equals("craft") && input.length == 2) {
-                if (input[1].equals("iron")) {
-                    craft(ironSwordRecipe);
-                } else if (input[1].equals("copper")) {
-                    craft(copperSwordRecipe);
-                }
+public class Game extends Screen {
+    private Scanner reader;
+    private String screenName;
+    private HashMap<String,Screen> connections = new HashMap<>();
+    
+    public Game(String sN) {
+        super(sN);
+    }
+    
+    @Override
+    public Screen onCommand() {
+        reader = new Scanner(System.in);
+        while (true) {
+            System.out.println("Enter a command: ");
+            String input = reader.nextLine();
+            String connection = interpret(input);
+            
+            if (connections.get(connection) != null) {
+                return connections.get(connection);
             }
-            System.out.println("Type a command");
-            command = reader.nextLine();
         }
+    }
+    
+    @Override
+    public String interpret(String input) {
+        String[] inputParts = input.split("\\s");
+        switch (inputParts[0]) {
+            case "where":
+                reportScreen();
+                return "";
+            case "quit":
+                System.out.println("Thanks for playing!");
+                System.exit(0);
+            case "craft":
+                if (inputParts.length >= 2) {
+                    if (inputParts[1].equals("iron")) {
+                        //Controller.craft(recipes.get("iron"));
+                    }
+                }
+        }
+        return input;
         
+//            String[] input = command.split("\\s");
+//            if (input[0].equals("stat")) {
+//                System.out.println("Iron "+iron+" Copper "+copper);
+//                System.out.println(inventoryViewer);
+//            } else if (input[0].equals("craft") && input.length == 2) {
+//                if (input[1].equals("iron")) {
+//                    craft(ironSwordRecipe);
+//                } else if (input[1].equals("copper")) {
+//                    craft(copperSwordRecipe);
+//                }
+//            }
     }
-    
-    //public int cash;
-    public int iron;
-    public int copper;
-    public String command;
-    
-    public ArrayList<Sword> inventory = new ArrayList<Sword>();
-    public ArrayList<String> inventoryViewer = new ArrayList<String>();
-    public void craft(Recipe someRp) {
-        iron -= someRp.getCostIron();
-        copper -= someRp.getCostCopper();
-        Sword newSword = new Sword(someRp);
-        inventory.add(newSword);
-        inventoryViewer.add(newSword.getName() + " " + newSword.getAtk() + " " + newSword.getSpd());
-        System.out.println("Sword crafted: "+newSword.getName() + " " + newSword.getAtk() + " " + newSword.getSpd());
-    }
+
 }
