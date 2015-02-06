@@ -41,7 +41,7 @@ public class Controller {
         GameData gameData = new GameData();
         
         Game game = new Game("Town", gameData);
-        Screen adventure = new Screen("Battle Screen");
+        Screen adventure = new Screen("Battle");
         Screen market = new Screen("Marketplace");
         Screen inn = new Screen("Inn");
         Screen map = new Screen("Map Screen");
@@ -49,10 +49,10 @@ public class Controller {
         game.addConnection("adventure", adventure);
         game.addConnection("market", market);
         game.addConnection("inn", inn);
-        game.addConnection("map",map);
+        game.addConnection("map", map);
         adventure.addConnection("back", game);
         market.addConnection("back", game);
-        inn.addConnection("back",game);
+        inn.addConnection("back", game);
         map.addConnection("back", game);
         
         currentScreen = game;
