@@ -13,9 +13,9 @@ import java.util.Scanner;
  * @author Anh
  */
 public class Screen {
-    private Scanner reader;
-    private String screenName;
-    private HashMap<String,Screen> connections = new HashMap<>();
+    protected Scanner reader;
+    protected String screenName;
+    protected HashMap<String,Screen> connections = new HashMap<>();
         
     public Screen(String sN) {
         screenName = sN;

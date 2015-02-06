@@ -5,7 +5,6 @@
  */
 package eldur;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 /**
@@ -13,10 +12,8 @@ import java.util.Scanner;
  * @author Anh
  */
 public class Game extends Screen {
-    private Scanner reader;
-    private String screenName;
+    //private Scanner reader;
     private GameData gameData;
-    private HashMap<String,Screen> connections = new HashMap<>();
     
     public Game(String sN, GameData gD) {
         super(sN);
@@ -48,16 +45,18 @@ public class Game extends Screen {
                 System.out.println("Thanks for playing!");
                 System.exit(0);
             case "stat":
-                System.out.println("Iron "+gameData.iron+" Copper "+gameData.copper);
+                System.out.println("Iron "+gameData.ironOre+" Copper "+gameData.copperOre);
                 System.out.println(gameData.inventoryViewer);
-                break;
+                return "";
             case "craft":
                 if (inputParts.length >= 2) {
                     gameData.craft(gameData.recipes.get(inputParts[1]));
                 }
-            break;
+                return "";
+            default:
+                return input;
         }
-        return input;
+        //return input;
         
 //            String[] input = command.split("\\s");
 //            if (input[0].equals("stat")) {

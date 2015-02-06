@@ -14,26 +14,27 @@ import java.util.HashMap;
  */
 public class GameData {
     public int cash;
-    public int iron;
-    public int copper;
+    // Materials: copper, iron, silver, gold, platinum, mithril
+    public int copperOre,ironOre,silverOre,goldOre,platinumOre,mithrilOre;
+    public int copperIngot,ironIngot,silverIngot,goldIngot,platinumIngot,mithrilIngot;
     public HashMap<String,Recipe> recipes = new HashMap<>();
     
+
     public void initialize() {
         // Statistics
-        iron = 10;
-        copper = 10;
+        ironOre = 10;
+        copperOre = 10;
         // Game Data
-        recipes.put("iron", new Recipe("Iron Sword", "Iron Sword", 10, 1, 20, 5));
-        recipes.put("copper", new Recipe("Copper Sword", "Copper Sword", 1, 10, 15, 10));        
-        recipes.put("training", new Recipe("Training Sword", "Training Sword", 5, 5, 17, 7));
+        FileReader assets = new FileReader();
+        assets.loadRecipe(recipes);
     }
     
     public ArrayList<Sword> inventory = new ArrayList<>();
     public ArrayList<String> inventoryViewer = new ArrayList<>();
     
     public void craft(Recipe someRp) {
-        iron -= someRp.getCostIron();
-        copper -= someRp.getCostCopper();
+        ironOre -= someRp.getCostIron();
+        copperOre -= someRp.getCostCopper();
         Sword newSword = new Sword(someRp);
         inventory.add(newSword);
         inventoryViewer.add(newSword.getName() + " " + newSword.getAtk() + " " + newSword.getSpd());
