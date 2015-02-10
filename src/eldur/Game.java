@@ -12,14 +12,16 @@ import java.util.Scanner;
  * @author Anh
  */
 public class Game extends Screen {
+
     //private Scanner reader;
+
     private GameData gameData;
-    
+
     public Game(String sN, GameData gD) {
         super(sN);
         gameData = gD;
     }
-    
+
     @Override
     public Screen onCommand() {
         reader = new Scanner(System.in);
@@ -27,13 +29,13 @@ public class Game extends Screen {
             System.out.println("Enter a command: ");
             String input = reader.nextLine();
             String connection = interpret(input);
-            
+
             if (connections.get(connection) != null) {
                 return connections.get(connection);
             }
         }
     }
-    
+
     @Override
     public String interpret(String input) {
         String[] inputParts = input.split("\\s");
@@ -46,9 +48,9 @@ public class Game extends Screen {
                 System.exit(0);
             case "stat":
                 //gameData.materials.forEach(String k : );
-                for (String k : gameData.materials.keySet()) {
+                gameData.materials.keySet().stream().forEach((k) -> {
                     System.out.print(k + ": " + gameData.materials.get(k) + " ");
-                }
+                });
                 //System.out.println("Iron "+gameData.iron+" Copper "+gameData.copper);
                 System.out.println("");
                 System.out.println(gameData.inventoryViewer);
@@ -64,7 +66,7 @@ public class Game extends Screen {
                 return input;
         }
         //return input;
-        
+
 //            String[] input = command.split("\\s");
 //            if (input[0].equals("stat")) {
 //                System.out.println("Iron "+iron+" Copper "+copper);

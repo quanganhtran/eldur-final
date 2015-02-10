@@ -7,6 +7,7 @@ package eldur;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -16,16 +17,20 @@ public class GameData {
     public int cash;
     // Materials: copper, iron, silver, gold, platinum, mithril, orichalcum, adamantite.
     public int copper,iron;
-    public HashMap<String,Integer> materials = new HashMap<>();
+    public LinkedHashMap<String,Integer> materials = new LinkedHashMap<>();
     public HashMap<String,Recipe> recipes = new HashMap<>();
     
 
     public void initialize() {
         // Statistics
-        copper = 100;
-        iron = 100;
         materials.put("copper", 100);
         materials.put("iron", 100);
+        materials.put("silver", 100);
+        materials.put("gold", 100);
+        materials.put("platinum", 100);
+        materials.put("mithril", 100);
+        materials.put("orichalcum", 100);
+        materials.put("adamantite", 100);
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);

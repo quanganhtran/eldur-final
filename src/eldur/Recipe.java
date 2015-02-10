@@ -13,14 +13,16 @@ public class Recipe {
     private String recipeName;
     private String weaponName;
     private int tier;
+    private String rarity;
     private int atk;
     private String mainMat;
     private String supportMat;
     
-    public Recipe(String rN, String wN, int t, int at, String mM, String sM) {
+    public Recipe(String rN, String wN, int t, String r, int at, String mM, String sM) {
         this.recipeName = rN;
         this.weaponName = wN;
         this.tier = t;
+        this.rarity = r;
         this.atk = at;
         this.mainMat = mM;
         this.supportMat = sM;

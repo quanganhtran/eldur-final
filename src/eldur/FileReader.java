@@ -30,7 +30,7 @@ public class FileReader {
         while (recipesReader.hasNextLine()) {
             String line = recipesReader.nextLine();
             String[] lineParts = line.split(",");
-            recipes.put(lineParts[0], new Recipe(lineParts[1],lineParts[2],Integer.parseInt(lineParts[3]),Integer.parseInt(lineParts[4]),lineParts[5],lineParts[6]));
+            recipes.put(lineParts[0], new Recipe(lineParts[1],lineParts[2],Integer.parseInt(lineParts[3]),lineParts[4],Integer.parseInt(lineParts[5]),lineParts[6],lineParts[7]));
         }
 
         recipesReader.close();
