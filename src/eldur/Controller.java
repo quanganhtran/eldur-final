@@ -27,8 +27,8 @@ public class Controller {
         iron = 10;
         copper = 10;
         // Game Data
-        recipes.put("iron", new Recipe("Iron Sword", "Iron Sword", 10, 1, 20, 5));
-        recipes.put("copper", new Recipe("Copper Sword", "Copper Sword", 1, 10, 15, 10));
+//        recipes.put("iron", new Recipe("Iron Sword", "Iron Sword", 10, 1, 20, 5));
+//        recipes.put("copper", new Recipe("Copper Sword", "Copper Sword", 1, 10, 15, 10));
         
     }
     

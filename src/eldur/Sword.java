@@ -11,21 +11,18 @@ package eldur;
  */
 public class Sword {
     private String name;
+    private int tier;
     private int atk;
-    private int spd;
     
     public Sword(Recipe rp) {
         this.name = rp.getWeaponName();
+        this.tier = rp.getTier();
         this.atk = rp.getAtk();
-        this.spd = rp.getSpd();
     }
     public String getName() {
         return name;
     }
     public int getAtk() {
         return atk;
-    }
-    public int getSpd() {
-        return spd;
     }
 }

@@ -12,33 +12,33 @@ package eldur;
 public class Recipe {
     private String recipeName;
     private String weaponName;
-    private int costIron;
-    private int costCopper;
+    private int tier;
     private int atk;
-    private int spd;
+    private String mainMat;
+    private String supportMat;
     
-    public Recipe(String rN, String wN, int cIr, int cCp, int at, int sp) {
+    public Recipe(String rN, String wN, int t, int at, String mM, String sM) {
         this.recipeName = rN;
         this.weaponName = wN;
-        this.costIron = cIr;
-        this.costCopper = cCp;
+        this.tier = t;
         this.atk = at;
-        this.spd = sp;
+        this.mainMat = mM;
+        this.supportMat = sM;
     }
     
     public String getWeaponName() {
         return weaponName;
     }
-    public int getCostIron() {
-        return costIron;
-    }
-    public int getCostCopper() {
-        return costCopper;
+    public int getTier() {
+        return tier;
     }
     public int getAtk() {
         return atk;
     }
-    public int getSpd() {
-        return spd;
+    public String getMainMat() {
+        return mainMat;
+    }
+    public String getSupportMat() {
+        return supportMat;
     }
 }

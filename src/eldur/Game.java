@@ -45,12 +45,19 @@ public class Game extends Screen {
                 System.out.println("Thanks for playing!");
                 System.exit(0);
             case "stat":
-                System.out.println("Iron "+gameData.ironOre+" Copper "+gameData.copperOre);
+                //gameData.materials.forEach(String k : );
+                for (String k : gameData.materials.keySet()) {
+                    System.out.print(k + ": " + gameData.materials.get(k) + " ");
+                }
+                //System.out.println("Iron "+gameData.iron+" Copper "+gameData.copper);
+                System.out.println("");
                 System.out.println(gameData.inventoryViewer);
                 return "";
             case "craft":
                 if (inputParts.length >= 2) {
-                    gameData.craft(gameData.recipes.get(inputParts[1]));
+                    if (gameData.recipes.get(inputParts[1]) != null) {
+                        gameData.craft(gameData.recipes.get(inputParts[1]));
+                    }
                 }
                 return "";
             default:

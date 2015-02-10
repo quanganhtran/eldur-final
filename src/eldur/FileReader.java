@@ -29,8 +29,8 @@ public class FileReader {
         
         while (recipesReader.hasNextLine()) {
             String line = recipesReader.nextLine();
-            String[] lineParts = line.split("<>");
-            recipes.put(lineParts[0], new Recipe(lineParts[1],lineParts[2],Integer.parseInt(lineParts[3]),Integer.parseInt(lineParts[4]),Integer.parseInt(lineParts[5]),Integer.parseInt(lineParts[6])));
+            String[] lineParts = line.split(",");
+            recipes.put(lineParts[0], new Recipe(lineParts[1],lineParts[2],Integer.parseInt(lineParts[3]),Integer.parseInt(lineParts[4]),lineParts[5],lineParts[6]));
         }
 
         recipesReader.close();

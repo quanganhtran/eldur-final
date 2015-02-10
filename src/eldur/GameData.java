@@ -14,16 +14,18 @@ import java.util.HashMap;
  */
 public class GameData {
     public int cash;
-    // Materials: copper, iron, silver, gold, platinum, mithril
-    public int copperOre,ironOre,silverOre,goldOre,platinumOre,mithrilOre;
-    public int copperIngot,ironIngot,silverIngot,goldIngot,platinumIngot,mithrilIngot;
+    // Materials: copper, iron, silver, gold, platinum, mithril, orichalcum, adamantite.
+    public int copper,iron;
+    public HashMap<String,Integer> materials = new HashMap<>();
     public HashMap<String,Recipe> recipes = new HashMap<>();
     
 
     public void initialize() {
         // Statistics
-        ironOre = 10;
-        copperOre = 10;
+        copper = 100;
+        iron = 100;
+        materials.put("copper", 100);
+        materials.put("iron", 100);
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
@@ -33,11 +35,11 @@ public class GameData {
     public ArrayList<String> inventoryViewer = new ArrayList<>();
     
     public void craft(Recipe someRp) {
-        ironOre -= someRp.getCostIron();
-        copperOre -= someRp.getCostCopper();
+        materials.put(someRp.getMainMat(),materials.get(someRp.getMainMat()) - 10);
+        materials.put(someRp.getSupportMat(),materials.get(someRp.getSupportMat()) - 10);
         Sword newSword = new Sword(someRp);
         inventory.add(newSword);
-        inventoryViewer.add(newSword.getName() + " " + newSword.getAtk() + " " + newSword.getSpd());
-        System.out.println("Sword crafted: "+newSword.getName() + " " + newSword.getAtk() + " " + newSword.getSpd());
+        inventoryViewer.add(newSword.getName() + " " + newSword.getAtk());
+        System.out.println("Sword crafted: "+newSword.getName() + " " + newSword.getAtk());
     }
 }
