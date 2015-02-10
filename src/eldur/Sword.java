@@ -13,16 +13,28 @@ public class Sword {
     private String name;
     private int tier;
     private int atk;
+    private int socket;
+    public String refinement;
     
     public Sword(Recipe rp) {
         this.name = rp.getWeaponName();
         this.tier = rp.getTier();
         this.atk = rp.getAtk();
+        this.socket = 1;
     }
     public String getName() {
         return name;
     }
     public int getAtk() {
         return atk;
+    }
+    public int getSocket() {
+        return socket;
+    }
+    public void useSocket() {
+        socket--;
+    }
+    public void addSocketName(String s) {
+        name += " " + s;
     }
 }

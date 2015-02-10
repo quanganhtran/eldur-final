@@ -16,21 +16,26 @@ import java.util.LinkedHashMap;
 public class GameData {
     public int cash;
     // Materials: copper, iron, silver, gold, platinum, mithril, orichalcum, adamantite.
-    public int copper,iron;
-    public LinkedHashMap<String,Integer> materials = new LinkedHashMap<>();
-    public HashMap<String,Recipe> recipes = new HashMap<>();
+    public Material copper = new Material("Copper",100);
+    public Material iron = new Material("Iron",100);
+    public Material silver = new Material("Silver",100);
+    public HashMap<String,Material> materials = new HashMap<>();
+    // Gemstones
+    public Gemstone ruby = new Gemstone("of Strength");
     
+    public HashMap<String,Recipe> recipes = new HashMap<>();
 
     public void initialize() {
-        // Statistics
-        materials.put("copper", 100);
-        materials.put("iron", 100);
-        materials.put("silver", 100);
-        materials.put("gold", 100);
-        materials.put("platinum", 100);
-        materials.put("mithril", 100);
-        materials.put("orichalcum", 100);
-        materials.put("adamantite", 100);
+        // Materials
+//        materials.put("gold", 100);
+//        materials.put("platinum", 100);
+//        materials.put("mithril", 100);
+//        materials.put("orichalcum", 100);
+//        materials.put("adamantite", 100);
+        materials.put("copper",copper);
+        materials.put("iron", iron);
+        materials.put("silver", silver);
+        // Gemstones
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
@@ -40,11 +45,19 @@ public class GameData {
     public ArrayList<String> inventoryViewer = new ArrayList<>();
     
     public void craft(Recipe someRp) {
-        materials.put(someRp.getMainMat(),materials.get(someRp.getMainMat()) - 10);
-        materials.put(someRp.getSupportMat(),materials.get(someRp.getSupportMat()) - 10);
+        materials.get(someRp.getMainMat()).consume(10);
+        materials.get(someRp.getSupportMat()).consume(10);
+//        materials.put(someRp.getMainMat(),materials.get(someRp.getMainMat()) - 10);
+//        materials.put(someRp.getSupportMat(),materials.get(someRp.getSupportMat()) - 10);
         Sword newSword = new Sword(someRp);
         inventory.add(newSword);
         inventoryViewer.add(newSword.getName() + " " + newSword.getAtk());
-        System.out.println("Sword crafted: "+newSword.getName() + " " + newSword.getAtk());
+        System.out.println("Sword crafted: "+ newSword.getName() + " " + newSword.getAtk());
+    }
+    
+    public void socket(Sword sw, Gemstone someG) {
+        // Remember to use up a gemstone here
+        sw.refinement = someG.refinement;
+        sw.addSocketName(someG.refinement);
     }
 }

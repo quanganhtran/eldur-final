@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class Game extends Screen {
 
     //private Scanner reader;
-
     private GameData gameData;
 
     public Game(String sN, GameData gD) {
@@ -53,7 +52,7 @@ public class Game extends Screen {
                 });
                 System.out.println("");
                 gameData.inventory.stream().forEach((sw) -> {
-                    System.out.print(sw.getName());
+                    System.out.print(sw.getName() + " | ");
                 });
                 System.out.println("");
                 System.out.println(gameData.inventoryViewer);
@@ -62,6 +61,22 @@ public class Game extends Screen {
                 if (inputParts.length >= 2) {
                     if (gameData.recipes.get(inputParts[1]) != null) {
                         gameData.craft(gameData.recipes.get(inputParts[1]));
+                    }
+                }
+                return "";
+            case "refine":
+                if (inputParts.length >= 2) {
+                    int invPos = Integer.parseInt(inputParts[1]) - 1; // Exception possible
+                    Sword sw = null;
+                    if (invPos >= gameData.inventory.size()) {
+                        System.out.println("Sword not found.");
+                    } else {
+                        sw = gameData.inventory.get(invPos);
+                    }
+                    if (sw != null) {
+                        gameData.socket(sw, gameData.ruby);
+                        System.out.println("Refined sword: " + sw.getName());
+                        //gameData.inventory.set(invPos, sw);
                     }
                 }
                 return "";
