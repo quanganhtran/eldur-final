@@ -47,11 +47,14 @@ public class Game extends Screen {
                 System.out.println("Thanks for playing!");
                 System.exit(0);
             case "stat":
-                //gameData.materials.forEach(String k : );
+//                System.out.println("Copper: " + gameData.copper.getStock());
                 gameData.materials.keySet().stream().forEach((k) -> {
-                    System.out.print(k + ": " + gameData.materials.get(k) + " ");
+                    System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
                 });
-                //System.out.println("Iron "+gameData.iron+" Copper "+gameData.copper);
+                System.out.println("");
+                gameData.inventory.stream().forEach((sw) -> {
+                    System.out.print(sw.getName());
+                });
                 System.out.println("");
                 System.out.println(gameData.inventoryViewer);
                 return "";
