@@ -1,0 +1,16 @@
+copper,Copper Sword,Copper Sword,1,Common,10,copper,copper
+rapier,Rapier,Rapier,1,Common,12,copper,iron
+saber,Saber,Saber,1,Common,14,iron,copper
+iron,Iron Sword,Iron Sword,1,Common,16,iron,iron
+silver,Silver Sword,Silver Sword,2,Common,20,silver,silver
+broadsword,Broadsword,Broadsword,2,Common,24,silver,gold
+claymore,Claymore,Claymore,2,Common,28,gold,silver
+gold,Gold Sword,Gold Sword,2,Common,32,gold,gold
+platinum,Platinum Sword,Platinum Sword,3,Common,40,platinum,platinum
+longsword,Longsword,Longsword,3,Common,48,platinum,mithril
+zweihander,Zweihander,Zweihander,3,Common,56,mithril,platinum
+mithril,Mithril Sword,Mithril Sword,3,Common,64,mithril,mithril
+orichalcum,Orichalcum Sword,Orichalcum Sword,4,Common,80,orichalcum,orichalcum
+theresian,Theresian Sword,Theresian Sword,4,Common,96,orichalcum,adamantite
+imperial,Imperial Sword,Imperial Sword,4,Common,112,adamantite,orichalcum
+adamantite,Adamantite Sword,Adamantite Sword,4,Common,128,adamantite,adamantite

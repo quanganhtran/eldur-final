@@ -5,10 +5,15 @@
  */
 package eldur;
 
+import java.util.*;
+
 /**
  *
- * @author Oliver
+ * @author Anh
  */
-public class Town {
-    
+public class Main {
+    public static void main(String[] args) {
+        Controller controller = new Controller();
+        controller.execute();
+    }
 }
