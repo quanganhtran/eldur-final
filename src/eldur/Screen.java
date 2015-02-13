@@ -21,9 +21,9 @@ public class Screen {
         screenName = sN;
     }
     
-    public Screen(HashMap<String,Screen> conn) {
-        connections = conn;
-    }
+//    public Screen(HashMap<String,Screen> conn) {
+//        connections = conn;
+//    }
     
     public void addConnection(String cmd, Screen targetScreen) {
         connections.put(cmd, targetScreen);

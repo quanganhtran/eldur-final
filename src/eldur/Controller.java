@@ -41,7 +41,7 @@ public class Controller {
         GameData gameData = new GameData();
         
         Game game = new Game("Town", gameData);
-        Screen adventure = new Screen("Battle");
+        Screen adventure = new Screen("Adventure");
         Screen market = new Screen("Marketplace");
         Screen inn = new Screen("Inn");
         Screen map = new Screen("Map Screen");

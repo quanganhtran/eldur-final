@@ -5,8 +5,6 @@
  */
 package eldur;
 
-import java.util.*;
-
 /**
  *
  * @author Anh
