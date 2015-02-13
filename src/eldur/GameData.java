@@ -20,6 +20,11 @@ public class GameData {
     public Material copper = new Material("Copper", 100);
     public Material iron = new Material("Iron", 100);
     public Material silver = new Material("Silver", 100);
+    public Material gold = new Material("Gold", 100);
+    public Material platinum = new Material("Platinum", 100);
+    public Material mithril = new Material("Mithril", 100);
+    public Material orichalcum = new Material("Orichalcum", 100);
+    public Material adamantite = new Material("Adamantite", 100);
     public HashMap<String, Material> materials = new HashMap<>();
     // Gemstones
     public Gemstone ruby = new Gemstone("of Strength");
@@ -31,14 +36,14 @@ public class GameData {
 
     public void initialize() {
         // Materials
-//        materials.put("gold", 100);
-//        materials.put("platinum", 100);
-//        materials.put("mithril", 100);
-//        materials.put("orichalcum", 100);
-//        materials.put("adamantite", 100);
         materials.put("copper", copper);
         materials.put("iron", iron);
         materials.put("silver", silver);
+        materials.put("gold", gold);
+        materials.put("platinum", platinum);
+        materials.put("mithril", mithril);
+        materials.put("orichalcum", orichalcum);
+        materials.put("adamantite", adamantite);
         // Gemstones
         gemstones.put("ruby", ruby);
         gemstones.put("sapphire", sapphire);
