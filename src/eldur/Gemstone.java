@@ -12,7 +12,7 @@ package eldur;
 public class Gemstone {
     private String name;
     private int type;
-    public String refinement;
+    public String refinementPrefix;
     
     public Gemstone(String n, int t) {
         name = n;
@@ -20,6 +20,6 @@ public class Gemstone {
     }
     
     public Gemstone(String r) {
-        refinement = r;
+        refinementPrefix = r;
     }
 }
