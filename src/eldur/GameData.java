@@ -14,16 +14,20 @@ import java.util.LinkedHashMap;
  * @author Anh
  */
 public class GameData {
+
     public int cash;
     // Materials: copper, iron, silver, gold, platinum, mithril, orichalcum, adamantite.
-    public Material copper = new Material("Copper",100);
-    public Material iron = new Material("Iron",100);
-    public Material silver = new Material("Silver",100);
-    public HashMap<String,Material> materials = new HashMap<>();
+    public Material copper = new Material("Copper", 100);
+    public Material iron = new Material("Iron", 100);
+    public Material silver = new Material("Silver", 100);
+    public HashMap<String, Material> materials = new HashMap<>();
     // Gemstones
     public Gemstone ruby = new Gemstone("of Strength");
-    
-    public HashMap<String,Recipe> recipes = new HashMap<>();
+    public Gemstone sapphire = new Gemstone("of Wisdom");
+    public Gemstone emerald = new Gemstone("of Precision");
+    public HashMap<String, Gemstone> gemstones = new HashMap<>();
+    // Recipes
+    public HashMap<String, Recipe> recipes = new HashMap<>();
 
     public void initialize() {
         // Materials
@@ -32,19 +36,22 @@ public class GameData {
 //        materials.put("mithril", 100);
 //        materials.put("orichalcum", 100);
 //        materials.put("adamantite", 100);
-        materials.put("copper",copper);
+        materials.put("copper", copper);
         materials.put("iron", iron);
         materials.put("silver", silver);
         // Gemstones
+        gemstones.put("ruby", ruby);
+        gemstones.put("sapphire", sapphire);
+        gemstones.put("emerald",emerald);
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
     }
-    
+
     public ArrayList<Sword> inventory = new ArrayList<>();
     public ArrayList<String> inventoryViewer = new ArrayList<>();
-    
-    public void craft(Recipe someRp) {
+
+    public void craft(Recipe someRp) { // Needs to transfer all feedbacks to Game
         materials.get(someRp.getMainMat()).consume(10);
         materials.get(someRp.getSupportMat()).consume(10);
 //        materials.put(someRp.getMainMat(),materials.get(someRp.getMainMat()) - 10);
@@ -52,12 +59,18 @@ public class GameData {
         Sword newSword = new Sword(someRp);
         inventory.add(newSword);
         inventoryViewer.add(newSword.getName() + " " + newSword.getAtk());
-        System.out.println("Sword crafted: "+ newSword.getName() + " " + newSword.getAtk());
+        System.out.println("Sword crafted: " + newSword.getName() + " " + newSword.getAtk());
     }
-    
-    public void socket(Sword sw, Gemstone someG) {
+
+    public void socket(Sword sw, Gemstone someG) { // Needs to transfer all feedbacks to Game
         // Remember to use up a gemstone here
-        sw.refinement = someG.refinement;
-        sw.addSocketName(someG.refinement);
+//        sw.refinement = someG.refinementPrefix;
+        if (sw.getSocket() > 0) {
+            sw.useSocket();
+            sw.addSocketToName(someG.refinementPrefix);
+            System.out.println("Refined sword: " + sw.getName());
+        } else {
+            System.out.println(sw.getName() + ": Not enough socket.");
+        }
     }
 }

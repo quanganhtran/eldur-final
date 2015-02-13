@@ -12,10 +12,19 @@ package eldur;
 public class Sword {
     private String name;
     private int tier;
+    private String rarity;
     private int atk;
     private int socket;
     public String refinement;
     
+    public Sword(String n, int t, String r, int a, int s, String ref) {
+        name = n;
+        tier = t;
+        rarity = r;
+        atk = a;
+        socket = s;
+        refinement = ref;
+    }
     public Sword(Recipe rp) {
         this.name = rp.getWeaponName();
         this.tier = rp.getTier();
@@ -34,7 +43,7 @@ public class Sword {
     public void useSocket() {
         socket--;
     }
-    public void addSocketName(String s) {
+    public void addSocketToName(String s) {
         name += " " + s;
     }
 }

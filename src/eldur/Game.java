@@ -29,7 +29,7 @@ public class Game extends Screen {
             String input = reader.nextLine();
             String connection = interpret(input);
 
-            if (connections.get(connection) != null) {
+            if (connections.get(connection) != null) { // Needs proper feedback
                 return connections.get(connection);
             }
         }
@@ -57,26 +57,56 @@ public class Game extends Screen {
                 System.out.println("");
                 System.out.println(gameData.inventoryViewer);
                 return "";
-            case "craft":
+            case "inspect":
+                if (inputParts.length >= 2) {
+                    int invPos = -1;
+                    try {
+                        invPos = Integer.parseInt(inputParts[1]) - 1;
+                    } catch (NumberFormatException numberFormatException) {
+                        System.out.println("Sword index must be a number.");
+                        return "";
+                    }
+                    Sword sw = null;
+                    if (0 <= invPos && invPos < gameData.inventory.size()) {
+                        sw = gameData.inventory.get(invPos);
+                    } else {
+                        System.out.println("Sword not found.");
+                    }
+                    if (sw != null) {
+                        System.out.println(sw.getName());
+                        System.out.println("Attack: " + sw.getAtk());
+                        System.out.println("Socket remaining: " + sw.getSocket());
+                    }
+                }
+                return "";
+            case "craft": // Needs proper feedback
                 if (inputParts.length >= 2) {
                     if (gameData.recipes.get(inputParts[1]) != null) {
                         gameData.craft(gameData.recipes.get(inputParts[1]));
                     }
                 }
                 return "";
-            case "refine":
-                if (inputParts.length >= 2) {
-                    int invPos = Integer.parseInt(inputParts[1]) - 1; // Exception possible
-                    Sword sw = null;
-                    if (invPos >= gameData.inventory.size()) {
-                        System.out.println("Sword not found.");
-                    } else {
-                        sw = gameData.inventory.get(invPos);
+            case "refine": // Needs proper feedback
+                if (inputParts.length >= 3) {
+                    int invPos = -1;
+                    try {
+                        invPos = Integer.parseInt(inputParts[1]) - 1;
+                    } catch (NumberFormatException numberFormatException) {
+                        System.out.println("Sword index must be a number.");
+                        return "";
                     }
-                    if (sw != null) {
-                        gameData.socket(sw, gameData.ruby);
-                        System.out.println("Refined sword: " + sw.getName());
+                    Sword sw = null;
+                    if (0 <= invPos && invPos < gameData.inventory.size()) {
+                        sw = gameData.inventory.get(invPos);
+                    } else {
+                        System.out.println("Sword not found.");
+                    }
+                    Gemstone gem = gameData.gemstones.get(inputParts[2]);
+                    if (sw != null && gem != null) {
+                        gameData.socket(sw, gem);
                         //gameData.inventory.set(invPos, sw);
+                    } else {
+                        System.out.println("Gemstone not found.");
                     }
                 }
                 return "";

@@ -24,7 +24,7 @@ public class FileReader {
         try {
             recipesReader = new Scanner(recipesFile);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(GameData.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GameData.class.getName()).log(Level.SEVERE, "File not found", ex);
         }
         
         while (recipesReader.hasNextLine()) {
