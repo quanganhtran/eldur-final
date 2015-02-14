@@ -21,19 +21,19 @@ public class Game extends Screen {
         gameData = gD;
     }
 
-    @Override
-    public Screen onCommand() {
-        reader = new Scanner(System.in);
-        while (true) {
-            System.out.println("Enter a command: ");
-            String input = reader.nextLine();
-            String connection = interpret(input);
-
-            if (connections.get(connection) != null) { // Needs proper feedback
-                return connections.get(connection);
-            }
-        }
-    }
+//    @Override
+//    public Screen onCommand() {
+//        reader = new Scanner(System.in);
+//        while (true) {
+//            System.out.println("Enter a command: ");
+//            String input = reader.nextLine();
+//            String connection = interpret(input);
+//
+//            if (connections.get(connection) != null) { // Needs proper feedback
+//                return connections.get(connection);
+//            }
+//        }
+//    }
 
     @Override
     public String interpret(String input) {

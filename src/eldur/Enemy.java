@@ -44,6 +44,10 @@ public class Enemy {
         this.atk = atk;
     }
     
+    public void attack(Character player) {
+        
+    }
+    
     public void isAttacked(int damage) {
         this.hp -= damage;
     }

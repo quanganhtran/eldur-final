@@ -37,7 +37,7 @@ public class Screen {
         System.out.println("This is " + screenName + ".");
     }
     
-    public Screen onCommand() {
+    public Screen runScreen() {
         reader = new Scanner(System.in);
         while (true) {
             System.out.println("Enter a command: ");

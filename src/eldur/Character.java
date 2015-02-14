@@ -37,4 +37,8 @@ public class Character {
         this.critRate = sw.getCritRate();
         this.evasion = sw.getEvasion();
     }
+    
+    public void attack(Enemy en) {
+        en.isAttacked(atk);
+    }
 }

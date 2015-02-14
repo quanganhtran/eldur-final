@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author trand
  */
-public class Controller {
+public class ScreenManager {
     private Screen currentScreen;
     
     //public int cash;
@@ -60,7 +60,7 @@ public class Controller {
         gameData.initialize();
         
         while (true) {
-            toScreen(currentScreen.onCommand());
+            toScreen(currentScreen.runScreen());
         }
     }
 
