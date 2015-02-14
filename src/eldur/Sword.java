@@ -16,6 +16,10 @@ public class Sword {
     private int atk;
     private int socket;
     public String refinement;
+    // Secondary attributes
+    private int defense;
+    private int critRate;
+    private int evasion;
     
     public Sword(String n, int t, String r, int a, int s, String ref) {
         name = n;
@@ -42,6 +46,38 @@ public class Sword {
     }
     public void useSocket() {
         socket--;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public int getCritRate() {
+        return critRate;
+    }
+
+    public void setCritRate(int critRate) {
+        this.critRate = critRate;
+    }
+
+    public int getEvasion() {
+        return evasion;
+    }
+
+    public void setEvasion(int evasion) {
+        this.evasion = evasion;
+    }
+    
+    public void insertSocket(Gemstone g) {
+        this.atk += this.atk * g.attackPercent / 100;
+        this.setDefense(g.defense);
+        this.setCritRate(g.critRate);
+        this.setEvasion(g.evasion);
+        name += " " + g.refinementPrefix;
     }
     public void addSocketToName(String s) {
         name += " " + s;

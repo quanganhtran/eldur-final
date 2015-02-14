@@ -27,9 +27,9 @@ public class GameData {
     public Material adamantite = new Material("Adamantite", 100);
     public HashMap<String, Material> materials = new HashMap<>();
     // Gemstones
-    public Gemstone ruby = new Gemstone("of Strength");
-    public Gemstone sapphire = new Gemstone("of Wisdom");
-    public Gemstone emerald = new Gemstone("of Precision");
+    public Gemstone ruby = new Gemstone("of Might", 10, 0, 0, 0);
+    public Gemstone sapphire = new Gemstone("of Protection", 0, 10, 0, 0);
+    public Gemstone emerald = new Gemstone("of Precision", 0, 0, 10, 0);
     public HashMap<String, Gemstone> gemstones = new HashMap<>();
     // Recipes
     public HashMap<String, Recipe> recipes = new HashMap<>();
@@ -72,7 +72,7 @@ public class GameData {
 //        sw.refinement = someG.refinementPrefix;
         if (sw.getSocket() > 0) {
             sw.useSocket();
-            sw.addSocketToName(someG.refinementPrefix);
+            sw.insertSocket(someG);
             System.out.println("Refined sword: " + sw.getName());
         } else {
             System.out.println(sw.getName() + ": Not enough socket.");

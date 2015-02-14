@@ -76,6 +76,9 @@ public class Game extends Screen {
                         System.out.println(sw.getName());
                         System.out.println("Attack: " + sw.getAtk());
                         System.out.println("Socket remaining: " + sw.getSocket());
+                        System.out.println("Defense: " + sw.getDefense());
+                        System.out.println("Critical Chance: " + sw.getCritRate() + "%");
+                        System.out.println("Evasion: " + sw.getEvasion() + "%");
                     }
                 }
                 return "";
