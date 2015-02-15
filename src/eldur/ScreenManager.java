@@ -41,7 +41,7 @@ public class ScreenManager {
         GameData gameData = new GameData();
         
         Game game = new Game("Town", gameData);
-        Screen adventure = new Screen("Adventure");
+        Adventure adventure = new Adventure("Adventure", gameData);
         Screen market = new Screen("Marketplace");
         Screen inn = new Screen("Inn");
         Screen map = new Screen("Map Screen");

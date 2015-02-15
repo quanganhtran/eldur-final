@@ -45,7 +45,7 @@ public class Enemy {
     }
     
     public void attack(Character player) {
-        
+        player.receiveDamage(atk);
     }
     
     public void isAttacked(int damage) {

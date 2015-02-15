@@ -39,6 +39,18 @@ public class Character {
     }
     
     public void attack(Enemy en) {
-        en.isAttacked(atk);
+        //en.isAttacked(atk);
+    }
+    
+    public void receiveDamage(int damage) {
+        setHp(getHp() - damage);
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 }
