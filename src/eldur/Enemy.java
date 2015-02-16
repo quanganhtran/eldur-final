@@ -10,10 +10,11 @@ package eldur;
  * @author Anh
  */
 public class Enemy {
+
     private String name;
     private int hp;
     private int atk;
-    
+
     public Enemy(String name, int hp, int atk) {
         this.name = name;
         this.hp = hp;
@@ -43,12 +44,18 @@ public class Enemy {
     public void setAtk(int atk) {
         this.atk = atk;
     }
-    
+
     public void attack(Character player) {
         player.receiveDamage(atk);
     }
-    
-    public void isAttacked(int damage) {
+
+    public String isAttacked(int damage) {
         this.hp -= damage;
+        String outcome = "";
+        if (this.hp <= 0) {
+            //System.out.println("You have successfully defeated " + this.name);
+            outcome = "pWin";
+        }
+        return outcome;
     }
 }

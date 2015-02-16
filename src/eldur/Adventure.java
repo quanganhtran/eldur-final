@@ -34,11 +34,13 @@ public class Adventure extends Screen {
 
             while (encounter.outcome.equals("")) {
 
-                String connection = encounter.turn()[0];
-                //System.out.println("debugmsg");
-                if (connections.get(connection) != null) {//Needs proper feedback
+                String connection = encounter.turn();
+                if (connections.get(connection) != null) {// TODO Needs proper feedback
                     return connections.get(connection);
                 }
+            }
+            if (encounter.outcome.equals("pWin")) {
+                System.out.println("Another enemy incoming...");
             }
         }
     }
@@ -65,27 +67,20 @@ public class Adventure extends Screen {
 //            }
         }
 
-        public String[] turn() {
+        public String turn() {
             String input = "";
-            String turnOutcome = "noAction";
+            this.outcome = "noAction";
             preturn();
-            while (turnOutcome.equals("noAction")) {
-                String[] afterAction = playerAction();
-                input = afterAction[0];
-                turnOutcome = afterAction[1];
-                // begin Confirmation of switching screen
-                if (turnOutcome.equals("switchScreen")) {
-                    System.out.println("Do you really want to retreat from this encounter? ('Y' to confirm)");
-                    if (!reader.nextLine().equals("Y")) {
-                        input = "";
-                        turnOutcome = "noAction";
-                    }
-                }
-                // end   Confirmation of switching screen
+            //while (turnOutcome.equals("noAction")) {
+            String[] afterAction = playerAction();
+            input = afterAction[0];
+            this.outcome = afterAction[1];
+            if (this.outcome.equals("")) {
+                enemyAction();
+                postturn();
             }
-            enemyAction();
-            postturn();
-            return new String[]{input, turnOutcome};
+            //return new String[]{input, this.outcome};
+            return input;
         }
 
         public void preturn() {
@@ -94,28 +89,47 @@ public class Adventure extends Screen {
 
         public String[] playerAction() {
             String input = "";
-            String pOutcome = "noAction";
-            System.out.println("Your turn: ");
+            String pOutcome = "noAction"; // Outcome of the actions of the player
             while (pOutcome.equals("noAction")) {
+                System.out.println("Your action: ");
                 input = reader.nextLine();
                 // Resolve actions
                 switch (input) {
                     case "where":
                         reportScreen();
                         input = "";
-                        pOutcome = "noAction";
-                        System.out.println("Your turn: ");
+                        //pOutcome = "noAction";
                         break;
                     case "quit":
                         System.out.println("Thanks for playing!");
                         System.exit(0);
+                    case "a":
+                    case "attack":
+                        input = "";
+                        pOutcome = "";
+                        // begin Player will attack
+                        pOutcome = player.attack(enemy);
+                        System.out.println(enemy.getName() + "'s HP is " + enemy.getHp());
+                        if (pOutcome.equals("pWin")) {
+                            System.out.println("You have successfully defeated " + enemy.getName());
+                            //outcome = "pWin";
+                        }
+                        // end   Player will attack
+                        break;
                     default:
                         if (connections.get(input) != null) {
-                            pOutcome = "switchScreen";
+                            System.out.println("Do you really want to retreat from this encounter? ('y' to confirm)");
+                            if (reader.nextLine().equals("y")) {
+                                // input is not changed
+                                pOutcome = "switchScreen";
+                            } else {
+                                input = "";
+                                // pOutcome is not changed
+                            }
                         } else {
                             input = "";
-                            pOutcome = "noAction";
-                            System.out.println("Invalid action. Please enter again: ");
+                            //pOutcome = "noAction";
+                            System.out.println("Invalid action. Please enter again.");
                         }
                 }
             }
@@ -125,6 +139,7 @@ public class Adventure extends Screen {
         public void enemyAction() {
             System.out.println(enemy.getName() + " has made a move!");
             enemy.attack(player);
+            // Resolve actions
             System.out.println("Your HP is " + player.getHp());
         }
 

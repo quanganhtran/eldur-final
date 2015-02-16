@@ -5,16 +5,19 @@
  */
 package eldur;
 
+import java.util.Random;
+
 /**
  *
  * @author trand
  */
 public class Character {
+    private Random rng = new Random();
     private GameData gameData;
     private int hp;
     private int atk;
     // Attributes
-    private int defense, critRate, critDamage, evasion, block, reflect, resist;
+    private int defense, critRate, critFactor, evasion, block, reflect, resist;
     // Outgoing statuses
     private int stunOut, bleedOut, freezeOut, poisonOut;
     // Debuff received
@@ -24,11 +27,12 @@ public class Character {
     
     public Character(GameData gD) {
         this.gameData = gD;        
-        this.hp = 100000;
-        this.atk = 0;
+        this.hp = 10000;
+        this.atk = 10; // prone to changes
         this.defense = 0;
-        this.critRate = 0;
+        this.critRate = 20; // prone to changes
         this.evasion = 0;
+        this.critFactor = 3; // prone to changes
     }
     
     public void equipSword(Sword sw) {
@@ -38,8 +42,14 @@ public class Character {
         this.evasion = sw.getEvasion();
     }
     
-    public void attack(Enemy en) {
-        //en.isAttacked(atk);
+    public String attack(Enemy en) {
+        int dmg = atk;
+        if (rng.nextInt(100) < critRate) {
+            dmg *= critFactor;
+            System.out.println("A critical hit!");
+        }
+        String aOutcome = en.isAttacked(dmg);
+        return aOutcome;
     }
     
     public void receiveDamage(int damage) {

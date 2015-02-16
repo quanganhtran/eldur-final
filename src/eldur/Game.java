@@ -34,7 +34,6 @@ public class Game extends Screen {
 //            }
 //        }
 //    }
-
     @Override
     public String interpret(String input) {
         String[] inputParts = input.split("\\s");
@@ -47,6 +46,7 @@ public class Game extends Screen {
                 System.exit(0);
             case "stat":
 //                System.out.println("Copper: " + gameData.copper.getStock());
+                System.out.println("Cash: " + gameData.cash);
                 gameData.materials.keySet().stream().forEach((k) -> {
                     System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
                 });
