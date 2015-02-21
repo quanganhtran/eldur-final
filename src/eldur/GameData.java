@@ -33,7 +33,9 @@ public class GameData {
     public HashMap<String, Gemstone> gemstones = new HashMap<>();
     // Recipes
     public HashMap<String, Recipe> recipes = new HashMap<>();
-
+    // Equipped Sword
+    public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0, "");
+    
     public void initialize() {
         // Materials
         materials.put("copper", copper);
@@ -77,5 +79,9 @@ public class GameData {
         } else {
             System.out.println(sw.getName() + ": Not enough socket.");
         }
+    }
+    
+    public void setEquippedSword(Sword sw) {
+        this.equippedSword = sw;
     }
 }

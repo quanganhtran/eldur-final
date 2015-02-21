@@ -10,6 +10,7 @@ package eldur;
  * @author trand
  */
 public class Sword {
+
     private String name;
     private int tier;
     private String rarity;
@@ -20,30 +21,44 @@ public class Sword {
     private int defense;
     private int critRate;
     private int evasion;
-    
-    public Sword(String n, int t, String r, int a, int s, String ref) {
-        name = n;
-        tier = t;
-        rarity = r;
-        atk = a;
-        socket = s;
-        refinement = ref;
+
+    public Sword(String name, int tier, String rarity, int atk, int socket, String refinement) {
+        this.name = name;
+        this.tier = tier;
+        this.rarity = rarity;
+        this.atk = atk;
+        this.socket = socket;
+        this.refinement = refinement;
     }
+
     public Sword(Recipe rp) {
         this.name = rp.getWeaponName();
         this.tier = rp.getTier();
+        this.rarity = rp.getRarity();
         this.atk = rp.getAtk();
         this.socket = 1;
     }
+
     public String getName() {
         return name;
     }
+
+    public String getRarity() {
+        return rarity;
+    }
+
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
+    }
+
     public int getAtk() {
         return atk;
     }
+
     public int getSocket() {
         return socket;
     }
+
     public void useSocket() {
         socket--;
     }
@@ -71,15 +86,19 @@ public class Sword {
     public void setEvasion(int evasion) {
         this.evasion = evasion;
     }
-    
+
     public void insertSocket(Gemstone g) {
+        if (rarity.equals("Common")) {
+            this.setRarity("Rare");
+        }
         this.atk += this.atk * g.attackPercent / 100;
         this.setDefense(g.defense);
         this.setCritRate(g.critRate);
         this.setEvasion(g.evasion);
         name += " " + g.refinementPrefix;
     }
-    public void addSocketToName(String s) {
-        name += " " + s;
-    }
+//    public void addSocketToName(String s) {
+//        name += " " + s;
+//    }
+
 }

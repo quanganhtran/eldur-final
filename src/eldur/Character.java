@@ -14,8 +14,9 @@ import java.util.Random;
 public class Character {
     private Random rng = new Random();
     private GameData gameData;
-    private int hp;
-    private int atk;
+    private int level;
+    private int hp0, hp;
+    private int atk0, atk;
     // Attributes
     private int defense, critRate, critFactor, evasion, block, reflect, resist;
     // Outgoing statuses
@@ -26,17 +27,21 @@ public class Character {
     private Sword sword;
     
     public Character(GameData gD) {
-        this.gameData = gD;        
-        this.hp = 10000;
-        this.atk = 10; // prone to changes
+        this.gameData = gD;    
+        this.hp0 = 10000;
+        this.atk0 = 1000; // prone to changes
+        // Real stats for battle
+        this.hp = this.hp0;
+        this.atk = this.atk0;
         this.defense = 0;
         this.critRate = 20; // prone to changes
         this.evasion = 0;
         this.critFactor = 3; // prone to changes
+        unsheathe(gameData.equippedSword);
     }
     
-    public void equipSword(Sword sw) {
-        this.atk = sw.getAtk();
+    public void unsheathe(Sword sw) {
+        this.atk = this.atk0 + sw.getAtk();
         this.defense = sw.getDefense();
         this.critRate = sw.getCritRate();
         this.evasion = sw.getEvasion();
@@ -48,12 +53,18 @@ public class Character {
             dmg *= critFactor;
             System.out.println("A critical hit!");
         }
-        String aOutcome = en.isAttacked(dmg);
+        String aOutcome = en.receiveDamage(dmg);
         return aOutcome;
     }
     
-    public void receiveDamage(int damage) {
-        setHp(getHp() - damage);
+    public String receiveDamage(int damage) {
+        setHp(getHp() - damage); // Another way of presentation
+        String outcome = "";
+        if (this.hp <= 0) {
+            //System.out.println("You have successfully defeated " + this.name);
+            outcome = "pLose";
+        }
+        return outcome;
     }
 
     public int getHp() {

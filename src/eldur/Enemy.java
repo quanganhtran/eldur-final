@@ -45,11 +45,12 @@ public class Enemy {
         this.atk = atk;
     }
 
-    public void attack(Character player) {
-        player.receiveDamage(atk);
+    public String attack(Character player) {
+        String aOutcome = player.receiveDamage(atk);
+        return aOutcome;
     }
 
-    public String isAttacked(int damage) {
+    public String receiveDamage(int damage) {
         this.hp -= damage;
         String outcome = "";
         if (this.hp <= 0) {

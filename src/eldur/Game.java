@@ -89,6 +89,25 @@ public class Game extends Screen {
                     }
                 }
                 return "";
+            case "equip":
+                if (inputParts.length >= 2) {
+                    int invPos = -1;
+                    try {
+                        invPos = Integer.parseInt(inputParts[1]) - 1;
+                    } catch (NumberFormatException numberFormatException) {
+                        System.out.println("Sword index must be a number.");
+                        return "";
+                    }
+                    Sword sw = null;
+                    if (0 <= invPos && invPos < gameData.inventory.size()) {
+                        sw = gameData.inventory.get(invPos);
+                        gameData.setEquippedSword(sw);
+                        System.out.println("You have equipped " + sw.getName() + ".");
+                    } else {
+                        System.out.println("Sword not found.");
+                    }
+                }
+                return "";
             case "refine": // Needs proper feedback
                 if (inputParts.length >= 3) {
                     int invPos = -1;

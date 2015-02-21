@@ -55,7 +55,7 @@ public class ScreenManager {
         inn.addConnection("back", game);
         map.addConnection("back", game);
         
-        currentScreen = adventure; // TODO change this back to 'game'
+        currentScreen = game; // TODO change this back to 'game'
         
         gameData.initialize();
         

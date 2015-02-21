@@ -34,6 +34,9 @@ public class Recipe {
     public int getTier() {
         return tier;
     }
+    public String getRarity() {
+        return rarity;
+    }
     public int getAtk() {
         return atk;
     }

@@ -30,7 +30,7 @@ public class Adventure extends Screen {
         // Potential loop
         //Enemy enemy = new Enemy("Slime", 100, 100);
         while (true) {
-            Encounter encounter = new Encounter(new Enemy("Slime", 100, 100));
+            Encounter encounter = new Encounter(new Enemy("Slime", 10000, 1000));
 
             while (encounter.outcome.equals("")) {
 
@@ -41,6 +41,12 @@ public class Adventure extends Screen {
             }
             if (encounter.outcome.equals("pWin")) {
                 System.out.println("Another enemy incoming...");
+            } else {
+                if (encounter.outcome.equals("pLose")) {
+                    System.out.println("debug");
+                    this.player = new Character(gameData);
+                    encounter.outcome = "";
+                }
             }
         }
     }
@@ -76,7 +82,8 @@ public class Adventure extends Screen {
             input = afterAction[0];
             this.outcome = afterAction[1];
             if (this.outcome.equals("")) {
-                enemyAction();
+                afterAction = enemyAction();
+                this.outcome = afterAction[1];
                 postturn();
             }
             //return new String[]{input, this.outcome};
@@ -93,8 +100,9 @@ public class Adventure extends Screen {
             while (pOutcome.equals("noAction")) {
                 System.out.println("Your action: ");
                 input = reader.nextLine();
+                String[] inputParts = input.split("\\s");
                 // Resolve actions
-                switch (input) {
+                switch (inputParts[0]) {
                     case "where":
                         reportScreen();
                         input = "";
@@ -116,6 +124,30 @@ public class Adventure extends Screen {
                         }
                         // end   Player will attack
                         break;
+                    case "e":
+                    case "equip":
+                        if (inputParts.length >= 2) {
+                            int invPos = -1;
+                            try {
+                                invPos = Integer.parseInt(inputParts[1]) - 1;
+                            } catch (NumberFormatException numberFormatException) {
+                                System.out.println("Sword index must be a number.");
+                                break;
+                            }
+                            Sword sw = null;
+                            if (0 <= invPos && invPos < gameData.inventory.size()) {
+                                sw = gameData.inventory.get(invPos);
+                                //gameData.setEquippedSword(sw);
+                                player.unsheathe(sw);
+                                System.out.println("You have equipped " + sw.getName() + ".");
+                                input = "";
+                                pOutcome = "";
+                            } else {
+                                System.out.println("Sword not found.");
+                                input = "";
+                            }
+                        }
+                        break;
                     default:
                         if (connections.get(input) != null) {
                             System.out.println("Do you really want to retreat from this encounter? ('y' to confirm)");
@@ -136,11 +168,18 @@ public class Adventure extends Screen {
             return new String[]{input, pOutcome};
         }
 
-        public void enemyAction() {
+        public String[] enemyAction() {
+            String input = "";
+            String eOutcome = "";
             System.out.println(enemy.getName() + " has made a move!");
-            enemy.attack(player);
+            eOutcome = enemy.attack(player);
             // Resolve actions
             System.out.println("Your HP is " + player.getHp());
+            if (eOutcome.equals("pLose")) {
+                input = "back";
+                System.out.println("You have been defeated by " + enemy.getName() + ". Reviving yourself...");
+            }
+            return new String[]{input, eOutcome};
         }
 
         public void postturn() {
