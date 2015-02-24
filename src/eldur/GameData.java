@@ -33,8 +33,16 @@ public class GameData {
     public HashMap<String, Gemstone> gemstones = new HashMap<>();
     // Recipes
     public HashMap<String, Recipe> recipes = new HashMap<>();
+    // Identification Scroll TODO: Must be treated as items.
+    public IdScroll excalibur = new IdScroll("Excalibur", new Sword("Excalibur", 3, "Epic", 78, 2));
+    public IdScroll genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 82, 2));
+    public IdScroll umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 75, 2));
+    public HashMap<String, IdScroll> idScrolls = new HashMap<>();
+    // Ascension Scroll TODO: Must be treated as items.
+    public AscensionScroll rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 140, 2));
+    public HashMap<String, AscensionScroll> aScrolls = new HashMap<>();
     // Equipped Sword
-    public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0, "");
+    public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0);
     
     public void initialize() {
         // Materials
@@ -50,6 +58,12 @@ public class GameData {
         gemstones.put("ruby", ruby);
         gemstones.put("sapphire", sapphire);
         gemstones.put("emerald",emerald);
+        // Identification Scroll TODO: Must be treated as items.
+        idScrolls.put("exc", excalibur);
+        idScrolls.put("gen", genesis);
+        idScrolls.put("umi", umi);
+        // Ascension Scroll TODO: Must be treated as items.
+        aScrolls.put("rin", rin);
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
@@ -79,6 +93,26 @@ public class GameData {
         } else {
             System.out.println(sw.getName() + ": Not enough socket.");
         }
+    }
+    
+    public Sword identify(Sword sw, IdScroll ids) {
+        if (sw.getRarity().equals("Rare") && (sw.getTier() == ids.getScrollTier())) {
+            sw = ids.getSword();
+            System.out.println("Sword identified: " + sw.getName() +".");
+        } else {
+            System.out.println("The sword is not identifiable.");
+        }
+        return sw;
+    }
+    
+    public Sword ascend(Sword sw, AscensionScroll as) {
+        if (sw.getRarity().equals("Epic") && (sw.getTier() == as.getScrollTier())) {
+            sw = as.getSword();
+            System.out.println("Sword obtained: " + sw.getName() +".");
+        } else {
+            System.out.println("The sword cannot be ascended.");
+        }
+        return sw;
     }
     
     public void setEquippedSword(Sword sw) {

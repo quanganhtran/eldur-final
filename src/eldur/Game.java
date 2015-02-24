@@ -132,22 +132,59 @@ public class Game extends Screen {
                     }
                 }
                 return "";
+            case "identify": // Needs proper feedback
+                if (inputParts.length >= 3) {
+                    int invPos = -1;
+                    try {
+                        invPos = Integer.parseInt(inputParts[1]) - 1;
+                    } catch (NumberFormatException numberFormatException) {
+                        System.out.println("Sword index must be a number.");
+                        return "";
+                    }
+                    Sword sw = null;
+                    if (0 <= invPos && invPos < gameData.inventory.size()) {
+                        sw = gameData.inventory.get(invPos);
+                    } else {
+                        System.out.println("Sword not found.");
+                    }
+                    IdScroll id = gameData.idScrolls.get(inputParts[2]);
+                    if (sw != null && id != null) {
+                        gameData.inventory.set(invPos, gameData.identify(sw, id));
+                        //gameData.inventory.set(invPos, sw);
+                    } else {
+                        System.out.println("Identification scroll not found.");
+                    }
+                }
+                return "";
+            case "ascend": // Needs proper feedback
+                if (inputParts.length >= 3) {
+                    int invPos = -1;
+                    try {
+                        invPos = Integer.parseInt(inputParts[1]) - 1;
+                    } catch (NumberFormatException numberFormatException) {
+                        System.out.println("Sword index must be a number.");
+                        return "";
+                    }
+                    Sword sw = null;
+                    if (0 <= invPos && invPos < gameData.inventory.size()) {
+                        sw = gameData.inventory.get(invPos);
+                    } else {
+                        System.out.println("Sword not found.");
+                    }
+                    AscensionScroll a = gameData.aScrolls.get(inputParts[2]);
+                    if (sw != null && a != null) {
+                        gameData.inventory.set(invPos, gameData.ascend(sw, a));
+                        //gameData.inventory.set(invPos, sw);
+                    } else {
+                        System.out.println("Ascension scroll not found.");
+                    }
+                }
+                return "";
             default:
                 return input;
         }
         //return input;
 
-//            String[] input = command.split("\\s");
-//            if (input[0].equals("stat")) {
-//                System.out.println("Iron "+iron+" Copper "+copper);
-//                System.out.println(inventoryViewer);
-//            } else if (input[0].equals("craft") && input.length == 2) {
-//                if (input[1].equals("iron")) {
-//                    craft(ironSwordRecipe);
-//                } else if (input[1].equals("copper")) {
-//                    craft(copperSwordRecipe);
-//                }
-//            }
     }
 
 }

@@ -9,12 +9,10 @@ package eldur;
  *
  * @author Anh
  */
-public class IdentityScroll {
-    private String scrollName;
-    private Sword sword;
-    
-    public IdentityScroll(String sN, Sword sw) {
-        scrollName = sN;
-        sword = sw;
+public class AscensionScroll extends IdScroll{
+
+    public AscensionScroll(String sN, Sword sw) {
+        super(sN, sw);
     }
+    
 }

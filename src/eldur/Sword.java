@@ -22,13 +22,12 @@ public class Sword {
     private int critRate;
     private int evasion;
 
-    public Sword(String name, int tier, String rarity, int atk, int socket, String refinement) {
+    public Sword(String name, int tier, String rarity, int atk, int socket) {
         this.name = name;
         this.tier = tier;
         this.rarity = rarity;
         this.atk = atk;
         this.socket = socket;
-        this.refinement = refinement;
     }
 
     public Sword(Recipe rp) {
@@ -41,6 +40,10 @@ public class Sword {
 
     public String getName() {
         return name;
+    }
+
+    public int getTier() {
+        return tier;
     }
 
     public String getRarity() {
@@ -88,14 +91,14 @@ public class Sword {
     }
 
     public void insertSocket(Gemstone g) {
-        if (rarity.equals("Common")) {
-            this.setRarity("Rare");
-        }
         this.atk += this.atk * g.attackPercent / 100;
         this.setDefense(g.defense);
         this.setCritRate(g.critRate);
         this.setEvasion(g.evasion);
-        name += " " + g.refinementPrefix;
+        if (rarity.equals("Common")) {
+            name += " " + g.refinementPrefix;
+            this.setRarity("Rare");
+        }
     }
 //    public void addSocketToName(String s) {
 //        name += " " + s;
