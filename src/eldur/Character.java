@@ -15,7 +15,7 @@ public class Character {
     private Random rng = new Random();
     private GameData gameData;
     private int level;
-    private int hp0, hp;
+    private int hpMax0, hpMax, hp;
     private int atk0, atk;
     // Attributes
     private int defense, critRate, critFactor, evasion, block, reflect, resist;
@@ -28,10 +28,11 @@ public class Character {
     
     public Character(GameData gD) {
         this.gameData = gD;    
-        this.hp0 = 10000;
+        this.hpMax0 = 10000;
         this.atk0 = 1000; // prone to changes
         // Real stats for battle
-        this.hp = this.hp0;
+        this.hpMax = this.hpMax0;
+        this.hp = this.hpMax;
         this.atk = this.atk0;
         this.defense = 0;
         this.critRate = 20; // prone to changes
@@ -67,10 +68,24 @@ public class Character {
         return outcome;
     }
 
+    public int getHpMax() {
+        return hpMax;
+    }
+
+    public void setHpMax(int hpMax) {
+        this.hpMax = hpMax;
+    }
+
+    /**
+     * @return the hp
+     */
     public int getHp() {
         return hp;
     }
 
+    /**
+     * @param hp the hp to set
+     */
     public void setHp(int hp) {
         this.hp = hp;
     }

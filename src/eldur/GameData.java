@@ -43,6 +43,8 @@ public class GameData {
     public HashMap<String, AscensionScroll> aScrolls = new HashMap<>();
     // Equipped Sword
     public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0);
+    // Other Data
+    public int currentArea = 1;
     
     public void initialize() {
         // Materials

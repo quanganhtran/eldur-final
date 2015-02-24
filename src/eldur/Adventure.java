@@ -15,10 +15,12 @@ public class Adventure extends Screen {
 
     private GameData gameData;
     private Character player;
+    private int area;
 
     public Adventure(String sN, GameData gD) {
         super(sN);
         this.gameData = gD;
+        this.area = 1;
     }
 
     @Override
@@ -26,6 +28,7 @@ public class Adventure extends Screen {
         reader = new Scanner(System.in);
         // Re-initialize
         this.player = new Character(gameData);
+        this.area = gameData.currentArea;
 
         // Potential loop
         //Enemy enemy = new Enemy("Slime", 100, 100);
@@ -43,7 +46,7 @@ public class Adventure extends Screen {
                 System.out.println("Another enemy incoming...");
             } else {
                 if (encounter.outcome.equals("pLose")) {
-                    System.out.println("debug");
+                    //System.out.println("debug");
                     this.player = new Character(gameData);
                     encounter.outcome = "";
                 }
@@ -54,6 +57,20 @@ public class Adventure extends Screen {
     @Override
     public String interpret(String input) {
         return input;
+    }
+
+    /**
+     * @return the area
+     */
+    public int getArea() {
+        return area;
+    }
+
+    /**
+     * @param area the area to set
+     */
+    public void setArea(int area) {
+        this.area = area;
     }
 
     public class Encounter {
@@ -84,7 +101,7 @@ public class Adventure extends Screen {
             if (this.outcome.equals("")) {
                 afterAction = enemyAction();
                 this.outcome = afterAction[1];
-                postturn();
+                this.outcome = postturn(input);
             }
             //return new String[]{input, this.outcome};
             return input;
@@ -105,20 +122,39 @@ public class Adventure extends Screen {
                 switch (inputParts[0]) {
                     case "where":
                         reportScreen();
+                        System.out.println("The current area level is " + area + ".");
+                        System.out.println("a - Attack");
+                        System.out.println("equip <slot number>");
+                        System.out.println("back - Back to Town");
                         input = "";
                         //pOutcome = "noAction";
                         break;
                     case "quit":
                         System.out.println("Thanks for playing!");
                         System.exit(0);
+                    case "area":
+                        if (inputParts.length >= 2) {
+                            try {
+                                Integer.parseInt(inputParts[1]);
+                                pOutcome = "";
+                            } catch (NumberFormatException numberFormatException) {
+                                System.out.println("Area index must be a number.");
+                                input = "";
+                            }
+                        } else {
+                            System.out.println("Current area: " + area);
+                            input = "";
+                        }
+                        break;
                     case "a":
                     case "attack":
                         input = "";
                         pOutcome = "";
                         // begin Player will attack
                         pOutcome = player.attack(enemy);
-                        System.out.println(enemy.getName() + "'s HP is " + enemy.getHp());
-                        if (pOutcome.equals("pWin")) {
+                        if (!pOutcome.equals("pWin")) {
+                            System.out.println(enemy.getName() + "'s HP is " + enemy.getHp());
+                        } else {
                             System.out.println("You have successfully defeated " + enemy.getName());
                             //outcome = "pWin";
                         }
@@ -174,16 +210,34 @@ public class Adventure extends Screen {
             System.out.println(enemy.getName() + " has made a move!");
             eOutcome = enemy.attack(player);
             // Resolve actions
-            System.out.println("Your HP is " + player.getHp());
-            if (eOutcome.equals("pLose")) {
+            if (!eOutcome.equals("pLose")) {
+                System.out.println("Your HP is " + player.getHp());
+            } else {
                 input = "back";
                 System.out.println("You have been defeated by " + enemy.getName() + ". Reviving yourself...");
             }
             return new String[]{input, eOutcome};
         }
 
-        public void postturn() {
-
+        public String postturn(String input) {
+            //switch (input)
+            String turnOutcome = "";
+            String[] inputParts = input.split("\\s");
+            switch (inputParts[0]) {
+                case "area":
+                    if (inputParts.length >= 2) {
+                        //int invPos = -1;
+                        try {
+                            Adventure.this.area = Integer.parseInt(inputParts[1]);
+                            turnOutcome = "switchArea";
+                            System.out.println("You are now in area " + area + ".");
+                        } catch (NumberFormatException numberFormatException) {
+                            System.out.println("REDUNDANT/Area index must be a number.");
+                            break;
+                        }
+                    }
+            }
+            return turnOutcome;
         }
     }
 }
