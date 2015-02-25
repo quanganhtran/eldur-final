@@ -11,12 +11,12 @@ package eldur;
  */
 public class IdScroll {
     private String scrollName;
-    private Sword sword;
+    private Sword frame;
     private int scrollTier;
     
     public IdScroll(String sN, Sword sw) {
         this.scrollName = sN;
-        this.sword = sw;
+        this.frame = sw;
         this.scrollTier = sw.getTier();
     }
 
@@ -24,7 +24,7 @@ public class IdScroll {
         return scrollTier;
     }
 
-    public Sword getSword() {
-        return sword;
+    public Sword getFrame() {
+        return frame;
     }
 }

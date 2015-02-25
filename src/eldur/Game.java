@@ -172,7 +172,8 @@ public class Game extends Screen {
                     }
                     IdScroll id = gameData.idScrolls.get(inputParts[2]);
                     if (sw != null && id != null) {
-                        gameData.inventory.set(invPos, gameData.identify(sw, id));
+                        //gameData.inventory.set(invPos, gameData.identify(sw, id));
+                        gameData.identify(sw, id);
                         //gameData.inventory.set(invPos, sw);
                     } else {
                         System.out.println("Identification scroll not found.");
@@ -196,7 +197,7 @@ public class Game extends Screen {
                     }
                     AscensionScroll a = gameData.aScrolls.get(inputParts[2]);
                     if (sw != null && a != null) {
-                        gameData.inventory.set(invPos, gameData.ascend(sw, a));
+                        gameData.ascend(sw, a);
                         //gameData.inventory.set(invPos, sw);
                     } else {
                         System.out.println("Ascension scroll not found.");

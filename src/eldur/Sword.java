@@ -14,14 +14,16 @@ public class Sword {
     private String name;
     private int tier;
     private String rarity;
-    protected int atk;
+    private int atk;
     private int socket;
     public String refinement;
     // Secondary attributes
-    public int atkBoost;
+    private int atkPercent;
     private int defense;
     private int critRate;
     private int evasion;
+    // Skills
+    
 
     public Sword(String name, int tier, String rarity, int atk, int socket) {
         this.name = name;
@@ -97,7 +99,7 @@ public class Sword {
 
     public void insertSocket(Gemstone g) {
         this.atk += this.atk * g.attackPercent / 100;
-        this.atkBoost = g.attackPercent;
+        this.atkPercent = g.attackPercent;
         this.setDefense(g.defense);
         this.setCritRate(g.critRate);
         this.setEvasion(g.evasion);
@@ -109,5 +111,18 @@ public class Sword {
 //    public void addSocketToName(String s) {
 //        name += " " + s;
 //    }
+
+    public void transform(Sword fromSw) {
+//        this.atkPercent = fromSw.atkPercent;
+//        this.setAtk(this.getAtk() + this.getAtk() * this.atkPercent / 100);
+//        this.setDefense(fromSw.getDefense());
+//        this.setCritRate(fromSw.getCritRate());
+//        this.setEvasion(fromSw.getEvasion());
+        this.name = fromSw.name;
+        this.tier = fromSw.tier;
+        this.rarity = fromSw.rarity;
+        this.atk = fromSw.atk + fromSw.atk * this.atkPercent/100;
+        this.socket = fromSw.socket;
+    }
 
 }
