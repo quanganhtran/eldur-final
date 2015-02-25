@@ -9,6 +9,8 @@ package eldur;
  *
  * @author Anh
  */
-public class Skill {
+public abstract class Skill {
+    private String skillName;
     
+    public abstract void execute();
 }

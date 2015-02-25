@@ -28,8 +28,8 @@ public class Character {
     
     public Character(GameData gD) {
         this.gameData = gD;    
-        this.hpMax0 = 10000;
-        this.atk0 = 1000; // prone to changes
+        this.hpMax0 = 500;
+        this.atk0 = 10; // prone to changes
         // Real stats for battle
         this.hpMax = this.hpMax0;
         this.hp = this.hpMax;

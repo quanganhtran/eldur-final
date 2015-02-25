@@ -35,16 +35,17 @@ public class GameData {
     public HashMap<String, Recipe> recipes = new HashMap<>();
     // Identification Scroll TODO: Must be treated as items.
     public IdScroll excalibur = new IdScroll("Excalibur", new Sword("Excalibur", 3, "Epic", 78, 2));
-    public IdScroll genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 82, 2));
-    public IdScroll umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 86, 2));
+    public IdScroll genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 88, 2));
+    public IdScroll umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 140, 2));
     public HashMap<String, IdScroll> idScrolls = new HashMap<>();
     // Ascension Scroll TODO: Must be treated as items.
-    public AscensionScroll rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 140, 2));
+    public AscensionScroll rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 165, 2));
     public HashMap<String, AscensionScroll> aScrolls = new HashMap<>();
     // Equipped Sword
     public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0);
-    // Other Data
+    // Adventure Data
     public int currentArea = 1;
+    public ArrayList<Enemy> enemies = new ArrayList<>();
 
     public void initialize() {
         // Materials
@@ -66,6 +67,11 @@ public class GameData {
         idScrolls.put("umi", umi);
         // Ascension Scroll TODO: Must be treated as items.
         aScrolls.put("rin", rin);
+        // Adventure Data
+        enemies.add(new Enemy("Slime", 100, 10));
+        enemies.add(new Enemy("Wolf", 150, 20));
+        enemies.add(new Enemy("Goblin", 250, 25));
+        enemies.add(new Enemy("Phantom", 300, 35));
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);

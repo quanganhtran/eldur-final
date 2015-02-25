@@ -5,6 +5,7 @@
  */
 package eldur;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Scanner;
  */
 public class Adventure extends Screen {
 
+    private Random rng = new Random();
     private GameData gameData;
     private Character player;
     private int area;
@@ -21,6 +23,8 @@ public class Adventure extends Screen {
         super(sN);
         this.gameData = gD;
         this.area = 1;
+        
+        
     }
 
     @Override
@@ -33,7 +37,11 @@ public class Adventure extends Screen {
         // Potential loop
         //Enemy enemy = new Enemy("Slime", 100, 100);
         while (true) {
-            Encounter encounter = new Encounter(new Enemy("Slime", 10000, 1000));
+            Encounter encounter = new Encounter(new Enemy("Slime", 100, 10));
+            System.out.println("Do you want to engage? ('y' for yes)");
+            if (!reader.nextLine().equals("y")) {
+                encounter.outcome = "pAvoid";
+            }
 
             while (encounter.outcome.equals("")) {
 
