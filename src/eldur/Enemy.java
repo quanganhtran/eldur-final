@@ -20,6 +20,12 @@ public class Enemy {
         this.hp = hp;
         this.atk = atk;
     }
+    
+    public Enemy(Enemy e) {
+        this.name = e.getName();
+        this.hp = e.getHp();
+        this.atk = e.getAtk();
+    }
 
     public String getName() {
         return name;

@@ -23,8 +23,7 @@ public class Adventure extends Screen {
         super(sN);
         this.gameData = gD;
         this.area = 1;
-        
-        
+
     }
 
     @Override
@@ -37,7 +36,7 @@ public class Adventure extends Screen {
         // Potential loop
         //Enemy enemy = new Enemy("Slime", 100, 100);
         while (true) {
-            Encounter encounter = new Encounter(new Enemy("Slime", 100, 10));
+            Encounter encounter = new Encounter(new Enemy(gameData.enemies.get(rng.nextInt(gameData.enemies.size()))));
             System.out.println("Do you want to engage? ('y' for yes)");
             if (!reader.nextLine().equals("y")) {
                 encounter.outcome = "pAvoid";
@@ -56,7 +55,7 @@ public class Adventure extends Screen {
                 if (encounter.outcome.equals("pLose")) {
                     //System.out.println("debug");
                     this.player = new Character(gameData);
-                    encounter.outcome = "";
+                    //encounter.outcome = "";
                 }
             }
         }
@@ -109,7 +108,9 @@ public class Adventure extends Screen {
             if (this.outcome.equals("")) {
                 afterAction = enemyAction();
                 this.outcome = afterAction[1];
-                this.outcome = postturn(input);
+//                if (!this.outcome.equals("pLose")) {
+                this.outcome = postturn(input, this.outcome);
+//                }
             }
             //return new String[]{input, this.outcome};
             return input;
@@ -227,9 +228,9 @@ public class Adventure extends Screen {
             return new String[]{input, eOutcome};
         }
 
-        public String postturn(String input) {
+        public String postturn(String input, String previousOutcome) {
             //switch (input)
-            String turnOutcome = "";
+            String turnOutcome = previousOutcome;
             String[] inputParts = input.split("\\s");
             switch (inputParts[0]) {
                 case "area":
