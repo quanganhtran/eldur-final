@@ -5,6 +5,7 @@
  */
 package eldur;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -17,13 +18,15 @@ public class Adventure extends Screen {
     private Random rng = new Random();
     private GameData gameData;
     private Character player;
-    private int area;
+    private int areaId;
+    private ArrayList<Enemy> enemyTypes;
 
     public Adventure(String sN, GameData gD) {
         super(sN);
         this.gameData = gD;
-        this.area = 1;
-
+        this.areaId = 1;
+        this.enemyTypes = new ArrayList<>(gD.enemiesInFrea);
+        //System.out.println(enemyTypes.size());
     }
 
     @Override
@@ -31,14 +34,17 @@ public class Adventure extends Screen {
         reader = new Scanner(System.in);
         // Re-initialize
         this.player = new Character(gameData);
-        this.area = gameData.currentArea;
+//        this.area = gameData.currentArea;
 
         // Potential loop
         //Enemy enemy = new Enemy("Slime", 100, 100);
         while (true) {
-            Encounter encounter = new Encounter(new Enemy(gameData.enemies.get(rng.nextInt(gameData.enemies.size()))));
+            Encounter encounter = new Encounter(new Enemy(enemyTypes.get(rng.nextInt(enemyTypes.size()))));
             System.out.println("Do you want to engage? ('y' for yes)");
-            if (!reader.nextLine().equals("y")) {
+            String oocInput = reader.nextLine();
+            if (this.connections.get(oocInput) != null) {
+                return this.connections.get(oocInput);
+            } else if (!oocInput.equals("y")) {
                 encounter.outcome = "pAvoid";
             }
 
@@ -69,15 +75,19 @@ public class Adventure extends Screen {
     /**
      * @return the area
      */
-    public int getArea() {
-        return area;
+    public int getAreaId() {
+        return areaId;
     }
 
     /**
-     * @param area the area to set
+     * @param areaId the area to set
      */
-    public void setArea(int area) {
-        this.area = area;
+    public void setAreaId(int areaId) {
+        this.areaId = areaId;
+    }
+    
+    public void addEnemy(Enemy en) {
+        this.enemyTypes.add(en);
     }
 
     public class Encounter {
@@ -131,7 +141,7 @@ public class Adventure extends Screen {
                 switch (inputParts[0]) {
                     case "where":
                         reportScreen();
-                        System.out.println("The current area level is " + area + ".");
+                        System.out.println("The current area level is " + areaId + ".");
                         System.out.println("a - Attack");
                         System.out.println("equip <slot number>");
                         System.out.println("back - Back to Town");
@@ -151,7 +161,7 @@ public class Adventure extends Screen {
                                 input = "";
                             }
                         } else {
-                            System.out.println("Current area: " + area);
+                            System.out.println("Current area: " + areaId);
                             input = "";
                         }
                         break;
@@ -237,9 +247,9 @@ public class Adventure extends Screen {
                     if (inputParts.length >= 2) {
                         //int invPos = -1;
                         try {
-                            Adventure.this.area = Integer.parseInt(inputParts[1]);
+                            Adventure.this.areaId = Integer.parseInt(inputParts[1]);
                             turnOutcome = "switchArea";
-                            System.out.println("You are now in area " + area + ".");
+                            System.out.println("You are now in area " + areaId + ".");
                         } catch (NumberFormatException numberFormatException) {
                             System.out.println("REDUNDANT/Area index must be a number.");
                             break;

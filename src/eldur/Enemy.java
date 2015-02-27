@@ -14,11 +14,13 @@ public class Enemy {
     private String name;
     private int hp;
     private int atk;
+    private int location;
 
-    public Enemy(String name, int hp, int atk) {
+    public Enemy(int loc, String name, int hp, int atk) {
         this.name = name;
         this.hp = hp;
         this.atk = atk;
+        this.location = loc;
     }
     
     public Enemy(Enemy e) {

@@ -57,7 +57,7 @@ public class Game extends Screen {
                 System.exit(0);
             case "stat":
 //                System.out.println("Copper: " + gameData.copper.getStock());
-                System.out.println("Town area: " + gameData.currentArea);
+//                System.out.println("Town area: " + gameData.currentArea);
                 System.out.println("Cash: " + gameData.cash);
                 gameData.materials.keySet().stream().forEach((k) -> {
                     System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
@@ -69,17 +69,17 @@ public class Game extends Screen {
                 System.out.println("");
                 System.out.println(gameData.inventoryViewer);
                 return "";
-            case "adventure":
-                if (inputParts.length >= 2) {
-                    //int area = -1;
-                    try {
-                        gameData.currentArea = Integer.parseInt(inputParts[1]);
-                    } catch (NumberFormatException numberFormatException) {
-                        System.out.println("Area index must be a number.");
-                        return "";
-                    }
-                }
-                return "adventure";
+//            case "adventure":
+//                if (inputParts.length >= 2) {
+//                    //int area = -1;
+//                    try {
+//                        gameData.currentArea = Integer.parseInt(inputParts[1]);
+//                    } catch (NumberFormatException numberFormatException) {
+//                        System.out.println("Area index must be a number.");
+//                        return "";
+//                    }
+//                }
+//                return "adventure";
             case "inspect":
                 if (inputParts.length >= 2) {
                     int invPos = -1;

@@ -44,8 +44,9 @@ public class GameData {
     // Equipped Sword
     public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0);
     // Adventure Data
-    public int currentArea = 1;
-    public ArrayList<Enemy> enemies = new ArrayList<>();
+    //public Adventure currentArea = frea;
+    public HashMap<String, ArrayList<Enemy>> enemiesAll = new HashMap<>();
+    public ArrayList<Enemy> enemiesInFrea = new ArrayList<>();
 
     public void initialize() {
         // Materials
@@ -68,10 +69,16 @@ public class GameData {
         // Ascension Scroll TODO: Must be treated as items.
         aScrolls.put("rin", rin);
         // Adventure Data
-        enemies.add(new Enemy("Slime", 100, 10));
-        enemies.add(new Enemy("Wolf", 150, 20));
-        enemies.add(new Enemy("Goblin", 250, 25));
-        enemies.add(new Enemy("Phantom", 300, 35));
+        enemiesAll.put("frea", new ArrayList<>());
+        //enemies
+        enemiesInFrea.add(new Enemy(0, "Slime", 100, 10));
+        enemiesInFrea.add(new Enemy(0, "Big Slime", 100, 10));
+        enemiesInFrea.add(new Enemy(1, "Wolf", 150, 20));
+        enemiesInFrea.add(new Enemy(1, "Big Wolf", 150, 20));
+        enemiesInFrea.add(new Enemy(2, "Goblin", 250, 25));
+        enemiesInFrea.add(new Enemy(2, "Big Goblin", 250, 25));
+        enemiesInFrea.add(new Enemy(3, "Phantom", 300, 35));
+        enemiesInFrea.add(new Enemy(3, "Big Phantom", 300, 35));
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);

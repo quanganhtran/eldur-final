@@ -39,25 +39,43 @@ public class ScreenManager {
     
     public void execute() {
         GameData gameData = new GameData();
+        gameData.initialize();
         
         Game game = new Game("Town", gameData);
-        Adventure adventure = new Adventure("Adventure", gameData);
+        Adventure frea = new Adventure("Frea", gameData);
+        Adventure elysia = new Adventure("Elysia", gameData);
+        Adventure havenport = new Adventure("Havenport", gameData);
+        Adventure dragonkeep = new Adventure("Dragonkeep", gameData);
         Screen market = new Screen("Marketplace");
         Screen inn = new Screen("Inn");
         Screen map = new Screen("Map Screen");
         
-        game.addConnection("adventure", adventure);
+        game.addConnection("frea", frea);
+        game.addConnection("elysia", elysia);
+        game.addConnection("havenport", havenport);
+        game.addConnection("dragonkeep", dragonkeep);
         game.addConnection("market", market);
         game.addConnection("inn", inn);
         game.addConnection("map", map);
-        adventure.addConnection("back", game);
+        frea.addConnection("back", game);
+        elysia.addConnection("back", game);
+        havenport.addConnection("back", game);
+        dragonkeep.addConnection("back", game);
         market.addConnection("back", game);
         inn.addConnection("back", game);
         map.addConnection("back", game);
         
+        frea.addEnemy(new Enemy(0, "Slime", 100, 10));
+        frea.addEnemy(new Enemy(0, "Big Slime", 100, 10));
+        elysia.addEnemy(new Enemy(1, "Wolf", 150, 20));
+        elysia.addEnemy(new Enemy(1, "Big Wolf", 150, 20));
+        havenport.addEnemy(new Enemy(2, "Goblin", 250, 25));
+        havenport.addEnemy(new Enemy(2, "Big Goblin", 250, 25));
+        dragonkeep.addEnemy(new Enemy(3, "Phantom", 300, 35));
+        dragonkeep.addEnemy(new Enemy(3, "Big Phantom", 300, 35));
+        
         currentScreen = game; // TODO change this back to 'game'
         
-        gameData.initialize();
         
         while (true) {
             toScreen(currentScreen.runScreen());
