@@ -25,7 +25,7 @@ public class Adventure extends Screen {
         super(sN);
         this.gameData = gD;
         this.areaId = 1;
-        this.enemyTypes = new ArrayList<>(gD.enemiesInFrea);
+        this.enemyTypes = new ArrayList<>();
         //System.out.println(enemyTypes.size());
     }
 
@@ -42,6 +42,9 @@ public class Adventure extends Screen {
             Encounter encounter = new Encounter(new Enemy(enemyTypes.get(rng.nextInt(enemyTypes.size()))));
             System.out.println("Do you want to engage? ('y' for yes)");
             String oocInput = reader.nextLine();
+//            while (encounter.outcome.equals("outOfCombat")) {
+//                encounter.outOfCombat();
+//            }
             if (this.connections.get(oocInput) != null) {
                 return this.connections.get(oocInput);
             } else if (!oocInput.equals("y")) {
@@ -105,6 +108,10 @@ public class Adventure extends Screen {
 //            while (outcome == 0) {
 //                outcome = turn();
 //            }
+        }
+
+        private void outOfCombat() {
+            
         }
 
         public String turn() {
