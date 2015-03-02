@@ -19,12 +19,19 @@ public class Adventure extends Screen {
     public GameData gameData;
     public Character player;
     private ArrayList<Enemy> enemyTypes;
+//    public boolean unlocked;
 
     public Adventure(String sN, GameData gD) {
         super(sN);
         this.gameData = gD;
+        gameData.mapList.add(this);
         this.enemyTypes = new ArrayList<>();
         //System.out.println(enemyTypes.size());
+    }
+    
+    public Adventure(String sN, GameData gD, boolean unl) {
+        this(sN, gD);
+        this.unlocked = unl;
     }
 
     @Override
@@ -45,6 +52,8 @@ public class Adventure extends Screen {
                 encounter.turn();
             }
             if (encounter.outcome.equals("pWin")) {
+                this.player = new Character(gameData);
+                System.out.println("Your character has fully recovered.");
                 System.out.println("Another enemy incoming...");
             } else if (encounter.outcome.equals("pLose")) {
                 this.player = new Character(gameData);

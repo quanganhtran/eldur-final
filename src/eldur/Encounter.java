@@ -17,9 +17,9 @@ public class Encounter {
     private Enemy enemy;
     String outcome; // int here String below
     String encInput;
-    private final Adventure adventure;
+    private Adventure adventure;
 
-    public Encounter(Enemy en, final Adventure adv) {
+    public Encounter(Enemy en, Adventure adv) {
         reader = new Scanner(System.in);
         this.adventure = adv;
         //this.player = c;
@@ -27,11 +27,12 @@ public class Encounter {
         this.outcome = "outOfCombat";
         System.out.println("A " + this.enemy.getName() + " has appeared!");
         this.encInput = "";
-        //            outcome = 0;
-        //            while (outcome == 0) {
-        //                outcome = turn();
-        //            }
     }
+    
+//    public Encounter(Enemy en, final Adventure adv, String initO) {
+//        this(en, adv);
+//        this.outcome = initO;
+//    }
 
     public void outOfCombat() {
         //OUTER:
@@ -139,13 +140,18 @@ public class Encounter {
                 System.exit(0);
             default:
                 if (adventure.connections.get(this.encInput) != null) {
-                    System.out.println("Do you really want to leave this area? ('y' to confirm)");
-                    if (reader.nextLine().equals("y")) {
-                        // input is not changed
-                        this.outcome = "switchScreen";
+                    if (adventure.connections.get(this.encInput).unlocked) {
+                        System.out.println("Do you really want to leave this area? ('y' to confirm)");
+                        if (reader.nextLine().equals("y")) {
+                            // input is not changed
+                            this.outcome = "switchScreen";
+                        } else {
+                            this.encInput = "";
+                            // pOutcome is not changed
+                        }
                     } else {
                         this.encInput = "";
-                        // pOutcome is not changed
+                        System.out.println("You cannot go to that area yet.");
                     }
                 } else {
                     this.encInput = "";

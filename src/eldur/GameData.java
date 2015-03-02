@@ -37,16 +37,18 @@ public class GameData {
     public IdScroll excalibur = new IdScroll("Excalibur", new Sword("Excalibur", 3, "Epic", 78, 2));
     public IdScroll genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 88, 2));
     public IdScroll umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 140, 2));
-    public HashMap<String, IdScroll> idScrolls = new HashMap<>();
+    public HashMap<String, IdScroll> idScrollsDict = new HashMap<>();
     // Ascension Scroll TODO: Must be treated as items.
     public AscensionScroll rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 165, 2));
-    public HashMap<String, AscensionScroll> aScrolls = new HashMap<>();
+    public HashMap<String, AscensionScroll> aScrollsDict = new HashMap<>();
     // Equipped Sword
     public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0);
+    // Inventory
+    public ArrayList<Sword> inventory = new ArrayList<>();
+    public ArrayList<IdScroll> scrollsInv = new ArrayList<>();
+    public ArrayList<String> inventoryViewer = new ArrayList<>();
     // Adventure Data
-    //public Adventure currentArea = frea;
-    //public HashMap<String, ArrayList<Enemy>> enemiesAll = new HashMap<>();
-    //public ArrayList<Enemy> enemiesInFrea = new ArrayList<>();
+    public ArrayList<Adventure> mapList = new ArrayList<>();
 
     public void initialize() {
         // Materials
@@ -63,12 +65,13 @@ public class GameData {
         gemstones.put("sapphire", sapphire);
         gemstones.put("emerald", emerald);
         // Identification Scroll TODO: Must be treated as items.
-        idScrolls.put("exc", excalibur);
-        idScrolls.put("gen", genesis);
-        idScrolls.put("umi", umi);
+        idScrollsDict.put("exc", excalibur);
+        idScrollsDict.put("gen", genesis);
+        idScrollsDict.put("umi", umi);
         // Ascension Scroll TODO: Must be treated as items.
-        aScrolls.put("rin", rin);
+        aScrollsDict.put("rin", rin);
         // Adventure Data
+        
 //        enemiesAll.put("frea", new ArrayList<>());
 //        //enemies
 //        enemiesInFrea.add(new Enemy(0, "Slime", 100, 10));
@@ -82,10 +85,14 @@ public class GameData {
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
+        
+        // FUNCTIONALITY TEST
+        scrollsInv.add(umi);
+        scrollsInv.add(umi);
+        scrollsInv.add(excalibur);
+        scrollsInv.add(rin);
     }
 
-    public ArrayList<Sword> inventory = new ArrayList<>();
-    public ArrayList<String> inventoryViewer = new ArrayList<>();
 
     public void craft(Recipe someRp) { // Needs to transfer all feedbacks to Game
         materials.get(someRp.getMainMat()).consume(10);
@@ -112,23 +119,29 @@ public class GameData {
 
     public void identify(Sword sw, IdScroll ids) {
         //Sword newSword = sw;
-        if (sw.getRarity().equals("Rare") && (sw.getTier() == ids.getScrollTier())) {
+        if (!sw.getRarity().equals("Rare") || (sw.getTier() != ids.getScrollTier())) {
+            System.out.println("The sword is not identifiable.");
+        } else if (scrollsInv.indexOf(ids) == -1) {
+            System.out.println("The necessary Identification scroll is not found.");
+        } else {
             //newSword = ids.getSword();
             //newSword.inherit(sw);
             sw.transform(ids.getFrame());
+            scrollsInv.remove(ids);
             System.out.println("Sword identified: " + sw.getName() + ".");
-        } else {
-            System.out.println("The sword is not identifiable.");
         }
         //return sw;
     }
 
     public void ascend(Sword sw, AscensionScroll as) {
-        if (sw.getRarity().equals("Epic") && (sw.getTier() == as.getScrollTier())) {
-            sw.transform(as.getFrame());
-            System.out.println("Sword obtained: " + sw.getName() + ".");
-        } else {
+        if (!sw.getRarity().equals("Epic") || (sw.getTier() != as.getScrollTier())) {
             System.out.println("The sword cannot be ascended.");
+        } else if (scrollsInv.indexOf(as) == -1) {
+            System.out.println("The necessary Ascension scroll is not found.");
+        } else {
+            sw.transform(as.getFrame());
+            scrollsInv.remove(as);
+            System.out.println("Sword obtained: " + sw.getName() + ".");
         }
         //return sw;
     }

@@ -63,9 +63,12 @@ public class Game extends Screen {
                     System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
                 });
                 System.out.println("");
-                gameData.inventory.stream().forEach((sw) -> {
-                    System.out.print(sw.getName() + " | ");
-                });
+//                gameData.inventory.stream().forEach((sw) -> {
+//                    System.out.print(sw.getName() + " | ");
+//                });
+                for (int i = 0; i < gameData.inventory.size(); i++) {
+                    System.out.print((i+1) + ". " + gameData.inventory.get(i).getName() + " | ");
+                }
                 System.out.println("");
                 System.out.println(gameData.inventoryViewer);
                 return "";
@@ -94,6 +97,7 @@ public class Game extends Screen {
                         sw = gameData.inventory.get(invPos);
                     } else {
                         System.out.println("Sword not found.");
+                        return "";
                     }
                     if (sw != null) {
                         System.out.println(sw.getName());
@@ -102,6 +106,7 @@ public class Game extends Screen {
                         System.out.println("Defense: " + sw.getDefense());
                         System.out.println("Critical Chance: " + sw.getCritRate() + "%");
                         System.out.println("Evasion: " + sw.getEvasion() + "%");
+                        return "";
                     }
                 }
                 return "";
@@ -169,14 +174,16 @@ public class Game extends Screen {
                         sw = gameData.inventory.get(invPos);
                     } else {
                         System.out.println("Sword not found.");
+                        return "";
                     }
-                    IdScroll id = gameData.idScrolls.get(inputParts[2]);
-                    if (sw != null && id != null) {
+                    IdScroll id = gameData.idScrollsDict.get(inputParts[2]);
+                    if (id != null) {
                         //gameData.inventory.set(invPos, gameData.identify(sw, id));
                         gameData.identify(sw, id);
                         //gameData.inventory.set(invPos, sw);
                     } else {
-                        System.out.println("Identification scroll not found.");
+                        System.out.println("Invalid Identification scroll.");
+                        return "";
                     }
                 }
                 return "";
@@ -194,13 +201,15 @@ public class Game extends Screen {
                         sw = gameData.inventory.get(invPos);
                     } else {
                         System.out.println("Sword not found.");
+                        return "";
                     }
-                    AscensionScroll a = gameData.aScrolls.get(inputParts[2]);
-                    if (sw != null && a != null) {
+                    AscensionScroll a = gameData.aScrollsDict.get(inputParts[2]);
+                    if (a != null) {
                         gameData.ascend(sw, a);
                         //gameData.inventory.set(invPos, sw);
                     } else {
-                        System.out.println("Ascension scroll not found.");
+                        System.out.println("Invalid Ascension scroll.");
+                        return "";
                     }
                 }
                 return "";

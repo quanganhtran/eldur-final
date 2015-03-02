@@ -15,10 +15,18 @@ import java.util.Scanner;
 public class Screen {
     protected Scanner reader;
     protected String screenName;
+    private GameData gameData;
     protected HashMap<String,Screen> connections = new HashMap<>();
+    protected boolean unlocked;
         
     public Screen(String sN) {
         screenName = sN;
+        this.unlocked = true;
+    }
+    
+    public Screen(String sN, boolean unl) {
+        this(sN);
+        this.unlocked = unl;
     }
     
 //    public Screen(HashMap<String,Screen> conn) {
@@ -29,8 +37,8 @@ public class Screen {
         connections.put(cmd, targetScreen);
     }
     
-    public class Event {
-        
+    public void unlock() {
+        this.unlocked = true;
     }
     
     public void reportScreen() {
@@ -45,7 +53,13 @@ public class Screen {
             String connection = interpret(input);
 
             if (connections.get(connection) != null) {
-                return connections.get(connection);
+                if (connections.get(connection).unlocked) {
+                    return connections.get(connection);
+                } else {
+                    System.out.println("You cannot go to that area yet.");
+                }
+            } else {
+                //System.out.println("Invalid command. Please try again");
             }
         }
     }
