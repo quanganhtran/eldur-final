@@ -49,7 +49,7 @@ public class Game extends Screen {
                 System.out.println("ascend <slot number> <type> - 'rin', etc.");
                 System.out.println("equip <slot number>");
                 System.out.println("inspect <slot number>");
-                System.out.println("adventure - Adventure!");
+                System.out.println("areax - Adventure! - change x to 1-10");
                 System.out.println("quit - Quit the game.");
                 return "";
             case "quit":

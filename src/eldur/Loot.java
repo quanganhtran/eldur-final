@@ -33,15 +33,15 @@ public class Loot {
             mat.gain(amount);
             System.out.println(amount + " " + mat.getName() + " obtained.");
         }
-        if (rareLoot != null && rng.nextInt(5) == 4) {
-            Item rareDrop = rareLoot.get(rng.nextInt(rareLoot.size()));
-            gD.itemInv.add(rareDrop);
-            System.out.println(rareDrop.getName() + " obtained.");
-        }
-        if (epicLoot != null && rng.nextInt(25) == 24) {
-            Item epicDrop = epicLoot.get(rng.nextInt(epicLoot.size()));
-            gD.itemInv.add(epicDrop);
-            System.out.println(epicDrop.getName() + " obtained.");
-        }
+//        if (!(rareLoot.isEmpty()) && rng.nextInt(5) == 4) {
+//            Item rareDrop = rareLoot.get(rng.nextInt(rareLoot.size()));
+//            gD.itemInv.add(rareDrop);
+//            System.out.println(rareDrop.getName() + " obtained.");
+//        }
+//        if (!(epicLoot.isEmpty()) && rng.nextInt(25) == 24) {
+//            Item epicDrop = epicLoot.get(rng.nextInt(epicLoot.size()));
+//            gD.itemInv.add(epicDrop);
+//            System.out.println(epicDrop.getName() + " obtained.");
+//        }
     }
 }

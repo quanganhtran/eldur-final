@@ -152,9 +152,15 @@ public class ScreenManager {
         area2Boss.addEnemy(new Enemy("Bandit Captain", 120, 25));
         area2Boss.addEnemy(new Enemy("Bandit Chief Max", 200, 35));
         area3.addEnemy(new Enemy("Goblin", 125, 25));
-        area3.addEnemy(new Enemy("Big Goblin", 125, 25));
+        area3.addEnemy(new Enemy("Apprentice", 125, 25));
+        area3Boss.addEnemy(new Enemy("Gillius", 125, 25));
         area4.addEnemy(new Enemy("Phantom", 150, 35));
         area4.addEnemy(new Enemy("Big Phantom", 150, 35));
+        area4Boss.addEnemy(new Enemy("Phantom", 150, 35));
+        area4Boss.addEnemy(new Enemy("Pirate Leader", 150, 35));
+        area10.addEnemy(new Enemy("Phantom", 150, 35));
+        area10.addEnemy(new Enemy("Big Phantom", 150, 35));
+        area10Boss.addEnemy(new Enemy("Eldur", 4000, 60));
         
         area1.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));        
         area1Boss.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));

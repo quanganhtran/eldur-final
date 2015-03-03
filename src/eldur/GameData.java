@@ -94,6 +94,11 @@ public class GameData {
         itemInv.add(excalibur);
         itemInv.add(rin);
         itemInv.add(ruby);
+        itemInv.add(ruby);
+        itemInv.add(ruby);
+        itemInv.add(sapphire);
+        itemInv.add(emerald);
+        itemInv.add(genesis);
     }
 
 

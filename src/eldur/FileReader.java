@@ -51,11 +51,11 @@ public class FileReader {
         String[] storyPieces = allStories.split("<nextPart>");
         for (int i = 0; i < bSet.size(); i++) {
             if (i < storyPieces.length) {
-                if (i % 2 == 0) {
-                    bossScreens.get(i).setStory(storyPieces[i]);
-                } else {
-                    bossScreens.get(i-1).setStoryAfter(storyPieces[i]);
-                }
+                //if (i % 2 == 0) {
+                bossScreens.get(i).setStory(storyPieces[2 * i]);
+                //} else {
+                bossScreens.get(i).setStoryAfter(storyPieces[2 * i + 1]);
+                //}
             }
         }
     }
