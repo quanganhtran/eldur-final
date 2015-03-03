@@ -9,13 +9,6 @@ package eldur;
  *
  * @author Anh
  */
-public class AscensionScroll extends IdScroll{
-
-    public AscensionScroll(String sN, Sword sw) {
-        super(sN, sw);
-    }
-        @Override
-    public String getName() {
-        return "[a] " + name;
-    }
+public abstract class Item {
+    public abstract String getName();
 }

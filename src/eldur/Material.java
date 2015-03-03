@@ -39,6 +39,10 @@ public class Material {
         stock = s;
     }
     
+    public void gain(int amount) {
+        stock += amount;
+    }
+    
     public void consume(int amount) {
         stock -= amount;
     }

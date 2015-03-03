@@ -16,6 +16,8 @@ public class BossScreen extends Adventure {
 
     private Random rng = new Random();
     private ArrayList<Enemy> enemyWaves;
+    private String story;
+    private String storyAfter;
 
     public BossScreen(String sN, GameData gD) {
         super(sN, gD);
@@ -24,6 +26,7 @@ public class BossScreen extends Adventure {
 
     @Override
     public Screen runScreen() {
+        System.out.println(getStory());
         this.player = new Character(gameData);
         for (Enemy en : this.enemyWaves) {
             Encounter encounter = new Encounter(en, this);
@@ -41,6 +44,7 @@ public class BossScreen extends Adventure {
         }
         // Do something more here.
         System.out.println("Congratulations! You have cleared the area!");
+        System.out.println(getStoryAfter());
 //        if (unlocked) {
 //            
 //        }
@@ -51,4 +55,21 @@ public class BossScreen extends Adventure {
     public void addEnemy(Enemy en) {
         this.enemyWaves.add(en);
     }
+
+    public String getStory() {
+        return story;
+    }
+
+    public void setStory(String story) {
+        this.story = story;
+    }
+
+    public String getStoryAfter() {
+        return storyAfter;
+    }
+
+    public void setStoryAfter(String storyAfter) {
+        this.storyAfter = storyAfter;
+    }
+    
 }

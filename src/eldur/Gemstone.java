@@ -9,7 +9,7 @@ package eldur;
  *
  * @author trand
  */
-public class Gemstone {
+public class Gemstone extends Item {
 
     private String name;
     private int type;
@@ -23,10 +23,10 @@ public class Gemstone {
 
     public Gemstone(String n, int t) {
         name = n;
-        type = t;
     }
 
-    public Gemstone(String r, int aP, int d, int cR, int e) {
+    public Gemstone(String name, String r, int aP, int d, int cR, int e) {
+        this.name = name;
         this.refinementPrefix = r;
         this.attackPercent = aP;
         this.defense = d;
@@ -44,5 +44,10 @@ public class Gemstone {
 
     public void consumed() {
         this.stock--;
+    }
+
+    @Override
+    public String getName() {
+        return "<g> " + name;
     }
 }

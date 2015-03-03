@@ -19,6 +19,7 @@ public class Adventure extends Screen {
     public GameData gameData;
     public Character player;
     private ArrayList<Enemy> enemyTypes;
+    private Loot loot;
 //    public boolean unlocked;
 
     public Adventure(String sN, GameData gD) {
@@ -53,6 +54,7 @@ public class Adventure extends Screen {
             }
             if (encounter.outcome.equals("pWin")) {
                 this.player = new Character(gameData);
+                loot.drop();
                 System.out.println("Your character has fully recovered.");
                 System.out.println("Another enemy incoming...");
             } else if (encounter.outcome.equals("pLose")) {
@@ -72,6 +74,14 @@ public class Adventure extends Screen {
 
     public void addEnemy(Enemy en) {
         this.enemyTypes.add(en);
+    }
+
+    public Loot getLoot() {
+        return loot;
+    }
+
+    public void setLoot(Loot loot) {
+        this.loot = loot;
     }
 
 }

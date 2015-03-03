@@ -5,7 +5,7 @@
  */
 package eldur;
 
-import java.util.Scanner;
+import java.util.Collections;
 
 /**
  *
@@ -62,7 +62,14 @@ public class Game extends Screen {
                 gameData.materials.keySet().stream().forEach((k) -> {
                     System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
                 });
-                System.out.println("");
+                System.out.println("\nItems:");
+                Collections.sort(gameData.itemInv, new ItemComparator());
+                for (int i = 0; i < gameData.itemInv.size(); i++) {
+                    if (i == gameData.itemInv.indexOf(gameData.itemInv.get(i))) {
+                        System.out.print(gameData.itemInv.get(i).getName() + " x" + Collections.frequency(gameData.itemInv, gameData.itemInv.get(i)) + " | ");
+                    }
+                }
+                System.out.println("\nWeapons:");
 //                gameData.inventory.stream().forEach((sw) -> {
 //                    System.out.print(sw.getName() + " | ");
 //                });
@@ -151,7 +158,7 @@ public class Game extends Screen {
                     } else {
                         System.out.println("Sword not found.");
                     }
-                    Gemstone gem = gameData.gemstones.get(inputParts[2]);
+                    Gemstone gem = gameData.gemstonesDict.get(inputParts[2]);
                     if (sw != null && gem != null) {
                         gameData.socket(sw, gem);
                         //gameData.inventory.set(invPos, sw);

@@ -9,13 +9,13 @@ package eldur;
  *
  * @author Anh
  */
-public class IdScroll {
-    private String scrollName;
+public class IdScroll extends Item{
+    protected String name;
     private Sword frame;
     private int scrollTier;
     
     public IdScroll(String sN, Sword sw) {
-        this.scrollName = sN;
+        this.name = sN;
         this.frame = sw;
         this.scrollTier = sw.getTier();
     }
@@ -26,5 +26,10 @@ public class IdScroll {
 
     public Sword getFrame() {
         return frame;
+    }
+
+    @Override
+    public String getName() {
+        return "[i] " + name;
     }
 }

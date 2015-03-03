@@ -8,6 +8,8 @@ package eldur;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.TreeSet;
 
 /**
  *
@@ -27,10 +29,10 @@ public class GameData {
     public Material adamantite = new Material("Adamantite", 100);
     public HashMap<String, Material> materials = new HashMap<>();
     // Gemstones
-    public Gemstone ruby = new Gemstone("of Might", 10, 0, 0, 0);
-    public Gemstone sapphire = new Gemstone("of Protection", 0, 10, 0, 0);
-    public Gemstone emerald = new Gemstone("of Precision", 0, 0, 10, 0);
-    public HashMap<String, Gemstone> gemstones = new HashMap<>();
+    public Gemstone ruby = new Gemstone("Ruby", "of Might", 10, 0, 0, 0);
+    public Gemstone sapphire = new Gemstone("Sapphire", "of Protection", 0, 10, 0, 0);
+    public Gemstone emerald = new Gemstone("Emerald", "of Precision", 0, 0, 10, 0);
+    public HashMap<String, Gemstone> gemstonesDict = new HashMap<>();
     // Recipes
     public HashMap<String, Recipe> recipes = new HashMap<>();
     // Identification Scroll TODO: Must be treated as items.
@@ -45,7 +47,7 @@ public class GameData {
     public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0);
     // Inventory
     public ArrayList<Sword> inventory = new ArrayList<>();
-    public ArrayList<IdScroll> scrollsInv = new ArrayList<>();
+    public ArrayList<Item> itemInv = new ArrayList<>();
     public ArrayList<String> inventoryViewer = new ArrayList<>();
     // Adventure Data
     public ArrayList<Adventure> mapList = new ArrayList<>();
@@ -61,9 +63,9 @@ public class GameData {
         materials.put("orichalcum", orichalcum);
         materials.put("adamantite", adamantite);
         // Gemstones
-        gemstones.put("ruby", ruby);
-        gemstones.put("sapphire", sapphire);
-        gemstones.put("emerald", emerald);
+        gemstonesDict.put("ruby", ruby);
+        gemstonesDict.put("sapphire", sapphire);
+        gemstonesDict.put("emerald", emerald);
         // Identification Scroll TODO: Must be treated as items.
         idScrollsDict.put("exc", excalibur);
         idScrollsDict.put("gen", genesis);
@@ -87,10 +89,11 @@ public class GameData {
         assets.loadRecipe(recipes);
         
         // FUNCTIONALITY TEST
-        scrollsInv.add(umi);
-        scrollsInv.add(umi);
-        scrollsInv.add(excalibur);
-        scrollsInv.add(rin);
+        itemInv.add(umi);
+        itemInv.add(umi);
+        itemInv.add(excalibur);
+        itemInv.add(rin);
+        itemInv.add(ruby);
     }
 
 
@@ -108,12 +111,14 @@ public class GameData {
     public void socket(Sword sw, Gemstone someG) { // Needs to transfer all feedbacks to Game
         // Remember to use up a gemstone here
 //        sw.refinement = someG.refinementPrefix;
-        if (sw.getSocket() > 0) {
+        if (sw.getSocket() <= 0) {
+            System.out.println(sw.getName() + ": Not enough socket.");
+        } else if (!itemInv.remove(someG)) {
+            System.out.println("The needed Gemstone is not found.");
+        } else {
             sw.useSocket();
             sw.insertSocket(someG);
             System.out.println("Refined sword: " + sw.getName());
-        } else {
-            System.out.println(sw.getName() + ": Not enough socket.");
         }
     }
 
@@ -121,13 +126,13 @@ public class GameData {
         //Sword newSword = sw;
         if (!sw.getRarity().equals("Rare") || (sw.getTier() != ids.getScrollTier())) {
             System.out.println("The sword is not identifiable.");
-        } else if (scrollsInv.indexOf(ids) == -1) {
-            System.out.println("The necessary Identification scroll is not found.");
+        } else if (!itemInv.remove(ids)) {
+            System.out.println("The needed Identification scroll is not found.");
         } else {
             //newSword = ids.getSword();
             //newSword.inherit(sw);
             sw.transform(ids.getFrame());
-            scrollsInv.remove(ids);
+            //itemInv.remove(ids);
             System.out.println("Sword identified: " + sw.getName() + ".");
         }
         //return sw;
@@ -136,11 +141,11 @@ public class GameData {
     public void ascend(Sword sw, AscensionScroll as) {
         if (!sw.getRarity().equals("Epic") || (sw.getTier() != as.getScrollTier())) {
             System.out.println("The sword cannot be ascended.");
-        } else if (scrollsInv.indexOf(as) == -1) {
-            System.out.println("The necessary Ascension scroll is not found.");
+        } else if (!itemInv.remove(as)) {
+            System.out.println("The needed Ascension scroll is not found.");
         } else {
             sw.transform(as.getFrame());
-            scrollsInv.remove(as);
+            //itemInv.remove(as);
             System.out.println("Sword obtained: " + sw.getName() + ".");
         }
         //return sw;
