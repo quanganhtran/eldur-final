@@ -19,14 +19,14 @@ public class GameData {
 
     public int cash;
     // Materials: copper, iron, silver, gold, platinum, mithril, orichalcum, adamantite.
-    public Material copper = new Material("Copper", 100);
-    public Material iron = new Material("Iron", 100);
-    public Material silver = new Material("Silver", 100);
+    public Material copper = new Material("Copper", 0);
+    public Material iron = new Material("Iron", 0);
+    public Material silver = new Material("Silver", 0);
     public Material gold = new Material("Gold", 100);
-    public Material platinum = new Material("Platinum", 100);
-    public Material mithril = new Material("Mithril", 100);
-    public Material orichalcum = new Material("Orichalcum", 100);
-    public Material adamantite = new Material("Adamantite", 100);
+    public Material platinum = new Material("Platinum", 0);
+    public Material mithril = new Material("Mithril", 0);
+    public Material orichalcum = new Material("Orichalcum", 0);
+    public Material adamantite = new Material("Adamantite", 0);
     public HashMap<String, Material> materials = new HashMap<>();
     // Gemstones
     public Gemstone ruby = new Gemstone("Ruby", "of Might", 10, 0, 0, 0);
@@ -104,7 +104,7 @@ public class GameData {
 //        materials.put(someRp.getSupportMat(),materials.get(someRp.getSupportMat()) - 10);
         Sword newSword = new Sword(someRp);
         inventory.add(newSword);
-        inventoryViewer.add(newSword.getName() + " " + newSword.getAtk());
+        //inventoryViewer.add(newSword.getName() + " " + newSword.getAtk());
         System.out.println("Sword crafted: " + newSword.getName() + " " + newSword.getAtk());
     }
 

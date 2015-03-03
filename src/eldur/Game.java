@@ -63,6 +63,9 @@ public class Game extends Screen {
                     System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
                 });
                 System.out.println("\nItems:");
+                if (gameData.itemInv.isEmpty()) {
+                    System.out.println("There is no item in your invertory.");
+                }
                 Collections.sort(gameData.itemInv, new ItemComparator());
                 for (int i = 0; i < gameData.itemInv.size(); i++) {
                     if (i == gameData.itemInv.indexOf(gameData.itemInv.get(i))) {
@@ -70,14 +73,17 @@ public class Game extends Screen {
                     }
                 }
                 System.out.println("\nWeapons:");
+                if (gameData.inventory.isEmpty()) {
+                    System.out.println("There is no weapon in your invertory.");
+                }
 //                gameData.inventory.stream().forEach((sw) -> {
 //                    System.out.print(sw.getName() + " | ");
 //                });
                 for (int i = 0; i < gameData.inventory.size(); i++) {
                     System.out.print((i+1) + ". " + gameData.inventory.get(i).getName() + " | ");
                 }
-                System.out.println("");
-                System.out.println(gameData.inventoryViewer);
+                //System.out.println("");
+                //System.out.println(gameData.inventoryViewer);
                 return "";
 //            case "adventure":
 //                if (inputParts.length >= 2) {

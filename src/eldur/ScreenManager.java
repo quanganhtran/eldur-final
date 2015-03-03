@@ -142,18 +142,19 @@ public class ScreenManager {
         map.addConnection("back", game);
 
         // Populate the areas
-        area1.addEnemy(new Enemy(0, "Slime", 100, 10));
-        area1.addEnemy(new Enemy(0, "Big Slime", 100, 10));
-        area1Boss.addEnemy(new Enemy(0, "Agressive Slime", 120, 12));
-        area1Boss.addEnemy(new Enemy(0, "Agressive Slime 2", 120, 12));
-        area1Boss.addEnemy(new Enemy(0, "Agressive Slime 3", 120, 12));
-        area1Boss.addEnemy(new Enemy(0, "Slime King", 150, 15));
-        area2.addEnemy(new Enemy(1, "Wolf", 150, 20));
-        area2.addEnemy(new Enemy(1, "Big Wolf", 150, 20));
-        area3.addEnemy(new Enemy(2, "Goblin", 250, 25));
-        area3.addEnemy(new Enemy(2, "Big Goblin", 250, 25));
-        area4.addEnemy(new Enemy(3, "Phantom", 300, 35));
-        area4.addEnemy(new Enemy(3, "Big Phantom", 300, 35));
+        area1.addEnemy(new Enemy("Slime", 50, 10));
+        area1.addEnemy(new Enemy("Snake", 50, 10));
+        area1Boss.addEnemy(new Enemy("Small Boar", 60, 12));
+        area1Boss.addEnemy(new Enemy("Big Boar", 60, 12));
+        area1Boss.addEnemy(new Enemy("Great Boar of Elysia", 100, 15));
+        area2.addEnemy(new Enemy("Wolf", 75, 20));
+        area2.addEnemy(new Enemy("Bandit", 75, 20));
+        area2Boss.addEnemy(new Enemy("Bandit Captain", 120, 25));
+        area2Boss.addEnemy(new Enemy("Bandit Chief Max", 200, 35));
+        area3.addEnemy(new Enemy("Goblin", 125, 25));
+        area3.addEnemy(new Enemy("Big Goblin", 125, 25));
+        area4.addEnemy(new Enemy("Phantom", 150, 35));
+        area4.addEnemy(new Enemy("Big Phantom", 150, 35));
         
         area1.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));        
         area1Boss.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));
@@ -187,7 +188,7 @@ public class ScreenManager {
         
         FileReader assets = new FileReader();
         assets.loadStory(areaMap.values());
-        System.out.println(area1Boss.getStory());
+        //System.out.println(area1Boss.getStory());
 
         currentScreen = game; // This should be set to 'game' in the final product.
 
