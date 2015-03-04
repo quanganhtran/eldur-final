@@ -31,7 +31,7 @@ public class Loot {
         for (Material mat : commonLoot) {
             int amount = 2;
             mat.gain(amount);
-            System.out.println(amount + " " + mat.getName() + " obtained.");
+            System.out.println( amount + "\u001B[36m " + mat.getName() + " obtained.\u001B[0m");
         }
 //        if (!(rareLoot.isEmpty()) && rng.nextInt(5) == 4) {
 //            Item rareDrop = rareLoot.get(rng.nextInt(rareLoot.size()));

@@ -48,7 +48,7 @@ public class Screen {
     public Screen runScreen() {
         reader = new Scanner(System.in);
         while (true) {
-            System.out.println("Enter a command: ");
+            System.out.println("\u001B[34mEnter a command: \u001B[0m");
             String input = reader.nextLine();
             String connection = interpret(input);
 

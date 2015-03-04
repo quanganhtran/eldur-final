@@ -89,7 +89,7 @@ public class Encounter {
                     // begin Player will attack
                     this.outcome = adventure.player.attack(enemy);
                     if (!this.outcome.equals("pWin")) {
-                        System.out.println(enemy.getName() + "'s HP is " + enemy.getHp());
+                        System.out.println("\u001B[31m" +enemy.getName() + "'s HP is \u001B[0m" + enemy.getHp());
                     } else {
                         System.out.println("You have successfully defeated " + enemy.getName());
                         //outcome = "pWin";
@@ -168,10 +168,10 @@ public class Encounter {
         this.outcome = enemy.attack(adventure.player);
         // Resolve actions
         if (!this.outcome.equals("pLose")) {
-            System.out.println("Your HP is " + adventure.player.getHp());
+            System.out.println("\u001B[32mYour HP is \u001B[0m" + adventure.player.getHp());
         } else {
             this.encInput = "back";
-            System.out.println("You have been defeated by " + enemy.getName() + ". Reviving yourself...");
+            System.out.println("\n\u001B[31mYou have been defeated by " + enemy.getName() + ". Reviving yourself...\u001B[0m");
         }
         //return new String[]{this.encInput, this.outcome};
     }

@@ -42,14 +42,16 @@ public class Game extends Screen {
                 reportScreen();
                 return "";
             case "help":
-                System.out.println("stat - Show your inventory.");
-                System.out.println("craft <type> - 'iron', 'copper', 'imperial', etc.");
-                System.out.println("refine <slot number> <type> - 'ruby', 'sapphire', 'emerald', etc.");
-                System.out.println("identify <slot number> <type> - 'umi', 'exc', 'gen', etc.");
-                System.out.println("ascend <slot number> <type> - 'rin', etc.");
-                System.out.println("equip <slot number>");
-                System.out.println("inspect <slot number>");
-                System.out.println("areax - Adventure! - change x to 1-10");
+                System.out.println("\u001B[32mList of Commands to use: \u001B[0m");
+                System.out.println("\nareax - \u001B[35mTravel to areas - change x to 1-10\u001B[0m");
+                System.out.println("town - \u001B[35mReturn to town, only place you can craft.\u001B[0m");
+                System.out.println("stat - Show your inventory. \n\u001B[32mSlot number is shown next to the weapon in your inventory.\u001B[0m");
+                System.out.println("\ncraft + <type> - weapon types: 'iron', 'copper', 'imperial', etc.");
+                System.out.println("refine + \u001B[32m<slot number>\u001B[0m + <type> - refine types: 'ruby', 'sapphire', 'emerald', etc.");
+                System.out.println("identify + \u001B[32m<slot number>\u001B[0m + <type> - identify types: 'umi', 'exc', 'gen', etc.");
+                System.out.println("ascend + \u001B[32m<slot number>\u001B[0m + <type> - ascend types: 'rin', etc.");
+                System.out.println("equip + \u001B[32m<slot number>\u001B[0m");
+                System.out.println("inspect \u001B[32m<slot number>\u001B[0m");
                 System.out.println("quit - Quit the game.");
                 return "";
             case "quit":
