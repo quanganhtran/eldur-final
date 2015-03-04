@@ -17,77 +17,95 @@ import java.util.TreeSet;
  */
 public class GameData {
 
-    public int cash;
+    //public int cash;
     // Materials: copper, iron, silver, gold, platinum, mithril, orichalcum, adamantite.
-    public Material copper = new Material("Copper", 0);
-    public Material iron = new Material("Iron", 0);
-    public Material silver = new Material("Silver", 0);
-    public Material gold = new Material("Gold", 100);
-    public Material platinum = new Material("Platinum", 0);
-    public Material mithril = new Material("Mithril", 0);
-    public Material orichalcum = new Material("Orichalcum", 0);
-    public Material adamantite = new Material("Adamantite", 0);
-    public HashMap<String, Material> materials = new HashMap<>();
+    public Material copper;
+    public Material iron;
+    public Material silver;
+    public Material gold;
+    public Material platinum;
+    public Material mithril;
+    public Material orichalcum;
+    public Material adamantite;
+    public HashMap<String, Material> materials;
     // Gemstones
-    public Gemstone ruby = new Gemstone("Ruby", "of Might", 10, 0, 0, 0);
-    public Gemstone sapphire = new Gemstone("Sapphire", "of Protection", 0, 10, 0, 0);
-    public Gemstone emerald = new Gemstone("Emerald", "of Precision", 0, 0, 10, 0);
-    public HashMap<String, Gemstone> gemstonesDict = new HashMap<>();
+    public Gemstone ruby;
+    public Gemstone sapphire;
+    public Gemstone emerald;
+    public HashMap<String, Gemstone> gemstonesDict;
     // Recipes
-    public HashMap<String, Recipe> recipes = new HashMap<>();
+    public HashMap<String, Recipe> recipes;
     // Identification Scroll TODO: Must be treated as items.
-    public IdScroll excalibur = new IdScroll("Excalibur", new Sword("Excalibur", 3, "Epic", 78, 2));
-    public IdScroll genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 88, 2));
-    public IdScroll umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 140, 2));
-    public HashMap<String, IdScroll> idScrollsDict = new HashMap<>();
+    public IdScroll excalibur;
+    public IdScroll genesis;
+    public IdScroll umi;
+    public HashMap<String, IdScroll> idScrollsDict;
     // Ascension Scroll TODO: Must be treated as items.
-    public AscensionScroll rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 165, 2));
-    public HashMap<String, AscensionScroll> aScrollsDict = new HashMap<>();
+    public AscensionScroll rin;
+    public HashMap<String, AscensionScroll> aScrollsDict;
     // Equipped Sword
-    public Sword equippedSword = new Sword("no sword", 1, "none", 0, 0);
+    public Sword equippedSword;
     // Inventory
-    public ArrayList<Sword> inventory = new ArrayList<>();
-    public ArrayList<Item> itemInv = new ArrayList<>();
-    public ArrayList<String> inventoryViewer = new ArrayList<>();
-    // Adventure Data
-    public ArrayList<Adventure> mapList = new ArrayList<>();
+    public ArrayList<Sword> inventory;
+    public ArrayList<Item> itemInv;
+    public ArrayList<String> inventoryViewer;
+    public ArrayList<Adventure> mapList;
 
-    public void initialize() {
+    public GameData() {
         // Materials
-        materials.put("copper", copper);
-        materials.put("iron", iron);
-        materials.put("silver", silver);
-        materials.put("gold", gold);
-        materials.put("platinum", platinum);
-        materials.put("mithril", mithril);
-        materials.put("orichalcum", orichalcum);
-        materials.put("adamantite", adamantite);
-        // Gemstones
-        gemstonesDict.put("ruby", ruby);
-        gemstonesDict.put("sapphire", sapphire);
-        gemstonesDict.put("emerald", emerald);
-        // Identification Scroll TODO: Must be treated as items.
-        idScrollsDict.put("exc", excalibur);
-        idScrollsDict.put("gen", genesis);
-        idScrollsDict.put("umi", umi);
-        // Ascension Scroll TODO: Must be treated as items.
-        aScrollsDict.put("rin", rin);
-        // Adventure Data
+        this.copper = new Material("Copper", 20);
+        this.iron = new Material("Iron", 20);
+        this.silver = new Material("Silver", 20);
+        this.gold = new Material("Gold", 20);
+        this.platinum = new Material("Platinum", 20);
+        this.mithril = new Material("Mithril", 20);
+        this.orichalcum = new Material("Orichalcum", 20);
+        this.adamantite = new Material("Adamantite", 20);
+        this.materials = new LinkedHashMap<>();
         
-//        enemiesAll.put("frea", new ArrayList<>());
-//        //enemies
-//        enemiesInFrea.add(new Enemy(0, "Slime", 100, 10));
-//        enemiesInFrea.add(new Enemy(0, "Big Slime", 100, 10));
-//        enemiesInFrea.add(new Enemy(1, "Wolf", 150, 20));
-//        enemiesInFrea.add(new Enemy(1, "Big Wolf", 150, 20));
-//        enemiesInFrea.add(new Enemy(2, "Goblin", 250, 25));
-//        enemiesInFrea.add(new Enemy(2, "Big Goblin", 250, 25));
-//        enemiesInFrea.add(new Enemy(3, "Phantom", 300, 35));
-//        enemiesInFrea.add(new Enemy(3, "Big Phantom", 300, 35));
+        this.materials.put("copper", copper);
+        this.materials.put("iron", iron);
+        this.materials.put("silver", silver);
+        this.materials.put("gold", gold);
+        this.materials.put("platinum", platinum);
+        this.materials.put("mithril", mithril);
+        this.materials.put("orichalcum", orichalcum);
+        this.materials.put("adamantite", adamantite);
+        // Gemstones
+        this.ruby = new Gemstone("Ruby", "of Might", 10, 0, 0, 0);
+        this.sapphire = new Gemstone("Sapphire", "of Protection", 0, 10, 0, 0);
+        this.emerald = new Gemstone("Emerald", "of Precision", 0, 0, 10, 0);
+        this.gemstonesDict = new HashMap<>();
+        
+        this.gemstonesDict.put("ruby", ruby);
+        this.gemstonesDict.put("sapphire", sapphire);
+        this.gemstonesDict.put("emerald", emerald);
+        // Recipes
+        this.recipes = new HashMap<>();
+        // Identification Scrolls
+        this.excalibur = new IdScroll("Excalibur", new Sword("Excalibur", 3, "Epic", 78, 2));
+        this.genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 88, 2));
+        this.umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 140, 2));
+        this.idScrollsDict = new HashMap<>();
+        
+        this.idScrollsDict.put("exc", excalibur);
+        this.idScrollsDict.put("gen", genesis);
+        this.idScrollsDict.put("umi", umi);
+        // Ascension Scrolls
+        this.rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 200, 2));
+        this.aScrollsDict = new HashMap<>();
+        
+        this.aScrollsDict.put("rin", rin);
+        // Initial Sword
+        this.equippedSword = new Sword("no sword", 1, "none", 0, 0);
+        // Inventory
+        this.inventory = new ArrayList<>();
+        this.itemInv = new ArrayList<>();
+        this.inventoryViewer = new ArrayList<>();
+        this.mapList = new ArrayList<>();
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
-        
         // FUNCTIONALITY TEST
         itemInv.add(umi);
         itemInv.add(umi);
@@ -101,16 +119,56 @@ public class GameData {
         itemInv.add(genesis);
     }
 
+//    public void initialize() {
+//        // Materials
+//        materials.put("copper", copper);
+//        materials.put("iron", iron);
+//        materials.put("silver", silver);
+//        materials.put("gold", gold);
+//        materials.put("platinum", platinum);
+//        materials.put("mithril", mithril);
+//        materials.put("orichalcum", orichalcum);
+//        materials.put("adamantite", adamantite);
+//        // Gemstones
+//        gemstonesDict.put("ruby", ruby);
+//        gemstonesDict.put("sapphire", sapphire);
+//        gemstonesDict.put("emerald", emerald);
+//        // Identification Scroll TODO: Must be treated as items.
+//        idScrollsDict.put("exc", excalibur);
+//        idScrollsDict.put("gen", genesis);
+//        idScrollsDict.put("umi", umi);
+//        // Ascension Scroll TODO: Must be treated as items.
+//        aScrollsDict.put("rin", rin);
+//        // Adventure Data
+//        
+//        // Game Data
+//        FileReader assets = new FileReader();
+//        assets.loadRecipe(recipes);
+//        
+//        // FUNCTIONALITY TEST
+//        itemInv.add(umi);
+//        itemInv.add(umi);
+//        itemInv.add(excalibur);
+//        itemInv.add(rin);
+//        itemInv.add(ruby);
+//        itemInv.add(ruby);
+//        itemInv.add(ruby);
+//        itemInv.add(sapphire);
+//        itemInv.add(emerald);
+//        itemInv.add(genesis);
+//    }
+
 
     public void craft(Recipe someRp) { // Needs to transfer all feedbacks to Game
-        materials.get(someRp.getMainMat()).consume(10);
-        materials.get(someRp.getSupportMat()).consume(10);
-//        materials.put(someRp.getMainMat(),materials.get(someRp.getMainMat()) - 10);
-//        materials.put(someRp.getSupportMat(),materials.get(someRp.getSupportMat()) - 10);
-        Sword newSword = new Sword(someRp);
-        inventory.add(newSword);
-        //inventoryViewer.add(newSword.getName() + " " + newSword.getAtk());
-        System.out.println("Sword crafted: " + newSword.getName() + " " + newSword.getAtk());
+        if (materials.get(someRp.getMainMat()).consume(10) && materials.get(someRp.getSupportMat()).consume(10)) {
+            //;
+            //;
+            Sword newSword = new Sword(someRp);
+            inventory.add(newSword);
+            System.out.println("Sword crafted: " + newSword.getName() + " " + newSword.getAtk());
+        } else {
+            System.out.println("There is not enough material to craft this sword.");
+        }
     }
 
     public void socket(Sword sw, Gemstone someG) { // Needs to transfer all feedbacks to Game

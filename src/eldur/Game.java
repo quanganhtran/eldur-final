@@ -60,10 +60,13 @@ public class Game extends Screen {
             case "stat":
 //                System.out.println("Copper: " + gameData.copper.getStock());
 //                System.out.println("Town area: " + gameData.currentArea);
-                System.out.println("Cash: " + gameData.cash);
-                gameData.materials.keySet().stream().forEach((k) -> {
-                    System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
-                });
+                //System.out.println("Cash: " + gameData.cash);
+//                gameData.materials.keySet().stream().forEach((k) -> {
+//                    System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
+//                });
+                for (Material mat : gameData.materials.values()) {
+                    System.out.print(mat.getName() + ": " + mat.getStock() + " ");
+                }
                 System.out.println("\nItems:");
                 if (gameData.itemInv.isEmpty()) {
                     System.out.println("There is no item in your invertory.");
@@ -84,6 +87,7 @@ public class Game extends Screen {
                 for (int i = 0; i < gameData.inventory.size(); i++) {
                     System.out.print((i+1) + ". " + gameData.inventory.get(i).getName() + " | ");
                 }
+                System.out.println("");
                 //System.out.println("");
                 //System.out.println(gameData.inventoryViewer);
                 return "";

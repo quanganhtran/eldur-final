@@ -59,4 +59,10 @@ public class FileReader {
             }
         }
     }
+    
+    public Enemy loadSingleEnemy() {
+        Enemy enemy = null;
+        
+        return enemy;
+    }
 }

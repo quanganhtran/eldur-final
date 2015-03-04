@@ -43,7 +43,15 @@ public class Material {
         stock += amount;
     }
     
-    public void consume(int amount) {
-        stock -= amount;
+    public boolean consume(int amount) {
+        if (stock >= amount) {
+            stock -= amount;
+            return true;
+        } else {
+            return false;
+        }
+//        boolean enough = (stock >= amount);
+//        stock = (enough) ? stock - amount : stock;
+//        return enough;
     }
 }

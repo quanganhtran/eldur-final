@@ -1,0 +1,67 @@
+area1,Slime,50,10
+area1,Wolf,50,10
+area1,Sapling,50,10
+area1Boss,Little Boar,70,11
+area1Boss,Big Boar,90,11
+area1Boss,Great Boar of Elysia,100,15
+area2,Bandit,75,12
+area2,Bandit Elite,75,12
+area2,Bandit's Hound,75,12
+area2Boss,Bandit Captain,120,15
+area2Boss,Bandit Chief Max,140,20
+area3,Vampire Bat,125,18
+area3,Wisp,125,18
+area3,Witch's Cat,125,18
+area3Boss,Wizard's Apprentice,170,22
+area3Boss,"High Wizard, Gillius",200,30
+area4,Pirate ,175,23
+area4,Drunk Pirate,175,23
+area4,Cannon Pirate,175,23
+area4Boss,"Pirate Monkey, Abi",200,23
+area4Boss,"Vice Captain, Felix",220,27
+area4Boss,"Infamous Pirate Captain, Skull Jenkins",300,30
+area5,Skeleton,250,29
+area5,Skeleton Archer,250,29
+area5,Giant Rat,250,29
+area5,Cave Ooze,250,29
+area5Boss,Ninja Skeleton,360,34
+area5Boss,Ancient Skeleton Warrior,370,34
+area5Boss,The Skeleton King,400,40
+area6,Fire Elemental,350,39
+area6,Storm Elemental,350,39
+area6,"Demonic Cat, Selin",350,39
+area6,Water Elemental,350,39
+area6Boss,Darkness Elemental,420,42
+area6Boss,Darkness Elemental,420,42
+area6Boss,"Possessed Wizard, Gillius",550,50
+area7,Giant Crab,475,48
+area7,Vicious Pirate,475,48
+area7,Tiger Shark,475,48
+area7,Coral Monster,475,48
+area7,Siren,475,48
+area7Boss,Sea Hydra,550,54
+area7Boss,Legendary Sea Serpent,800,60
+area8,Stormhold Guard,625,58
+area8,Stormhold Villager,625,58
+area8,Mountain Goat,625,58
+area8,Ancient Stone Golem,625,58
+area8,Ice Yeti,625,58
+area8Boss,Rebel Captain,700,62
+area8Boss,Rebel Captain,700,62
+area8Boss,"The Rebel King, Veraxus",1100,70
+area9,Lava Golem,800,69
+area9,Lava Ooze,800,69
+area9,Hell Fire Elemental,800,69
+area9,Fire Hound,800,69
+area9,Hell Spirit,800,69
+area9,Fire Demon,800,69
+area9,Dragonling,800,69
+area9Boss,Rock Dragon,900,72
+area9Boss,Skeleton Dragon,900,74
+area9Boss,"Dragon of Legends, Kuldan",2000,80
+area10,Phantom,1000,80
+area10,Temple Guardian,1000,80
+area10,Demonic Ghost,1000,80
+area10,Colossal,1000,80
+area10,Titan,1000,80
+area10Boss,Eldur,7500,150
