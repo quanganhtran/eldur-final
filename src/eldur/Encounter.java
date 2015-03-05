@@ -139,8 +139,8 @@ public class Encounter {
                 System.out.println("Thanks for playing!");
                 System.exit(0);
             default:
-                if (adventure.connections.get(this.encInput) != null) {
-                    if (adventure.connections.get(this.encInput).unlocked) {
+                if (adventure.getConnections().get(this.encInput) != null) {
+                    if (adventure.getConnections().get(this.encInput).unlocked) {
                         System.out.println("Do you really want to leave this area? ('y' to confirm)");
                         if (reader.nextLine().equals("y")) {
                             // input is not changed

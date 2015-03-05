@@ -37,6 +37,27 @@ public class FileReader {
 
         recipesReader.close();
     }
+    
+    public void loadEnemy(ScreenManager s) {
+        File enemiesFile = new File("assets/enemies");
+        Scanner enemiesReader = null;
+        try {
+            enemiesReader = new Scanner(enemiesFile);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GameData.class.getName()).log(Level.SEVERE, "File not found", ex);
+        }
+        
+        while (enemiesReader.hasNextLine()) {
+            String line = enemiesReader.nextLine();
+            String[] lineParts = line.split("</split>");
+            if (!lineParts[0].endsWith("Boss")) {
+                s.areaMapDict.get(lineParts[0]).addEnemy(new Enemy(lineParts[1], Integer.parseInt(lineParts[2]), Integer.parseInt(lineParts[3])));
+            } else {
+                s.areaToBoss.get(s.areaMapDict.get(lineParts[0].substring(0, lineParts[0].length()-4))).addEnemy(new Enemy(lineParts[1], Integer.parseInt(lineParts[2]), Integer.parseInt(lineParts[3])));
+            }
+        }
+        //return enemy;
+    }
 
     public void loadStory(Collection<BossScreen> bSet) {
         ArrayList<BossScreen> bossScreens = new ArrayList<>(bSet);
@@ -58,11 +79,7 @@ public class FileReader {
                 //}
             }
         }
-    }
-    
-    public Enemy loadSingleEnemy() {
-        Enemy enemy = null;
         
-        return enemy;
+        storyReader.close();
     }
 }

@@ -37,9 +37,9 @@ public class BossScreen extends Adventure {
             if (encounter.outcome.equals("pWin")) {
                 System.out.println("Another enemy incoming...");
             } else if (encounter.outcome.equals("pLose")) {
-                return connections.get("back");
+                return getConnections().get("back");
             } else if (encounter.outcome.equals("switchScreen")) {
-                return connections.get(encounter.encInput);
+                return getConnections().get(encounter.encInput);
             }
         }
         // Do something more here.
@@ -48,7 +48,7 @@ public class BossScreen extends Adventure {
 //        if (unlocked) {
 //            
 //        }
-        return connections.get("back");
+        return getConnections().get("back");
     }
 
     @Override

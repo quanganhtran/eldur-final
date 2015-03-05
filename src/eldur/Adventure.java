@@ -62,7 +62,7 @@ public class Adventure extends Screen {
             } else if (encounter.outcome.equals("callBoss")) {
                 
             } else if (encounter.outcome.equals("switchScreen")) {
-                return connections.get(encounter.encInput);
+                return getConnections().get(encounter.encInput);
             }
         }
     }

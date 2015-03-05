@@ -18,10 +18,16 @@ public class Sword {
     private int socket;
     public String refinement;
     // Secondary attributes
-    private int atkPercent;
+    private int vitality;
+    private int atkUpgrade;
     private int defense;
     private int critRate;
     private int evasion;
+    // Inherited attributes
+    //private int atkI;
+//    private int defI;
+//    private int critRateI;
+//    private int evasionI;
     // Skills
     
 
@@ -80,6 +86,10 @@ public class Sword {
     public void setDefense(int defense) {
         this.defense = defense;
     }
+    
+    public void stackDefense(int defense) {
+        this.defense += defense;
+    }
 
     public int getCritRate() {
         return critRate;
@@ -87,6 +97,10 @@ public class Sword {
 
     public void setCritRate(int critRate) {
         this.critRate = critRate;
+    }
+
+    public void stackCritRate(int critRate) {
+        this.critRate += critRate;
     }
 
     public int getEvasion() {
@@ -97,12 +111,16 @@ public class Sword {
         this.evasion = evasion;
     }
 
+    public void stackEvasion(int evasion) {
+        this.evasion += evasion;
+    }
+
     public void insertSocket(Gemstone g) {
-        this.atk += this.atk * g.attackPercent / 100;
-        this.atkPercent = g.attackPercent;
-        this.setDefense(g.defense);
-        this.setCritRate(g.critRate);
-        this.setEvasion(g.evasion);
+        this.atkUpgrade += g.attackUpgrade;
+        this.atk += this.atk * g.attackUpgrade / 100;
+        this.stackDefense(g.defense);
+        this.stackCritRate(g.critRate);
+        this.stackEvasion(g.evasion);
         if (rarity.equals("Common")) {
             name += " " + g.refinementPrefix;
             this.setRarity("Rare");
@@ -121,8 +139,34 @@ public class Sword {
         this.name = fromSw.name;
         this.tier = fromSw.tier;
         this.rarity = fromSw.rarity;
-        this.atk = fromSw.atk + fromSw.atk * this.atkPercent/100;
+        this.atk = fromSw.atk + fromSw.atk * this.atkUpgrade/100;
+        //this.defense = fromSw.defense;
+        //this.
         this.socket = fromSw.socket;
     }
+
+//    public int getDefI() {
+//        return defI;
+//    }
+//
+//    public void setDefI(int defI) {
+//        this.defI = defI;
+//    }
+//
+//    public int getCritRateI() {
+//        return critRateI;
+//    }
+//
+//    public void setCritRateI(int critRateI) {
+//        this.critRateI = critRateI;
+//    }
+//
+//    public int getEvasionI() {
+//        return evasionI;
+//    }
+//
+//    public void setEvasionI(int evasionI) {
+//        this.evasionI = evasionI;
+//    }
 
 }

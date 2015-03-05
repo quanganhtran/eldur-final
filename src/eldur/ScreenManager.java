@@ -21,8 +21,8 @@ public class ScreenManager {
     GameData gD;
 
     Game game;
-
-    HashMap<Adventure, BossScreen> areaMap;
+    HashMap<String, Adventure> areaMapDict;
+    HashMap<Adventure, BossScreen> areaToBoss; // Also used as free-roaming to adventure dictionary
 
     Adventure area1;
     BossScreen area1Boss;
@@ -48,38 +48,39 @@ public class ScreenManager {
     public ScreenManager() {
         this.gD = new GameData();
         this.game = new Game("Town", gD);
-        this.areaMap = new LinkedHashMap<>();
+        this.areaMapDict = new LinkedHashMap<>();
+        this.areaToBoss = new LinkedHashMap<>();
         
         this.area1 = new Adventure("Elysian Woods", gD);
         this.area1Boss = new BossScreen("Wreck of Boar", gD);
-        areaMap.put(area1, area1Boss);
+        areaToBoss.put(area1, area1Boss);
         this.area2 = new Adventure("Forest of Frea", gD, true);
         this.area2Boss = new BossScreen("Bandit's Camp", gD);
-        areaMap.put(area2, area2Boss);
+        areaToBoss.put(area2, area2Boss);
         this.area3 = new Adventure("The Magic Quarter", gD, true);
         this.area3Boss = new BossScreen("Wizard's Guild", gD);
-        areaMap.put(area3, area3Boss);
+        areaToBoss.put(area3, area3Boss);
         this.area4 = new Adventure("Skeleton Keep Entrance", gD, true);
         this.area4Boss = new BossScreen("Pirates' Camp", gD);
-        areaMap.put(area4, area4Boss);
+        areaToBoss.put(area4, area4Boss);
         this.area5 = new Adventure("Skeleton Keep", gD, true);
         this.area5Boss = new BossScreen("The Throne Room", gD);
-        areaMap.put(area5, area5Boss);
+        areaToBoss.put(area5, area5Boss);
         this.area6 = new Adventure("Wizard's Guild Inner", gD, true);
         this.area6Boss = new BossScreen("Wizard's Guild Basement", gD);
-        areaMap.put(area6, area6Boss);
+        areaToBoss.put(area6, area6Boss);
         this.area7 = new Adventure("Stormhold", gD, true);
         this.area7Boss = new BossScreen("Serpent's Water", gD);
-        areaMap.put(area7, area7Boss);
+        areaToBoss.put(area7, area7Boss);
         this.area8 = new Adventure("Ancient's Peak", gD, true);
         this.area8Boss = new BossScreen("The Arena", gD);
-        areaMap.put(area8, area8Boss);
+        areaToBoss.put(area8, area8Boss);
         this.area9 = new Adventure("Dragonkeep", gD, true);
         this.area9Boss = new BossScreen("Kuldan's Nest", gD);
-        areaMap.put(area9, area9Boss);
+        areaToBoss.put(area9, area9Boss);
         this.area10 = new Adventure("Temple of Eldur", gD, true);
         this.area10Boss = new BossScreen("Eldur's Hall", gD);
-        areaMap.put(area10, area10Boss);
+        areaToBoss.put(area10, area10Boss);
         
         game.addConnection("area1", area1);
         game.addConnection("area2", area2);
@@ -92,16 +93,27 @@ public class ScreenManager {
         game.addConnection("area9", area9);
         game.addConnection("area10", area10);
         
-        for (Adventure adv : areaMap.keySet()) {
+        areaMapDict.put("area1", area1);
+        areaMapDict.put("area2", area2);
+        areaMapDict.put("area3", area3);
+        areaMapDict.put("area4", area4);
+        areaMapDict.put("area5", area5);
+        areaMapDict.put("area6", area6);
+        areaMapDict.put("area7", area7);
+        areaMapDict.put("area8", area8);
+        areaMapDict.put("area9", area9);
+        areaMapDict.put("area10", area10);
+        
+        for (Adventure adv : areaToBoss.keySet()) {
             adv.addConnection("town", game);
         }
 
-        for (Adventure adv : areaMap.keySet()) {
-            adv.addConnection("boss", areaMap.get(adv));
+        for (Adventure adv : areaToBoss.keySet()) {
+            adv.addConnection("boss", areaToBoss.get(adv));
         }
 
-        for (Adventure adv : areaMap.keySet()) {
-            areaMap.get(adv).addConnection("back", adv);
+        for (Adventure adv : areaToBoss.keySet()) {
+            areaToBoss.get(adv).addConnection("back", adv);
         }
     }
 
@@ -109,6 +121,11 @@ public class ScreenManager {
         currentScreen = targetScreen;
         currentScreen.reportScreen();
     }
+    
+//    public void areaMapDict.put(String s, Adventure a) {
+//        areaMapDict.put(s, a);
+//        game.addConnection(s, a);
+//    }
 
     public void execute() {
         //GameData gD = new GameData();
@@ -192,27 +209,29 @@ public class ScreenManager {
         map.addConnection("back", game);
 
         // Populate the areas
-        HashMap<String, Adventure> enemyLocation = new HashMap<>();
+        FileReader assets = new FileReader();
+        assets.loadEnemy(this);
+        assets.loadStory(areaToBoss.values());
 
-        area1.addEnemy(new Enemy("Slime", 50, 10));
-        area1.addEnemy(new Enemy("Snake", 50, 10));
-        area1Boss.addEnemy(new Enemy("Small Boar", 60, 12));
-        area1Boss.addEnemy(new Enemy("Big Boar", 60, 12));
-        area1Boss.addEnemy(new Enemy("Great Boar of Elysia", 100, 15));
-        area2.addEnemy(new Enemy("Wolf", 75, 20));
-        area2.addEnemy(new Enemy("Bandit", 75, 20));
-        area2Boss.addEnemy(new Enemy("Bandit Captain", 120, 25));
-        area2Boss.addEnemy(new Enemy("Bandit Chief Max", 200, 35));
-        area3.addEnemy(new Enemy("Goblin", 125, 25));
-        area3.addEnemy(new Enemy("Apprentice", 125, 25));
-        area3Boss.addEnemy(new Enemy("Gillius", 125, 25));
-        area4.addEnemy(new Enemy("Phantom", 150, 35));
-        area4.addEnemy(new Enemy("Big Phantom", 150, 35));
-        area4Boss.addEnemy(new Enemy("Phantom", 150, 35));
-        area4Boss.addEnemy(new Enemy("Pirate Leader", 150, 35));
-        area10.addEnemy(new Enemy("Phantom", 150, 35));
-        area10.addEnemy(new Enemy("Big Phantom", 150, 35));
-        area10Boss.addEnemy(new Enemy("Eldur", 4000, 60));
+//        area1.addEnemy(new Enemy("Slime", 50, 10));
+//        area1.addEnemy(new Enemy("Snake", 50, 10));
+//        area1Boss.addEnemy(new Enemy("Small Boar", 60, 12));
+//        area1Boss.addEnemy(new Enemy("Big Boar", 60, 12));
+//        area1Boss.addEnemy(new Enemy("Great Boar of Elysia", 100, 15));
+//        area2.addEnemy(new Enemy("Wolf", 75, 20));
+//        area2.addEnemy(new Enemy("Bandit", 75, 20));
+//        area2Boss.addEnemy(new Enemy("Bandit Captain", 120, 25));
+//        area2Boss.addEnemy(new Enemy("Bandit Chief Max", 200, 35));
+//        area3.addEnemy(new Enemy("Goblin", 125, 25));
+//        area3.addEnemy(new Enemy("Apprentice", 125, 25));
+//        area3Boss.addEnemy(new Enemy("Gillius", 125, 25));
+//        area4.addEnemy(new Enemy("Phantom", 150, 35));
+//        area4.addEnemy(new Enemy("Big Phantom", 150, 35));
+//        area4Boss.addEnemy(new Enemy("Phantom", 150, 35));
+//        area4Boss.addEnemy(new Enemy("Pirate Leader", 150, 35));
+//        area10.addEnemy(new Enemy("Phantom", 150, 35));
+//        area10.addEnemy(new Enemy("Big Phantom", 150, 35));
+//        area10Boss.addEnemy(new Enemy("Eldur", 4000, 60));
 
         area1.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));
         area1Boss.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));
@@ -244,8 +263,6 @@ public class ScreenManager {
         area10.setLoot(new Loot(gD, new Material[]{gD.orichalcum, gD.adamantite}, null, null));
         area10Boss.setLoot(new Loot(gD, new Material[]{gD.orichalcum, gD.adamantite}, null, null));
 
-        FileReader assets = new FileReader();
-        assets.loadStory(areaMap.values());
         //System.out.println(area1Boss.getStory());
 
         currentScreen = game; // This should be set to 'game' in the final product.

@@ -13,38 +13,43 @@ import java.util.Scanner;
  * @author Anh
  */
 public class Screen {
+
     protected Scanner reader;
     protected String screenName;
     private GameData gameData;
-    protected HashMap<String,Screen> connections = new HashMap<>();
+    private HashMap<String, Screen> connections = new HashMap<>();
     protected boolean unlocked;
-        
+
     public Screen(String sN) {
         screenName = sN;
         this.unlocked = true;
     }
-    
+
     public Screen(String sN, boolean unl) {
         this(sN);
         this.unlocked = unl;
     }
-    
+
 //    public Screen(HashMap<String,Screen> conn) {
 //        connections = conn;
 //    }
     
+    public HashMap<String, Screen> getConnections() {
+        return connections;
+    }
+
     public void addConnection(String cmd, Screen targetScreen) {
         connections.put(cmd, targetScreen);
     }
-    
+
     public void unlock() {
         this.unlocked = true;
     }
-    
+
     public void reportScreen() {
         System.out.println("This is " + screenName + ".");
     }
-    
+
     public Screen runScreen() {
         reader = new Scanner(System.in);
         while (true) {
@@ -63,7 +68,7 @@ public class Screen {
             }
         }
     }
-    
+
     public String interpret(String input) {
         switch (input) {
             case "where":
@@ -75,4 +80,5 @@ public class Screen {
         }
         return input;
     }
+
 }

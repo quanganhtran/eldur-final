@@ -16,7 +16,7 @@ public class Gemstone extends Item {
     public String refinementPrefix;
     private int stock;
     // Refinements/Attributes
-    public int attackPercent;
+    public int attackUpgrade;
     public int defense;
     public int critRate;
     public int evasion;
@@ -25,10 +25,10 @@ public class Gemstone extends Item {
         name = n;
     }
 
-    public Gemstone(String name, String r, int aP, int d, int cR, int e) {
+    public Gemstone(String name, String r, int aU, int d, int cR, int e) {
         this.name = name;
         this.refinementPrefix = r;
-        this.attackPercent = aP;
+        this.attackUpgrade = aU;
         this.defense = d;
         this.critRate = cR;
         this.evasion = e;

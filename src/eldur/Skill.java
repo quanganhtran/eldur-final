@@ -10,7 +10,7 @@ package eldur;
  * @author Anh
  */
 public abstract class Skill {
-    private String skillName;
     
-    public abstract void execute();
+    public abstract boolean execute(Character c, Enemy e);
+    
 }

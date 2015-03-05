@@ -62,7 +62,7 @@ public class GameData {
         this.orichalcum = new Material("Orichalcum", 20);
         this.adamantite = new Material("Adamantite", 20);
         this.materials = new LinkedHashMap<>();
-        
+
         this.materials.put("copper", copper);
         this.materials.put("iron", iron);
         this.materials.put("silver", silver);
@@ -73,13 +73,13 @@ public class GameData {
         this.materials.put("adamantite", adamantite);
         // Gemstones
         this.ruby = new Gemstone("Ruby", "of Might", 10, 0, 0, 0);
-        this.sapphire = new Gemstone("Sapphire", "of Protection", 0, 10, 0, 0);
+        this.sapphire = new Gemstone("Sapphire", "of Protection", 0, 20, 0, 0);
         this.emerald = new Gemstone("Emerald", "of Precision", 0, 0, 10, 0);
         this.gemstonesDict = new HashMap<>();
-        
-        this.gemstonesDict.put("ruby", ruby);
-        this.gemstonesDict.put("sapphire", sapphire);
-        this.gemstonesDict.put("emerald", emerald);
+
+        this.gemstonesDict.put("atk", ruby);
+        this.gemstonesDict.put("def", sapphire);
+        this.gemstonesDict.put("cri", emerald);
         // Recipes
         this.recipes = new HashMap<>();
         // Identification Scrolls
@@ -87,14 +87,14 @@ public class GameData {
         this.genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 88, 2));
         this.umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 140, 2));
         this.idScrollsDict = new HashMap<>();
-        
+
         this.idScrollsDict.put("exc", excalibur);
         this.idScrollsDict.put("gen", genesis);
         this.idScrollsDict.put("umi", umi);
         // Ascension Scrolls
         this.rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 200, 2));
         this.aScrollsDict = new HashMap<>();
-        
+
         this.aScrollsDict.put("rin", rin);
         // Initial Sword
         this.equippedSword = new Sword("no sword", 1, "none", 0, 0);
@@ -114,6 +114,10 @@ public class GameData {
         itemInv.add(ruby);
         itemInv.add(ruby);
         itemInv.add(ruby);
+        itemInv.add(sapphire);
+        itemInv.add(emerald);
+        itemInv.add(sapphire);
+        itemInv.add(emerald);
         itemInv.add(sapphire);
         itemInv.add(emerald);
         itemInv.add(genesis);
@@ -157,15 +161,14 @@ public class GameData {
 //        itemInv.add(emerald);
 //        itemInv.add(genesis);
 //    }
-
-
     public void craft(Recipe someRp) { // Needs to transfer all feedbacks to Game
         if (materials.get(someRp.getMainMat()).consume(10) && materials.get(someRp.getSupportMat()).consume(10)) {
             //;
             //;
             Sword newSword = new Sword(someRp);
             inventory.add(newSword);
-            System.out.println("Sword crafted: " + newSword.getName() + " " + newSword.getAtk());
+            System.out.println("Sword crafted: " + newSword.getName() + ".");
+            inspect(newSword);
         } else {
             System.out.println("There is not enough material to craft this sword.");
         }
@@ -182,6 +185,7 @@ public class GameData {
             sw.useSocket();
             sw.insertSocket(someG);
             System.out.println("Refined sword: " + sw.getName());
+            inspect(sw);
         }
     }
 
@@ -197,6 +201,7 @@ public class GameData {
             sw.transform(ids.getFrame());
             //itemInv.remove(ids);
             System.out.println("Sword identified: " + sw.getName() + ".");
+            inspect(sw);
         }
         //return sw;
     }
@@ -210,8 +215,18 @@ public class GameData {
             sw.transform(as.getFrame());
             //itemInv.remove(as);
             System.out.println("Sword obtained: " + sw.getName() + ".");
+            inspect(sw);
         }
         //return sw;
+    }
+
+    public void inspect(Sword sw) {
+        System.out.println(sw.getName());
+        System.out.println("Attack: " + sw.getAtk());
+        System.out.println("Socket remaining: " + sw.getSocket());
+        System.out.println("Defense: " + sw.getDefense());
+        System.out.println("Critical Chance: " + sw.getCritRate() + "%");
+        System.out.println("Evasion: " + sw.getEvasion() + "%");
     }
 
     public void setEquippedSword(Sword sw) {

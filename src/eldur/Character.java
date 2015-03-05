@@ -18,7 +18,8 @@ public class Character {
     private int hpMax0, hpMax, hp;
     private int atk0, atk;
     // Attributes
-    private int defense, critRate, critFactor, evasion, block, reflect, resist;
+    private int defense0, critRate0, critFactor, evasion0, block, reflect, resist;
+    private int defense, critRate, evasion;
     // Outgoing statuses
     private int stunOut, bleedOut, freezeOut, poisonOut;
     // Debuff received
@@ -34,23 +35,23 @@ public class Character {
         this.hpMax = this.hpMax0;
         this.hp = this.hpMax;
         this.atk = this.atk0;
-        this.defense = 0;
-        this.critRate = 20; // prone to changes
-        this.evasion = 0;
+        this.defense0 = 0;
+        this.critRate0 = 20; // prone to changes
+        this.evasion0 = 0;
         this.critFactor = 3; // prone to changes
         unsheathe(gameData.equippedSword);
     }
     
     public void unsheathe(Sword sw) {
         this.atk = this.atk0 + sw.getAtk();
-        this.defense = sw.getDefense();
-        this.critRate = sw.getCritRate();
-        this.evasion = sw.getEvasion();
+        this.defense0 = sw.getDefense();
+        this.critRate0 = sw.getCritRate();
+        this.evasion0 = sw.getEvasion();
     }
     
     public String attack(Enemy en) {
         int dmg = atk;
-        if (rng.nextInt(100) < critRate) {
+        if (rng.nextInt(100) < critRate0) {
             dmg *= critFactor;
             System.out.println("A critical hit!");
         }
@@ -88,5 +89,69 @@ public class Character {
      */
     public void setHp(int hp) {
         this.hp = hp;
+    }
+
+    public int getAtk0() {
+        return atk0;
+    }
+
+    public void setAtk0(int atk0) {
+        this.atk0 = atk0;
+    }
+
+    public int getAtk() {
+        return atk;
+    }
+
+    public void setAtk(int atk) {
+        this.atk = atk;
+    }
+
+    public int getDefense0() {
+        return defense0;
+    }
+
+    public void setDefense0(int defense0) {
+        this.defense0 = defense0;
+    }
+
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        this.defense = defense;
+    }
+
+    public int getCritRate0() {
+        return critRate0;
+    }
+
+    public void setCritRate0(int critRate0) {
+        this.critRate0 = critRate0;
+    }
+
+    public int getEvasion0() {
+        return evasion0;
+    }
+
+    public void setEvasion0(int evasion0) {
+        this.evasion0 = evasion0;
+    }
+
+    public int getCritRate() {
+        return critRate;
+    }
+
+    public void setCritRate(int critRate) {
+        this.critRate = critRate;
+    }
+
+    public int getEvasion() {
+        return evasion;
+    }
+
+    public void setEvasion(int evasion) {
+        this.evasion = evasion;
     }
 }
