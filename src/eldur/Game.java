@@ -6,6 +6,9 @@
 package eldur;
 
 import java.util.Collections;
+import java.util.List;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  *
@@ -47,17 +50,42 @@ public class Game extends Screen {
                 System.out.println("town - \u001B[35mReturn to town, only place you can craft.\u001B[0m");
                 System.out.println("stat - Show your inventory. \n\u001B[32mSlot number is shown next to the weapon in your inventory.\u001B[0m");
                 System.out.println("\ncraft + <type> - weapon types: 'iron', 'copper', 'imperial', etc.");
-                System.out.println("refine + \u001B[32m<slot number>\u001B[0m + <type> - refine types: 'ruby', 'sapphire', 'emerald', etc.");
+                System.out.println("refine + \u001B[32m<slot number>\u001B[0m + <type> - refine types: 'atk', 'def', 'cri', etc.");
                 System.out.println("identify + \u001B[32m<slot number>\u001B[0m + <type> - identify types: 'umi', 'exc', 'gen', etc.");
                 System.out.println("ascend + \u001B[32m<slot number>\u001B[0m + <type> - ascend types: 'rin', etc.");
                 System.out.println("equip + \u001B[32m<slot number>\u001B[0m");
                 System.out.println("inspect \u001B[32m<slot number>\u001B[0m");
                 System.out.println("destroy \u001B[32m<slot number>\u001B[0m");
+                System.out.println("hmat - Display keyword used for crafting");
+                System.out.println("hgem - Display keyword used for refining");
+                System.out.println("hids - Display keyword used for identification");
+                System.out.println("hasc - Display keyword used for ascension");
                 System.out.println("quit - Quit the game.");
                 return "";
             case "quit":
                 System.out.println("Thanks for playing!");
                 System.exit(0);
+            case "hmat":
+                SortedSet<String> keys = new TreeSet<String>(gameData.recipes.keySet());
+                for (String s : keys) {
+                    System.out.println(s + " - " + gameData.recipes.get(s).getWeaponName());
+                }
+                return "";
+            case "hgem":
+                for (String s : new TreeSet<String>(gameData.gemstonesDict.keySet())) {
+                    System.out.println(s + " - " + gameData.gemstonesDict.get(s).getName());
+                }
+                return "";
+            case "hids":
+                for (String s : new TreeSet<String>(gameData.idScrollsDict.keySet())) {
+                    System.out.println(s + " - " + gameData.idScrollsDict.get(s).getName());
+                }
+                return "";
+            case "hasc":
+                for (String s : new TreeSet<String>(gameData.aScrollsDict.keySet())) {
+                    System.out.println(s + " - " + gameData.aScrollsDict.get(s).getName());
+                }
+                return "";
             case "stat":
 //                System.out.println("Copper: " + gameData.copper.getStock());
 //                System.out.println("Town area: " + gameData.currentArea);

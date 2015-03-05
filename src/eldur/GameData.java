@@ -116,15 +116,18 @@ public class GameData {
 //        itemInv.add(umi);
 //        itemInv.add(excalibur);
 //        itemInv.add(rin);
-//        itemInv.add(ruby);
-//        itemInv.add(ruby);
-//        itemInv.add(ruby);
-//        itemInv.add(sapphire);
-//        itemInv.add(emerald);
-//        itemInv.add(sapphire);
-//        itemInv.add(emerald);
-//        itemInv.add(sapphire);
-//        itemInv.add(emerald);
+        itemInv.add(ruby);
+        itemInv.add(ruby);
+        itemInv.add(ruby);
+        itemInv.add(sapphire);
+        itemInv.add(emerald);
+        itemInv.add(sapphire);
+        itemInv.add(emerald);
+        itemInv.add(sapphire);
+        itemInv.add(emerald);
+//        for (IdScroll i : idScrollsDict.values()) {
+//            System.out.println(i.getName());
+//        }
 //        itemInv.add(genesis);
     }
 

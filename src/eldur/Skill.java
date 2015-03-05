@@ -98,8 +98,9 @@ public class Skill {
                     System.out.println("Evasion increased!");
                     break;
                 case "berserk":
-                    e.receiveDamage(c.getAtk() + this.buff * (c.getHpMax() - c.getHp()) /100);
-                    System.out.println("Enemy received damage from the skill!");
+                    int dmg = c.getAtk() + this.buff * (c.getHpMax() - c.getHp()) /100;
+                    e.receiveDamage(dmg);
+                    System.out.println("Enemy has received " + dmg + " damage from the skill!");
                     break;
             }
             return true;

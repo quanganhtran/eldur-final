@@ -141,6 +141,7 @@ public class Sword {
         this.tier = fromSw.tier;
         this.rarity = fromSw.rarity;
         this.atk = fromSw.atk + fromSw.atk * this.atkUpgrade/100;
+        this.skill = fromSw.skill;
         //this.defense = fromSw.defense;
         //this.
         this.socket = fromSw.socket;
