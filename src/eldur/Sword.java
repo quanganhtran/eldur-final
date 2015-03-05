@@ -18,7 +18,7 @@ public class Sword {
     private int socket;
     public String refinement;
     // Secondary attributes
-    private int vitality;
+//    private int vitality;
     private int atkUpgrade;
     private int defense;
     private int critRate;
@@ -45,7 +45,7 @@ public class Sword {
         this.rarity = rp.getRarity();
         this.atk = rp.getAtk();
         this.socket = 1;
-        this.skill = new Skill("Rejuvenation","hp",200,3);
+//        this.skill = new Skill("Rejuvenation","hp",200,3);
     }
 
     public String getName() {
@@ -147,8 +147,8 @@ public class Sword {
     }
     
     public boolean activateSkill(Skill s, Character c, Enemy e) {
-        if (this.skill != null) {
-            return this.skill.execute(c, e);
+        if (this.getSkill() != null) {
+            return this.getSkill().execute(c, e);
         } else {
             System.out.println("This sword does not have any skill.");
             return false;
@@ -181,6 +181,13 @@ public class Sword {
 
     public Skill getSkill() {
         return skill;
+    }
+
+    /**
+     * @param skill the skill to set
+     */
+    public void setSkill(Skill skill) {
+        this.skill = skill;
     }
 
 }

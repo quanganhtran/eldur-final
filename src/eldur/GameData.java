@@ -195,6 +195,9 @@ public class GameData {
         System.out.println("Defense: " + sw.getDefense());
         System.out.println("Critical Chance: " + sw.getCritRate() + "%");
         System.out.println("Evasion: " + sw.getEvasion() + "%");
+        if (sw.getSkill() != null) {
+            System.out.println("Unique Skill: " + sw.getSkill().getSkillName());
+        }
     }
     
 //    public void destroy(Sword sw) {

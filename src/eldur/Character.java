@@ -12,13 +12,17 @@ import java.util.Random;
  * @author trand
  */
 public class Character {
+
     private Random rng = new Random();
     private GameData gameData;
     private int level;
-    private int hpMax0, hpMax, hp;
+    private int hpMax0, hpMaxBuff, hpMax, hp;
     private int atk, atk0, atkBuff;
     // Attributes: Personal - Buff - Final
-    private int defense0, critRate0, critFactor, evasion0, block, reflect, resist;
+    private int defense0, critRate0, evasion0, block, reflect, resist;
+    private final int CRIT_MULTIPLIER = 3;
+    private final int CRIT_LIMIT = 75;
+    private final int EVA_LIMIT = 50;
     private int defBuff, criBuff, evaBuff;
     private int defense, critRate, evasion;
     // Outgoing statuses
@@ -27,59 +31,61 @@ public class Character {
     private int poison, poisonDamage, poisonOnAtk, poisonOnRef, stun, freeze, freezeOnEva, freezeOnRes, freezeOnCri, fear, fearOnDef, fearOnBlo;
     // Equipment
     private Sword sword;
-    
+
     public Character(GameData gD) {
-        this.gameData = gD;    
+        this.gameData = gD;
         this.hpMax0 = 500;
-        this.atk0 = 0; // prone to changes
-        // Real stats for battle
-        this.hpMax = this.hpMax0;
-        this.hp = this.hpMax;
-        this.atk0 = this.atk0;
+        this.hpMaxBuff = 0;
+        this.atk0 = 0;
         this.atkBuff = 0;
-        
         this.defense0 = 0;
         this.defBuff = 0;
         this.critRate0 = 20; // prone to changes
         this.criBuff = 0;
         this.evasion0 = 0;
         this.evaBuff = 0;
-        this.critFactor = 3; // prone to changes
+
+        //this.CRIT_FACTOR = 3; // prone to changes
         unsheathe(gameData.equippedSword);
+        this.hp = this.hpMax;
     }
-    
-    public void unsheathe(Sword sw) {
+
+    public final void unsheathe(Sword sw) {
+        //this.hpMax0 = 
         this.atk0 = sw.getAtk();
         this.defense0 = sw.getDefense();
         this.critRate0 = sw.getCritRate();
         this.evasion0 = sw.getEvasion();
+        updateStat();
     }
-    
+
     public void updateStat() {
+        this.hpMax = this.hpMax0 + this.hpMaxBuff;
+        this.hp = Math.min(this.hp, this.hpMax);
         this.atk = this.atk0 + this.atkBuff;
         this.defense = this.defense0 + this.defBuff;
-        this.critRate = this.critRate0 + this.criBuff;
-        this.evasion = this.evasion0 + this.criBuff;
+        this.critRate = Math.min(this.critRate0 + this.criBuff, CRIT_LIMIT);
+        this.evasion = Math.min(this.evasion0 + this.evaBuff, EVA_LIMIT);
     }
-    
+
     public String attack(Enemy en) {
-        int dmg = atk0;
-        if (rng.nextInt(100) < critRate0) {
-            dmg *= critFactor;
+        int dmg = atk;
+        if (rng.nextInt(100) < critRate) {
+            dmg *= CRIT_MULTIPLIER;
             System.out.println("A critical hit!");
         }
         String aOutcome = en.receiveDamage(dmg);
         return aOutcome;
     }
-    
+
     public String receiveDamage(int damage) {
-        
+
         String outcome = "";
-        if (rng.nextInt(100) >= evasion0) {
+        if (rng.nextInt(100) >= evasion) {
             if (damage != 0) {
                 setHp(getHp() - damage / (2 ^ (defense / damage)));
             }
- // Another way of presentation
+            // Another way of presentation
             outcome = "";
         } else {
             System.out.println("You evaded the attack!");
@@ -176,7 +182,7 @@ public class Character {
     public void setEvaBuff(int evaBuff) {
         this.evaBuff = evaBuff;
     }
-    
+
     public boolean useSkill(Skill s, Enemy e) {
         return gameData.equippedSword.activateSkill(s, this, e);
     }

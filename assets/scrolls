@@ -1,43 +1,44 @@
-def</split>Defender</split>3</split>Epic</split>80</split>2
-yol</split>Harbinger</split>3</split>Epic</split>82</split>2
-lin</split>Linus</split>3</split>Epic</split>85</split>2
-war</split>Warrack</split>3</split>Epic</split>86</split>2
-ven</split>Venom</split>3</split>Epic</split>87</split>2
-gen</split>Genesis</split>3</split>Epic</split>88</split>2
-spi</split>Spite</split>3</split>Epic </split>89</split>2
-lii</split>Lilith</split>3</split>Epic</split>90</split>2
-exi</split>Exilia</split>3</split>Epic</split>92</split>2
-exc</split>Excalibur</split>3</split>Epic</split>78</split>2
-gen</split>Genesis</split>3</split>Epic</split>88</split>2
-sav</split>Savagery</split>3</split>Epic</split>94</split>2
-tdef</split>True Defender</split>4</split>Epic</split>80</split>2
-tyol</split>True Harbinger</split>4</split>Epic</split>82</split>2
-tlin</split>True Linus</split>4</split>Epic</split>85</split>2
-twar</split>True Warrack</split>4</split>Epic</split>86</split>2
-tven</split>True Venom</split>4</split>Epic</split>87</split>2
-tgen</split>True Genesis</split>4</split>Epic</split>88</split>2
-tspi</split>True Spite</split>4</split>Epic </split>89</split>2
-tlii</split>True Lilith</split>4</split>Epic</split>90</split>2
-texi</split>True Exilia</split>4</split>Epic</split>92</split>2
-texc</split>True Excalibur</split>4</split>Epic</split>78</split>2
-tgen</split>True Genesis</split>4</split>Epic</split>88</split>2
-tsav</split>True Savagery</split>4</split>Epic</split>94</split>2
-gua</split>Guardia</split>4</split>Epic</split>132</split>2
-tra</split>Tranx</split>4</split>Epic</split>135</split>2
-umi</split>Umi</split>4</split>Epic</split>140</split>2
-daw</split>Dawnblade</split>4</split>Epic</split>141</split>2
-kha</split>Khal</split>4</split>Epic</split>142</split>2
-mag</split>Mageblade</split>4</split>Epic</split>145</split>2
-osu</split>Osu!</split>4</split>Epic</split>147</split>2
-but</split>Butcher</split>4</split>Epic</split>151</split>2
-cha</split>Chaos</split>4</split>Epic</split>152</split>2
-qua</split>Quark</split>4</split>Epic</split>153</split>2
-oat</split>Oathbreaker</split>4</split>Epic</split>154</split>2
-tri</split>Trinity</split>4</split>Epic</split>155</split>2
-sto</split>Stormbreaker</split>4</split>Epic</split>156</split>2
-dar</split>Darkheart</split>4</split>Epic</split>157</split>2
-doo</split>Doomsblade</split>4</split>Epic</split>160</split>2
-ann</split>Ann, Equalizer of Space</split>4</split>Legendary</split>200</split>2
-ven</split>Vessel of Vengeance</split>4</split>Legendary</split>206</split>2
-hop</split>Blade of Hope</split>4</split>Legendary</split>210</split>2
-rin</split>Rin</split>4</split>Legendary</split>220</split>2
+def</split>Defender</split>3</split>Epic</split>80</split>2</split>hp1
+yol</split>Harbinger</split>3</split>Epic</split>82</split>2</split>def1
+lin</split>Linus</split>3</split>Epic</split>85</split>2</split>cri1
+war</split>Warrack</split>3</split>Epic</split>86</split>2</split>eva1
+ven</split>Venom</split>3</split>Epic</split>87</split>2</split>ber1
+gen</split>Genesis</split>3</split>Epic</split>88</split>2</split>hp1
+spi</split>Spite</split>3</split>Epic </split>89</split>2</split>def1
+lii</split>Lilith</split>3</split>Epic</split>90</split>2</split>cri1
+exi</split>Exilia</split>3</split>Epic</split>92</split>2</split>eva1
+exc</split>Excalibur</split>3</split>Epic</split>78</split>2</split>ber1
+gen</split>Genesis</split>3</split>Epic</split>88</split>2</split>hp1
+sav</split>Savagery</split>3</split>Epic</split>94</split>2</split>def1
+tdef</split>True Defender</split>4</split>Epic</split>80</split>2</split>hp2
+tyol</split>True Harbinger</split>4</split>Epic</split>82</split>2</split>def2
+tlin</split>True Linus</split>4</split>Epic</split>85</split>2</split>cri2
+twar</split>True Warrack</split>4</split>Epic</split>86</split>2</split>eva2
+tven</split>True Venom</split>4</split>Epic</split>87</split>2</split>ber2
+tgen</split>True Genesis</split>4</split>Epic</split>88</split>2</split>hp2
+tspi</split>True Spite</split>4</split>Epic </split>89</split>2</split>def2
+tlii</split>True Lilith</split>4</split>Epic</split>90</split>2</split>cri2
+texi</split>True Exilia</split>4</split>Epic</split>92</split>2</split>eva2
+texc</split>True Excalibur</split>4</split>Epic</split>78</split>2</split>ber2
+tgen</split>True Genesis</split>4</split>Epic</split>88</split>2</split>hp2
+tsav</split>True Savagery</split>4</split>Epic</split>94</split>2</split>def2
+gua</split>Guardia</split>4</split>Epic</split>132</split>2</split>cri2
+tra</split>Tranx</split>4</split>Epic</split>135</split>2</split>eva2
+umi</split>Umi</split>4</split>Epic</split>140</split>2</split>ber2
+daw</split>Dawnblade</split>4</split>Epic</split>141</split>2</split>hp2
+kha</split>Khal</split>4</split>Epic</split>142</split>2</split>def2
+mag</split>Mageblade</split>4</split>Epic</split>145</split>2</split>cri2
+osu</split>Osu!</split>4</split>Epic</split>147</split>2</split>eva2
+but</split>Butcher</split>4</split>Epic</split>151</split>2</split>ber2
+cha</split>Chaos</split>4</split>Epic</split>152</split>2</split>hp2
+qua</split>Quark</split>4</split>Epic</split>153</split>2</split>def2
+oat</split>Oathbreaker</split>4</split>Epic</split>154</split>2</split>cri2
+tri</split>Trinity</split>4</split>Epic</split>155</split>2</split>eva2
+sto</split>Stormbreaker</split>4</split>Epic</split>156</split>2</split>ber2
+dar</split>Darkheart</split>4</split>Epic</split>157</split>2</split>hp2
+doo</split>Doomsblade</split>4</split>Epic</split>160</split>2</split>def2
+rin</split>Rin</split>4</split>Legendary</split>220</split>2</split>hp3
+ann</split>Ann, Equalizer of Space</split>4</split>Legendary</split>200</split>2</split>def3
+hop</split>Blade of Hope</split>4</split>Legendary</split>210</split>2</split>cri3
+lig</split>Eldur's Light Fragment</split>4</split>Legendary</split>213</split>2</split>eva3
+ven</split>Vessel of Vengeance</split>4</split>Legendary</split>206</split>2</split>ber3
