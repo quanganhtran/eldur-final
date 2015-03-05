@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author Anh
  */
 public class Encounter {
+
     //private Character player;
     private Scanner reader;
     private Enemy enemy;
@@ -28,12 +29,11 @@ public class Encounter {
         System.out.println("A " + this.enemy.getName() + " has appeared!");
         this.encInput = "";
     }
-    
+
 //    public Encounter(Enemy en, final Adventure adv, String initO) {
 //        this(en, adv);
 //        this.outcome = initO;
 //    }
-
     public void outOfCombat() {
         //OUTER:
         //while (true) {
@@ -70,18 +70,29 @@ public class Encounter {
     }
 
     public void preturn() {
-        
+        Skill usableSkill = adventure.gameData.equippedSword.getSkill();
+        if (usableSkill != null) {
+            int cooldownCounter = usableSkill.getCooldownCounter();
+            if (cooldownCounter == 0) {
+                System.out.println("Skill is available.");
+            } else {
+                usableSkill.setCooldownCounter(cooldownCounter - 1);
+            }
+        }
     }
 
     public void playerAction() {
         //String this.encInput = "";
         this.outcome = "noAction"; // Outcome of the actions of the player
         while (this.outcome.equals("noAction")) {
-            System.out.println("Your action: ");
+            System.out.println("========================================"); // Clear a line for visibility
+            System.out.println("\u001B[34mYour action: \u001B[0m");
             this.encInput = reader.nextLine();
+            System.out.println("--------------------"); // Clear a line for visibility
             String[] inputParts = this.encInput.split("\\s");
             // Resolve actions
             switch (inputParts[0]) {
+                case "":
                 case "a":
                 case "attack":
                     this.encInput = "";
@@ -89,12 +100,19 @@ public class Encounter {
                     // begin Player will attack
                     this.outcome = adventure.player.attack(enemy);
                     if (!this.outcome.equals("pWin")) {
-                        System.out.println("\u001B[31m" +enemy.getName() + "'s HP is \u001B[0m" + enemy.getHp());
+                        System.out.println("\u001B[31m" + enemy.getName() + "'s HP is \u001B[0m" + enemy.getHp());
                     } else {
                         System.out.println("You have successfully defeated " + enemy.getName());
                         //outcome = "pWin";
                     }
                     // end   Player will attack
+                    break;
+                case "skill":
+                    if (adventure.gameData.equippedSword.activateSkill(adventure.gameData.equippedSword.getSkill(), adventure.player, enemy)) {
+                        adventure.gameData.equippedSword.getSkill().setCooldownCounter(adventure.gameData.equippedSword.getSkill().getCooldown());
+                        this.outcome = "";
+                    }
+                    this.encInput = "";
                     break;
                 case "e":
                 case "equip":
@@ -177,7 +195,7 @@ public class Encounter {
     }
 
     public void postturn() {
-        
+
     }
-    
+
 }

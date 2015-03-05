@@ -22,7 +22,7 @@ public class Main {
                 + "and crafts. This will be a good place for him to \nlearn about "
                 + "blacksmithing and refining skills. The surrounding woods are "
                 + "known to be full of weak monsters in which adventures begin t"
-                + "heir combat training.\n" +
+                + "heir combat \ntraining.\n" +
 "After learning basic blacksmithing, he makes his way into the Elysian woods in "
                 + "search of monsters to hunt for materials to craft his first sword!"
                 + "\n");

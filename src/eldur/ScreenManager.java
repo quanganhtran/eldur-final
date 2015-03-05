@@ -82,16 +82,16 @@ public class ScreenManager {
         this.area10Boss = new BossScreen("Eldur's Hall", gD);
         areaToBoss.put(area10, area10Boss);
         
-        game.addConnection("area1", area1);
-        game.addConnection("area2", area2);
-        game.addConnection("area3", area3);
-        game.addConnection("area4", area4);
-        game.addConnection("area5", area5);
-        game.addConnection("area6", area6);
-        game.addConnection("area7", area7);
-        game.addConnection("area8", area8);
-        game.addConnection("area9", area9);
-        game.addConnection("area10", area10);
+        game.addConnection("area 1", area1);
+        game.addConnection("area 2", area2);
+        game.addConnection("area 3", area3);
+        game.addConnection("area 4", area4);
+        game.addConnection("area 5", area5);
+        game.addConnection("area 6", area6);
+        game.addConnection("area 7", area7);
+        game.addConnection("area 8", area8);
+        game.addConnection("area 9", area9);
+        game.addConnection("area 10", area10);
         
         areaMapDict.put("area1", area1);
         areaMapDict.put("area2", area2);
@@ -233,35 +233,35 @@ public class ScreenManager {
 //        area10.addEnemy(new Enemy("Big Phantom", 150, 35));
 //        area10Boss.addEnemy(new Enemy("Eldur", 4000, 60));
 
-        area1.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));
-        area1Boss.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));
+        area1.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}));
+        area1Boss.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}));
 
-        area2.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));
-        area2Boss.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}, null, null));
+        area2.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}));
+        area2Boss.setLoot(new Loot(gD, new Material[]{gD.copper, gD.iron}));
 
-        area3.setLoot(new Loot(gD, new Material[]{gD.iron, gD.silver}, null, null));
-        area3Boss.setLoot(new Loot(gD, new Material[]{gD.iron, gD.silver}, null, null));
+        area3.setLoot(new Loot(gD, new Material[]{gD.iron, gD.silver}));
+        area3Boss.setLoot(new Loot(gD, new Material[]{gD.iron, gD.silver}));
 
-        area4.setLoot(new Loot(gD, new Material[]{gD.silver, gD.gold}, null, null));
-        area4Boss.setLoot(new Loot(gD, new Material[]{gD.silver, gD.gold}, null, null));
+        area4.setLoot(new Loot(gD, new Material[]{gD.silver, gD.gold}, true));
+        area4Boss.setLoot(new Loot(gD, new Material[]{gD.silver, gD.gold}));
 
-        area5.setLoot(new Loot(gD, new Material[]{gD.silver, gD.gold}, null, null));
-        area5Boss.setLoot(new Loot(gD, new Material[]{gD.silver, gD.gold}, null, null));
+        area5.setLoot(new Loot(gD, new Material[]{gD.silver, gD.gold}, true));
+        area5Boss.setLoot(new Loot(gD, new Material[]{gD.silver, gD.gold}));
 
-        area6.setLoot(new Loot(gD, new Material[]{gD.gold, gD.platinum}, null, null));
-        area6Boss.setLoot(new Loot(gD, new Material[]{gD.gold, gD.platinum}, null, null));
+        area6.setLoot(new Loot(gD, new Material[]{gD.gold, gD.platinum}, true));
+        area6Boss.setLoot(new Loot(gD, new Material[]{gD.gold, gD.platinum}));
 
-        area7.setLoot(new Loot(gD, new Material[]{gD.platinum, gD.mithril}, null, null));
-        area7Boss.setLoot(new Loot(gD, new Material[]{gD.platinum, gD.mithril}, null, null));
+        area7.setLoot(new Loot(gD, new Material[]{gD.platinum, gD.mithril}, true, true));
+        area7Boss.setLoot(new Loot(gD, new Material[]{gD.platinum, gD.mithril}));
 
-        area8.setLoot(new Loot(gD, new Material[]{gD.platinum, gD.mithril}, null, null));
-        area8Boss.setLoot(new Loot(gD, new Material[]{gD.platinum, gD.mithril}, null, null));
+        area8.setLoot(new Loot(gD, new Material[]{gD.platinum, gD.mithril}, true, true));
+        area8Boss.setLoot(new Loot(gD, new Material[]{gD.platinum, gD.mithril}));
 
-        area9.setLoot(new Loot(gD, new Material[]{gD.mithril, gD.orichalcum}, null, null));
-        area9Boss.setLoot(new Loot(gD, new Material[]{gD.mithril, gD.orichalcum}, null, null));
+        area9.setLoot(new Loot(gD, new Material[]{gD.mithril, gD.orichalcum}, true, true));
+        area9Boss.setLoot(new Loot(gD, new Material[]{gD.mithril, gD.orichalcum}));
 
-        area10.setLoot(new Loot(gD, new Material[]{gD.orichalcum, gD.adamantite}, null, null));
-        area10Boss.setLoot(new Loot(gD, new Material[]{gD.orichalcum, gD.adamantite}, null, null));
+        area10.setLoot(new Loot(gD, new Material[]{gD.orichalcum, gD.adamantite}, true, true, true));
+        area10Boss.setLoot(new Loot(gD, new Material[]{gD.orichalcum, gD.adamantite}));
 
         //System.out.println(area1Boss.getStory());
 

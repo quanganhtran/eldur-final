@@ -44,6 +44,8 @@ public class BossScreen extends Adventure {
         }
         // Do something more here.
         System.out.println("Congratulations! You have cleared the area!");
+        System.out.println("You have collected:");
+        
         System.out.println(getStoryAfter());
 //        if (unlocked) {
 //            

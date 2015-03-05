@@ -23,12 +23,12 @@ public class Sword {
     private int defense;
     private int critRate;
     private int evasion;
-    // Inherited attributes
     //private int atkI;
 //    private int defI;
 //    private int critRateI;
 //    private int evasionI;
     // Skills
+    private Skill skill;
     
 
     public Sword(String name, int tier, String rarity, int atk, int socket) {
@@ -37,6 +37,7 @@ public class Sword {
         this.rarity = rarity;
         this.atk = atk;
         this.socket = socket;
+        this.skill = new Skill("Rejuvenation","hp",200,3);
     }
 
     public Sword(Recipe rp) {
@@ -144,6 +145,15 @@ public class Sword {
         //this.
         this.socket = fromSw.socket;
     }
+    
+    public boolean activateSkill(Skill s, Character c, Enemy e) {
+        if (this.skill != null) {
+            return this.skill.execute(c, e);
+        } else {
+            System.out.println("This sword does not have any skill.");
+            return false;
+        }
+    }
 
 //    public int getDefI() {
 //        return defI;
@@ -168,5 +178,9 @@ public class Sword {
 //    public void setEvasionI(int evasionI) {
 //        this.evasionI = evasionI;
 //    }
+
+    public Skill getSkill() {
+        return skill;
+    }
 
 }

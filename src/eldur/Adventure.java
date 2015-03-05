@@ -29,7 +29,7 @@ public class Adventure extends Screen {
         this.enemyTypes = new ArrayList<>();
         //System.out.println(enemyTypes.size());
     }
-    
+
     public Adventure(String sN, GameData gD, boolean unl) {
         this(sN, gD);
         this.unlocked = unl;
@@ -54,13 +54,19 @@ public class Adventure extends Screen {
             }
             if (encounter.outcome.equals("pWin")) {
                 this.player = new Character(gameData);
+                for (int i = 0; i < this.gameData.inventory.size(); i++) {
+                    if (this.gameData.inventory.get(i).getSkill() != null) {
+                        this.gameData.inventory.get(i).getSkill().setCooldownCounter(0);
+                    }
+                }
                 loot.drop();
                 System.out.println("Your character has fully recovered.");
+                //System.out.println("Skills' timers resetted.");
                 System.out.println("Another enemy incoming...");
             } else if (encounter.outcome.equals("pLose")) {
                 this.player = new Character(gameData);
             } else if (encounter.outcome.equals("callBoss")) {
-                
+
             } else if (encounter.outcome.equals("switchScreen")) {
                 return getConnections().get(encounter.encInput);
             }
@@ -71,7 +77,6 @@ public class Adventure extends Screen {
 //    public String interpret(String input) {
 //        return input;
 //    }
-
     public void addEnemy(Enemy en) {
         this.enemyTypes.add(en);
     }

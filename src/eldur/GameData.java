@@ -107,20 +107,20 @@ public class GameData {
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
         // FUNCTIONALITY TEST
-        itemInv.add(umi);
-        itemInv.add(umi);
-        itemInv.add(excalibur);
-        itemInv.add(rin);
-        itemInv.add(ruby);
-        itemInv.add(ruby);
-        itemInv.add(ruby);
-        itemInv.add(sapphire);
-        itemInv.add(emerald);
-        itemInv.add(sapphire);
-        itemInv.add(emerald);
-        itemInv.add(sapphire);
-        itemInv.add(emerald);
-        itemInv.add(genesis);
+//        itemInv.add(umi);
+//        itemInv.add(umi);
+//        itemInv.add(excalibur);
+//        itemInv.add(rin);
+//        itemInv.add(ruby);
+//        itemInv.add(ruby);
+//        itemInv.add(ruby);
+//        itemInv.add(sapphire);
+//        itemInv.add(emerald);
+//        itemInv.add(sapphire);
+//        itemInv.add(emerald);
+//        itemInv.add(sapphire);
+//        itemInv.add(emerald);
+//        itemInv.add(genesis);
     }
 
 //    public void initialize() {

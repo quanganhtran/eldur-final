@@ -17,8 +17,9 @@ public class Character {
     private int level;
     private int hpMax0, hpMax, hp;
     private int atk0, atk;
-    // Attributes
+    // Attributes: Personal - Buff - Final
     private int defense0, critRate0, critFactor, evasion0, block, reflect, resist;
+    private int defBuff, criBuff, evaBuff;
     private int defense, critRate, evasion;
     // Outgoing statuses
     private int stunOut, bleedOut, freezeOut, poisonOut;
@@ -36,8 +37,11 @@ public class Character {
         this.hp = this.hpMax;
         this.atk = this.atk0;
         this.defense0 = 0;
+        this.defBuff = 0;
         this.critRate0 = 20; // prone to changes
+        this.criBuff = 0;
         this.evasion0 = 0;
+        this.evaBuff = 0;
         this.critFactor = 3; // prone to changes
         unsheathe(gameData.equippedSword);
     }
@@ -115,12 +119,12 @@ public class Character {
         this.defense0 = defense0;
     }
 
-    public int getDefense() {
-        return defense;
+    public int getDefBuff() {
+        return defBuff;
     }
 
-    public void setDefense(int defense) {
-        this.defense = defense;
+    public void setDefBuff(int defBuff) {
+        this.defBuff = defBuff;
     }
 
     public int getCritRate0() {
@@ -139,19 +143,23 @@ public class Character {
         this.evasion0 = evasion0;
     }
 
-    public int getCritRate() {
-        return critRate;
+    public int getCriBuff() {
+        return criBuff;
     }
 
-    public void setCritRate(int critRate) {
-        this.critRate = critRate;
+    public void setCriBuff(int criBuff) {
+        this.criBuff = criBuff;
     }
 
-    public int getEvasion() {
-        return evasion;
+    public int getEvaBuff() {
+        return evaBuff;
     }
 
-    public void setEvasion(int evasion) {
-        this.evasion = evasion;
+    public void setEvaBuff(int evaBuff) {
+        this.evaBuff = evaBuff;
+    }
+    
+    public boolean useSkill(Skill s, Enemy e) {
+        return gameData.equippedSword.activateSkill(s, this, e);
     }
 }

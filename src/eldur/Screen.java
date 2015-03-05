@@ -53,8 +53,10 @@ public class Screen {
     public Screen runScreen() {
         reader = new Scanner(System.in);
         while (true) {
+            System.out.println("========================================"); // Clear a line for visibility
             System.out.println("\u001B[34mEnter a command: \u001B[0m");
             String input = reader.nextLine();
+            System.out.println("--------------------"); // Clear a line for visibility
             String connection = interpret(input);
 
             if (connections.get(connection) != null) {
@@ -64,7 +66,9 @@ public class Screen {
                     System.out.println("You cannot go to that area yet.");
                 }
             } else {
-                //System.out.println("Invalid command. Please try again");
+                if (!connection.equals("")) {
+                    System.out.println("Invalid command. Please try again");
+                }
             }
         }
     }
