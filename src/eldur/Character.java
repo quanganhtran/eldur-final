@@ -16,7 +16,7 @@ public class Character {
     private GameData gameData;
     private int level;
     private int hpMax0, hpMax, hp;
-    private int atk0, atk;
+    private int atk, atk0, atkBuff;
     // Attributes: Personal - Buff - Final
     private int defense0, critRate0, critFactor, evasion0, block, reflect, resist;
     private int defBuff, criBuff, evaBuff;
@@ -31,11 +31,13 @@ public class Character {
     public Character(GameData gD) {
         this.gameData = gD;    
         this.hpMax0 = 500;
-        this.atk0 = 10; // prone to changes
+        this.atk0 = 0; // prone to changes
         // Real stats for battle
         this.hpMax = this.hpMax0;
         this.hp = this.hpMax;
-        this.atk = this.atk0;
+        this.atk0 = this.atk0;
+        this.atkBuff = 0;
+        
         this.defense0 = 0;
         this.defBuff = 0;
         this.critRate0 = 20; // prone to changes
@@ -47,14 +49,21 @@ public class Character {
     }
     
     public void unsheathe(Sword sw) {
-        this.atk = this.atk0 + sw.getAtk();
+        this.atk0 = sw.getAtk();
         this.defense0 = sw.getDefense();
         this.critRate0 = sw.getCritRate();
         this.evasion0 = sw.getEvasion();
     }
     
+    public void updateStat() {
+        this.atk = this.atk0 + this.atkBuff;
+        this.defense = this.defense0 + this.defBuff;
+        this.critRate = this.critRate0 + this.criBuff;
+        this.evasion = this.evasion0 + this.criBuff;
+    }
+    
     public String attack(Enemy en) {
-        int dmg = atk;
+        int dmg = atk0;
         if (rng.nextInt(100) < critRate0) {
             dmg *= critFactor;
             System.out.println("A critical hit!");
@@ -64,8 +73,17 @@ public class Character {
     }
     
     public String receiveDamage(int damage) {
-        setHp(getHp() - damage); // Another way of presentation
+        
         String outcome = "";
+        if (rng.nextInt(100) >= evasion0) {
+            if (damage != 0) {
+                setHp(getHp() - damage / (2 ^ (defense / damage)));
+            }
+ // Another way of presentation
+            outcome = "";
+        } else {
+            System.out.println("You evaded the attack!");
+        }
         if (this.hp <= 0) {
             //System.out.println("You have successfully defeated " + this.name);
             outcome = "pLose";
@@ -104,11 +122,11 @@ public class Character {
     }
 
     public int getAtk() {
-        return atk;
+        return atk0;
     }
 
     public void setAtk(int atk) {
-        this.atk = atk;
+        this.atk0 = atk;
     }
 
     public int getDefense0() {
@@ -161,5 +179,19 @@ public class Character {
     
     public boolean useSkill(Skill s, Enemy e) {
         return gameData.equippedSword.activateSkill(s, this, e);
+    }
+
+    /**
+     * @return the atkBuff
+     */
+    public int getAtkBuff() {
+        return atkBuff;
+    }
+
+    /**
+     * @param atkBuff the atkBuff to set
+     */
+    public void setAtkBuff(int atkBuff) {
+        this.atkBuff = atkBuff;
     }
 }

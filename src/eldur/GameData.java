@@ -97,7 +97,7 @@ public class GameData {
 
 //        this.aScrollsDict.put("rin", rin);
         // Initial Sword
-        this.equippedSword = new Sword("no sword", 1, "none", 0, 0);
+        this.equippedSword = new Sword("no sword", 1, "none", 1, 0);
         // Inventory
         this.inventory = new ArrayList<>();
         this.itemInv = new ArrayList<>();

@@ -89,8 +89,11 @@ public class Game extends Screen {
                     System.out.print((i+1) + ". " + gameData.inventory.get(i).getName() + " | ");
                 }
                 System.out.println("");
-                //System.out.println("");
-                //System.out.println(gameData.inventoryViewer);
+                if (gameData.equippedSword.getName().equals("no sword")) {
+                    System.out.println("You are not currently equipping any sword.");
+                } else {
+                    System.out.println("Your currently equipped sword is " + gameData.equippedSword.getName() + ".");
+                }
                 return "";
 //            case "adventure":
 //                if (inputParts.length >= 2) {
