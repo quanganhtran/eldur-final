@@ -37,7 +37,6 @@ public class Sword {
         this.rarity = rarity;
         this.atk = atk;
         this.socket = socket;
-        this.skill = new Skill("Rejuvenation","hp",200,3);
     }
 
     public Sword(Recipe rp) {
@@ -46,6 +45,7 @@ public class Sword {
         this.rarity = rp.getRarity();
         this.atk = rp.getAtk();
         this.socket = 1;
+        this.skill = new Skill("Rejuvenation","hp",200,3);
     }
 
     public String getName() {

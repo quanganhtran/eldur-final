@@ -52,6 +52,7 @@ public class Game extends Screen {
                 System.out.println("ascend + \u001B[32m<slot number>\u001B[0m + <type> - ascend types: 'rin', etc.");
                 System.out.println("equip + \u001B[32m<slot number>\u001B[0m");
                 System.out.println("inspect \u001B[32m<slot number>\u001B[0m");
+                System.out.println("destroy \u001B[32m<slot number>\u001B[0m");
                 System.out.println("quit - Quit the game.");
                 return "";
             case "quit":
@@ -128,6 +129,29 @@ public class Game extends Screen {
                         gameData.inspect(sw);
                         return "";
                     }
+                }
+                return "";
+            case "destroy":
+                if (inputParts.length >= 2) {
+                    int invPos = -1;
+                    try {
+                        invPos = Integer.parseInt(inputParts[1]) - 1;
+                    } catch (NumberFormatException numberFormatException) {
+                        System.out.println("Sword index must be a number.");
+                        return "";
+                    }
+                    Sword sw = null;
+                    if (0 <= invPos && invPos < gameData.inventory.size()) {
+                        sw = gameData.inventory.remove(invPos);
+                        System.out.println("Sword destroyed.");
+                    } else {
+                        System.out.println("Sword not found.");
+                        return "";
+                    }
+//                    if (sw != null) {
+//                        gameData.inspect(sw);
+//                        return "";
+//                    }
                 }
                 return "";
             case "craft": // Needs proper feedback

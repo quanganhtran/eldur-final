@@ -58,6 +58,28 @@ public class FileReader {
         }
         //return enemy;
     }
+    
+    public void loadScroll(HashMap<String, IdScroll> idDict, HashMap<String, AscensionScroll> aDict) {
+        File scrollsFile = new File("assets/scrolls");
+        Scanner scrollsReader = null;
+        try {
+            scrollsReader = new Scanner(scrollsFile);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GameData.class.getName()).log(Level.SEVERE, "File not found", ex);
+        }
+        
+        while (scrollsReader.hasNextLine()) {
+            String line = scrollsReader.nextLine();
+            String[] lineParts = line.split("</split>");
+            if (lineParts[3].equals("Legendary")) {
+                Sword swordFrame = new Sword(lineParts[1], Integer.parseInt(lineParts[2]), lineParts[3], Integer.parseInt(lineParts[4]), Integer.parseInt(lineParts[5]));
+                aDict.put(lineParts[0], new AscensionScroll(lineParts[1], swordFrame));
+            } else if (lineParts[3].equals("Epic")) {
+                Sword swordFrame = new Sword(lineParts[1], Integer.parseInt(lineParts[2]), lineParts[3], Integer.parseInt(lineParts[4]), Integer.parseInt(lineParts[5]));
+                idDict.put(lineParts[0], new AscensionScroll(lineParts[1], swordFrame));
+            }
+        }
+    }
 
     public void loadStory(Collection<BossScreen> bSet) {
         ArrayList<BossScreen> bossScreens = new ArrayList<>(bSet);

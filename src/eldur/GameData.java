@@ -36,12 +36,12 @@ public class GameData {
     // Recipes
     public HashMap<String, Recipe> recipes;
     // Identification Scroll TODO: Must be treated as items.
-    public IdScroll excalibur;
-    public IdScroll genesis;
-    public IdScroll umi;
+//    public IdScroll excalibur;
+//    public IdScroll genesis;
+//    public IdScroll umi;
     public HashMap<String, IdScroll> idScrollsDict;
     // Ascension Scroll TODO: Must be treated as items.
-    public AscensionScroll rin;
+//    public AscensionScroll rin;
     public HashMap<String, AscensionScroll> aScrollsDict;
     // Equipped Sword
     public Sword equippedSword;
@@ -83,19 +83,19 @@ public class GameData {
         // Recipes
         this.recipes = new HashMap<>();
         // Identification Scrolls
-        this.excalibur = new IdScroll("Excalibur", new Sword("Excalibur", 3, "Epic", 78, 2));
-        this.genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 88, 2));
-        this.umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 140, 2));
+//        this.excalibur = new IdScroll("Excalibur", new Sword("Excalibur", 3, "Epic", 78, 2));
+//        this.genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 88, 2));
+//        this.umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 140, 2));
         this.idScrollsDict = new HashMap<>();
 
-        this.idScrollsDict.put("exc", excalibur);
-        this.idScrollsDict.put("gen", genesis);
-        this.idScrollsDict.put("umi", umi);
+//        this.idScrollsDict.put("exc", excalibur);
+//        this.idScrollsDict.put("gen", genesis);
+//        this.idScrollsDict.put("umi", umi);
         // Ascension Scrolls
-        this.rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 200, 2));
+//        this.rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 200, 2));
         this.aScrollsDict = new HashMap<>();
 
-        this.aScrollsDict.put("rin", rin);
+//        this.aScrollsDict.put("rin", rin);
         // Initial Sword
         this.equippedSword = new Sword("no sword", 1, "none", 0, 0);
         // Inventory
@@ -106,6 +106,11 @@ public class GameData {
         // Game Data
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
+        assets.loadScroll(idScrollsDict, aScrollsDict);
+        
+//        inventory.add(new Sword(recipes.get("imperial")));
+//        itemInv.add(aScrollsDict.get("ann"));
+        
         // FUNCTIONALITY TEST
 //        itemInv.add(umi);
 //        itemInv.add(umi);
@@ -123,44 +128,6 @@ public class GameData {
 //        itemInv.add(genesis);
     }
 
-//    public void initialize() {
-//        // Materials
-//        materials.put("copper", copper);
-//        materials.put("iron", iron);
-//        materials.put("silver", silver);
-//        materials.put("gold", gold);
-//        materials.put("platinum", platinum);
-//        materials.put("mithril", mithril);
-//        materials.put("orichalcum", orichalcum);
-//        materials.put("adamantite", adamantite);
-//        // Gemstones
-//        gemstonesDict.put("ruby", ruby);
-//        gemstonesDict.put("sapphire", sapphire);
-//        gemstonesDict.put("emerald", emerald);
-//        // Identification Scroll TODO: Must be treated as items.
-//        idScrollsDict.put("exc", excalibur);
-//        idScrollsDict.put("gen", genesis);
-//        idScrollsDict.put("umi", umi);
-//        // Ascension Scroll TODO: Must be treated as items.
-//        aScrollsDict.put("rin", rin);
-//        // Adventure Data
-//        
-//        // Game Data
-//        FileReader assets = new FileReader();
-//        assets.loadRecipe(recipes);
-//        
-//        // FUNCTIONALITY TEST
-//        itemInv.add(umi);
-//        itemInv.add(umi);
-//        itemInv.add(excalibur);
-//        itemInv.add(rin);
-//        itemInv.add(ruby);
-//        itemInv.add(ruby);
-//        itemInv.add(ruby);
-//        itemInv.add(sapphire);
-//        itemInv.add(emerald);
-//        itemInv.add(genesis);
-//    }
     public void craft(Recipe someRp) { // Needs to transfer all feedbacks to Game
         if (materials.get(someRp.getMainMat()).consume(10) && materials.get(someRp.getSupportMat()).consume(10)) {
             //;
@@ -223,11 +190,16 @@ public class GameData {
     public void inspect(Sword sw) {
         System.out.println(sw.getName());
         System.out.println("Attack: " + sw.getAtk());
+        System.out.println("Tier " + sw.getTier() + " " + sw.getRarity() + " Sword.");
         System.out.println("Socket remaining: " + sw.getSocket());
         System.out.println("Defense: " + sw.getDefense());
         System.out.println("Critical Chance: " + sw.getCritRate() + "%");
         System.out.println("Evasion: " + sw.getEvasion() + "%");
     }
+    
+//    public void destroy(Sword sw) {
+//        inventory.remove(sw);
+//    }
 
     public void setEquippedSword(Sword sw) {
         this.equippedSword = sw;
