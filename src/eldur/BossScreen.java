@@ -29,7 +29,7 @@ public class BossScreen extends Adventure {
         System.out.println(getStory());
         this.player = new Character(gameData);
         for (Enemy en : this.enemyWaves) {
-            Encounter encounter = new Encounter(en, this);
+            Encounter encounter = new Encounter(new Enemy(en), this);
             encounter.outcome = ""; // Player engages immediately.
             while (encounter.outcome.equals("")) { // Turns happen until the encounter's outcome is decided.
                 encounter.turn();

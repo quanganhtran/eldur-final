@@ -26,7 +26,7 @@ public class Encounter {
         //this.player = c;
         this.enemy = en;
         this.outcome = "outOfCombat";
-        System.out.println("A " + this.enemy.getName() + " has appeared!");
+        System.out.println(this.enemy.getName() + " has appeared!");
         this.encInput = "";
     }
 

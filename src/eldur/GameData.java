@@ -8,8 +8,6 @@ package eldur;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.TreeSet;
 
 /**
  *
@@ -17,7 +15,6 @@ import java.util.TreeSet;
  */
 public class GameData {
 
-    //public int cash;
     // Materials: copper, iron, silver, gold, platinum, mithril, orichalcum, adamantite.
     public Material copper;
     public Material iron;
@@ -35,13 +32,9 @@ public class GameData {
     public HashMap<String, Gemstone> gemstonesDict;
     // Recipes
     public HashMap<String, Recipe> recipes;
-    // Identification Scroll TODO: Must be treated as items.
-//    public IdScroll excalibur;
-//    public IdScroll genesis;
-//    public IdScroll umi;
+    // Identification Scroll
     public HashMap<String, IdScroll> idScrollsDict;
-    // Ascension Scroll TODO: Must be treated as items.
-//    public AscensionScroll rin;
+    // Ascension Scroll
     public HashMap<String, AscensionScroll> aScrollsDict;
     // Equipped Sword
     public Sword equippedSword;
@@ -76,26 +69,15 @@ public class GameData {
         this.sapphire = new Gemstone("Sapphire", "of Protection", 0, 20, 0, 0);
         this.emerald = new Gemstone("Emerald", "of Precision", 0, 0, 10, 0);
         this.gemstonesDict = new HashMap<>();
-
         this.gemstonesDict.put("atk", ruby);
         this.gemstonesDict.put("def", sapphire);
         this.gemstonesDict.put("cri", emerald);
         // Recipes
         this.recipes = new HashMap<>();
         // Identification Scrolls
-//        this.excalibur = new IdScroll("Excalibur", new Sword("Excalibur", 3, "Epic", 78, 2));
-//        this.genesis = new IdScroll("Genesis", new Sword("Genesis", 3, "Epic", 88, 2));
-//        this.umi = new IdScroll("Umi", new Sword("Umi", 4, "Epic", 140, 2));
         this.idScrollsDict = new HashMap<>();
-
-//        this.idScrollsDict.put("exc", excalibur);
-//        this.idScrollsDict.put("gen", genesis);
-//        this.idScrollsDict.put("umi", umi);
         // Ascension Scrolls
-//        this.rin = new AscensionScroll("Rin", new Sword("Rin", 4, "Legendary", 200, 2));
         this.aScrollsDict = new HashMap<>();
-
-//        this.aScrollsDict.put("rin", rin);
         // Initial Sword
         this.equippedSword = new Sword("no sword", 1, "none", 1, 0);
         // Inventory
@@ -107,15 +89,8 @@ public class GameData {
         FileReader assets = new FileReader();
         assets.loadRecipe(recipes);
         assets.loadScroll(idScrollsDict, aScrollsDict);
-        
-//        inventory.add(new Sword(recipes.get("imperial")));
-//        itemInv.add(aScrollsDict.get("ann"));
-        
+
         // FUNCTIONALITY TEST
-//        itemInv.add(umi);
-//        itemInv.add(umi);
-//        itemInv.add(excalibur);
-//        itemInv.add(rin);
         itemInv.add(ruby);
         itemInv.add(ruby);
         itemInv.add(ruby);
@@ -125,10 +100,10 @@ public class GameData {
         itemInv.add(emerald);
         itemInv.add(sapphire);
         itemInv.add(emerald);
-//        for (IdScroll i : idScrollsDict.values()) {
-//            System.out.println(i.getName());
-//        }
-//        itemInv.add(genesis);
+
+        inventory.add(new Sword(recipes.get("imperial")));
+        itemInv.add(idScrollsDict.get("umi"));
+        itemInv.add(aScrollsDict.get("ann"));
     }
 
     public void craft(Recipe someRp) { // Needs to transfer all feedbacks to Game
@@ -202,11 +177,10 @@ public class GameData {
             System.out.println("Unique Skill: " + sw.getSkill().getSkillName());
         }
     }
-    
+
 //    public void destroy(Sword sw) {
 //        inventory.remove(sw);
 //    }
-
     public void setEquippedSword(Sword sw) {
         this.equippedSword = sw;
     }

@@ -37,13 +37,10 @@ public class Adventure extends Screen {
 
     @Override
     public Screen runScreen() {
-        //reader = new Scanner(System.in);
         // Re-initialize
         this.player = new Character(gameData);
-//        this.area = gameData.currentArea;
 
         // Potential loop
-        //Enemy enemy = new Enemy("Slime", 100, 100);
         while (true) {
             Encounter encounter = new Encounter(new Enemy(enemyTypes.get(rng.nextInt(enemyTypes.size()))), this);
             while (encounter.outcome.equals("outOfCombat")) {

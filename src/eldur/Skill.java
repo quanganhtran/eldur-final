@@ -38,11 +38,11 @@ public class Skill {
             case "hp3":
                 return new Skill("Regeneration Lv3", "hp", 500, 3);
             case "def1":
-                return new Skill("Fortification Lv1", "hp", 10, 2);
+                return new Skill("Fortification Lv1", "def", 10, 2);
             case "def2":
-                return new Skill("Fortification Lv2", "hp", 20, 2);
+                return new Skill("Fortification Lv2", "def", 20, 2);
             case "def3":
-                return new Skill("Fortification Lv3", "hp", 35, 2);
+                return new Skill("Fortification Lv3", "def", 35, 2);
             case "cri1":
                 return new Skill("Focus Lv1", "cri", 5, 3);
             case "cri2":
