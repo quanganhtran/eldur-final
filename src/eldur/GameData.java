@@ -103,7 +103,11 @@ public class GameData {
 
         inventory.add(new Sword(recipes.get("imperial")));
         itemInv.add(idScrollsDict.get("umi"));
+        itemInv.add(aScrollsDict.get("rin"));
         itemInv.add(aScrollsDict.get("ann"));
+        itemInv.add(aScrollsDict.get("hop"));
+        itemInv.add(aScrollsDict.get("lig"));
+        itemInv.add(aScrollsDict.get("ven"));
     }
 
     public void craft(Recipe someRp) { // Needs to transfer all feedbacks to Game

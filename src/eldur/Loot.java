@@ -54,21 +54,21 @@ public class Loot {
     
     public void drop() {
         for (Material mat : commonLoot) {
-            int amount = 2;
+            int amount = 10;
             mat.gain(amount);
             System.out.println( amount + "\u001B[30;1m " + mat.getName() + " obtained.\u001B[0m");
         }
-        if ((rareLoot != null) && (rng.nextInt(3) == 2)) {
+        if ((rareLoot != null) && (rng.nextInt(2) == 1)) {
             Item rareDrop = rareLoot.get(rng.nextInt(rareLoot.size()));
             gD.itemInv.add(rareDrop);
             System.out.println("\u001B[32m" + rareDrop.getName() + " obtained.\u001B[0m");
         }
-        if ((epicLoot != null) && rng.nextInt(9) == 8) {
+        if ((epicLoot != null) && rng.nextInt(4) == 3) {
             Item epicDrop = epicLoot.get(rng.nextInt(epicLoot.size()));
             gD.itemInv.add(epicDrop);
             System.out.println("\u001B[35m" + epicDrop.getName() + " obtained.\u001B[0m");
         }
-        if ((legendaryLoot != null) && rng.nextInt(27) == 26) {
+        if ((legendaryLoot != null) && rng.nextInt(8) == 7) {
             Item legendaryDrop = legendaryLoot.get(rng.nextInt(legendaryLoot.size()));
             gD.itemInv.add(legendaryDrop);
             System.out.println("\u001B[35m" + legendaryDrop.getName() + " obtained.\u001B[0m");
