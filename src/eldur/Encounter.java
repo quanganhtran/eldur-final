@@ -13,30 +13,23 @@ import java.util.Scanner;
  */
 public class Encounter {
 
-    //private Character player;
     private Scanner reader;
     private Enemy enemy;
-    String outcome; // int here String below
+    String outcome;
     String encInput;
     private Adventure adventure;
 
     public Encounter(Enemy en, Adventure adv) {
         reader = new Scanner(System.in);
         this.adventure = adv;
-        //this.player = c;
         this.enemy = en;
         this.outcome = "outOfCombat";
         System.out.println(this.enemy.getName() + " has appeared!");
         this.encInput = "";
     }
 
-//    public Encounter(Enemy en, final Adventure adv, String initO) {
-//        this(en, adv);
-//        this.outcome = initO;
-//    }
     public void outOfCombat() {
         //OUTER:
-        //while (true) {
         System.out.println("Do you want to engage? ('y' to engage, 'n' to skip)");
         this.encInput = reader.nextLine();
         switch (this.encInput) {
@@ -142,7 +135,6 @@ public class Encounter {
                     defaultHandler();
             }
         }
-        //return new String[]{this.encInput, this.outcome};
     }
 
     public void defaultHandler() {

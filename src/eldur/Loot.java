@@ -24,12 +24,6 @@ public class Loot {
     public Loot(GameData gD, Material[] l) {
         this.gD = gD;
         this.commonLoot = l;
-//        this.rareLoot = new ArrayList<>();
-//        this.epicLoot = new ArrayList<>();
-//        this.legendaryLoot = new ArrayList<>();
-        //this.questLoot = {};
-//        this.rareLoot = new ArrayList<>(gD.gemstonesDict.values());
-//        this.epicLoot = new ArrayList<>(gD.idScrollsDict.values());
     }
     
     public Loot(GameData gD, Material[] l, boolean rL) {
@@ -66,8 +60,6 @@ public class Loot {
         }
         if ((rareLoot != null) && (rng.nextInt(3) == 2)) {
             Item rareDrop = rareLoot.get(rng.nextInt(rareLoot.size()));
-//            System.out.println(rareLoot);
-//            System.out.println(rareDrop.getName());
             gD.itemInv.add(rareDrop);
             System.out.println("\u001B[32m" + rareDrop.getName() + " obtained.\u001B[0m");
         }

@@ -56,7 +56,6 @@ public class FileReader {
                 s.areaToBoss.get(s.areaMapDict.get(lineParts[0].substring(0, lineParts[0].length() - 4))).addEnemy(new Enemy(lineParts[1], Integer.parseInt(lineParts[2]), Integer.parseInt(lineParts[3])));
             }
         }
-        //return enemy;
     }
 
     public void loadScroll(HashMap<String, IdScroll> idDict, HashMap<String, AscensionScroll> aDict) {
@@ -96,11 +95,8 @@ public class FileReader {
         String[] storyPieces = allStories.split("<nextPart>");
         for (int i = 0; i < bSet.size(); i++) {
             if (i < storyPieces.length) {
-                //if (i % 2 == 0) {
                 bossScreens.get(i).setStory(storyPieces[2 * i]);
-                //} else {
                 bossScreens.get(i).setStoryAfter(storyPieces[2 * i + 1]);
-                //}
             }
         }
 

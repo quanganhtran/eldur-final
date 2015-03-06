@@ -6,7 +6,6 @@
 package eldur;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -16,7 +15,6 @@ import java.util.TreeSet;
  */
 public class Game extends Screen {
 
-    //private Scanner reader;
     private GameData gameData;
 
     public Game(String sN, GameData gD) {
@@ -24,19 +22,6 @@ public class Game extends Screen {
         gameData = gD;
     }
 
-//    @Override
-//    public Screen onCommand() {
-//        reader = new Scanner(System.in);
-//        while (true) {
-//            System.out.println("Enter a command: ");
-//            String input = reader.nextLine();
-//            String connection = interpret(input);
-//
-//            if (connections.get(connection) != null) { // Needs proper feedback
-//                return connections.get(connection);
-//            }
-//        }
-//    }
     @Override
     public String interpret(String input) {
         String[] inputParts = input.split("\\s");
@@ -87,12 +72,6 @@ public class Game extends Screen {
                 }
                 return "";
             case "stat":
-//                System.out.println("Copper: " + gameData.copper.getStock());
-//                System.out.println("Town area: " + gameData.currentArea);
-                //System.out.println("Cash: " + gameData.cash);
-//                gameData.materials.keySet().stream().forEach((k) -> {
-//                    System.out.print(gameData.materials.get(k).getName() + ": " + gameData.materials.get(k).getStock() + " ");
-//                });
                 for (Material mat : gameData.materials.values()) {
                     System.out.print(mat.getName() + ": " + mat.getStock() + " ");
                 }
@@ -110,9 +89,6 @@ public class Game extends Screen {
                 if (gameData.inventory.isEmpty()) {
                     System.out.println("There is no weapon in your invertory.");
                 }
-//                gameData.inventory.stream().forEach((sw) -> {
-//                    System.out.print(sw.getName() + " | ");
-//                });
                 for (int i = 0; i < gameData.inventory.size(); i++) {
                     System.out.print((i+1) + ". " + gameData.inventory.get(i).getName() + " | ");
                 }
@@ -123,17 +99,6 @@ public class Game extends Screen {
                     System.out.println("Your currently equipped sword is " + gameData.equippedSword.getName() + ".");
                 }
                 return "";
-//            case "adventure":
-//                if (inputParts.length >= 2) {
-//                    //int area = -1;
-//                    try {
-//                        gameData.currentArea = Integer.parseInt(inputParts[1]);
-//                    } catch (NumberFormatException numberFormatException) {
-//                        System.out.println("Area index must be a number.");
-//                        return "";
-//                    }
-//                }
-//                return "adventure";
             case "inspect":
                 if (inputParts.length >= 2) {
                     int invPos = -1;
@@ -151,12 +116,6 @@ public class Game extends Screen {
                         return "";
                     }
                     if (sw != null) {
-//                        System.out.println(sw.getName());
-//                        System.out.println("Attack: " + sw.getAtk());
-//                        System.out.println("Socket remaining: " + sw.getSocket());
-//                        System.out.println("Defense: " + sw.getDefense());
-//                        System.out.println("Critical Chance: " + sw.getCritRate() + "%");
-//                        System.out.println("Evasion: " + sw.getEvasion() + "%");
                         gameData.inspect(sw);
                         return "";
                     }
@@ -179,13 +138,9 @@ public class Game extends Screen {
                         System.out.println("Sword not found.");
                         return "";
                     }
-//                    if (sw != null) {
-//                        gameData.inspect(sw);
-//                        return "";
-//                    }
                 }
                 return "";
-            case "craft": // Needs proper feedback
+            case "craft":
                 if (inputParts.length >= 2) {
                     if (gameData.recipes.get(inputParts[1]) != null) {
                         gameData.craft(gameData.recipes.get(inputParts[1]));
@@ -211,7 +166,7 @@ public class Game extends Screen {
                     }
                 }
                 return "";
-            case "refine": // Needs proper feedback
+            case "refine":
                 if (inputParts.length >= 3) {
                     int invPos = -1;
                     try {
@@ -229,13 +184,12 @@ public class Game extends Screen {
                     Gemstone gem = gameData.gemstonesDict.get(inputParts[2]);
                     if (sw != null && gem != null) {
                         gameData.socket(sw, gem);
-                        //gameData.inventory.set(invPos, sw);
                     } else {
                         System.out.println("Gemstone not found.");
                     }
                 }
                 return "";
-            case "identify": // Needs proper feedback
+            case "identify":
                 if (inputParts.length >= 3) {
                     int invPos = -1;
                     try {
@@ -253,16 +207,14 @@ public class Game extends Screen {
                     }
                     IdScroll id = gameData.idScrollsDict.get(inputParts[2]);
                     if (id != null) {
-                        //gameData.inventory.set(invPos, gameData.identify(sw, id));
                         gameData.identify(sw, id);
-                        //gameData.inventory.set(invPos, sw);
                     } else {
                         System.out.println("Invalid Identification scroll.");
                         return "";
                     }
                 }
                 return "";
-            case "ascend": // Needs proper feedback
+            case "ascend":
                 if (inputParts.length >= 3) {
                     int invPos = -1;
                     try {
@@ -281,7 +233,6 @@ public class Game extends Screen {
                     AscensionScroll a = gameData.aScrollsDict.get(inputParts[2]);
                     if (a != null) {
                         gameData.ascend(sw, a);
-                        //gameData.inventory.set(invPos, sw);
                     } else {
                         System.out.println("Invalid Ascension scroll.");
                         return "";
@@ -291,8 +242,6 @@ public class Game extends Screen {
             default:
                 return input;
         }
-        //return input;
-
     }
 
 }
