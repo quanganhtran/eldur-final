@@ -77,7 +77,7 @@ public class FileReader {
             } else if (lineParts[3].equals("Epic")) {
                 Sword swordFrame = new Sword(lineParts[1], Integer.parseInt(lineParts[2]), lineParts[3], Integer.parseInt(lineParts[4]), Integer.parseInt(lineParts[5]));
                 swordFrame.setSkill(Skill.createFromTag(lineParts[6]));
-                idDict.put(lineParts[0], new AscensionScroll(lineParts[1], swordFrame));
+                idDict.put(lineParts[0], new IdScroll(lineParts[1], swordFrame));
             }
         }
     }
